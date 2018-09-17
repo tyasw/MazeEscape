@@ -1,0 +1,34 @@
+﻿/** Cell.cs
+ * 
+ * A Cell contains an id, the size of the cell, and a pointer to the tree it's
+ * in.
+ */
+namespace MazeEscapeLibrary.src
+{
+    public class Cell
+    {
+        public int Id { get; set; }
+        public float Size { get; set; }           // length of one side of the cell
+        public Tree<Cell> TreeNodePointer { get; set; }
+        public bool TopWall { get; set; }
+        public bool BottomWall { get; set; }
+        public bool LeftWall { get; set; }
+        public bool RightWall { get; set; }
+
+        public Cell(int id, float size)
+        {
+            Id = id;
+            Size = size;
+            TreeNodePointer = null;
+            TopWall = false;
+            BottomWall = false;
+            LeftWall = false;
+            RightWall = false;
+        }
+
+        public Tree<Cell> GetTreeNodePointerRoot()
+        {
+            return TreeNodePointer.GetRoot();
+        }
+    }
+}
