@@ -2,8 +2,8 @@
 {
     public class BeginGameCommand : Command
     {
-        protected GameController GameController { get; set; }
-        protected GameModel GameModel { get; set; }
+        public GameController GameController { get; set; }
+        public GameModel GameModel { get; set; }
 
         public BeginGameCommand(GameController gameController, GameModel gameModel)
         {

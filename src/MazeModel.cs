@@ -17,7 +17,6 @@ namespace MazeEscapeLibrary.src
         public List<TwoTuple<Cell>> Walls { get; set; }
 
         private List<TwoTuple<Cell>> CellPairs { get; set; }
-        private List<Tree<Cell>> Partitions { get; set; }
         private List<TwoTuple<Cell>> Doors { get; set; }
 
         public MazeModel()
@@ -28,7 +27,6 @@ namespace MazeEscapeLibrary.src
             CellWallThickness = 0.0f;
             Cells = new List<Cell>();
             CellPairs = new List<TwoTuple<Cell>>();
-            Partitions = new List<Tree<Cell>>();
             Doors = new List<TwoTuple<Cell>>();
             Walls = new List<TwoTuple<Cell>>();
         }
@@ -97,7 +95,6 @@ namespace MazeEscapeLibrary.src
             for (int i = 0; i < (Width * Height); i++)
             {
                 Tree<Cell> tree = new Tree<Cell>(Cells[i]);
-                Partitions.Add(tree);
                 Cells[i].TreeNodePointer = tree;
             }
         }

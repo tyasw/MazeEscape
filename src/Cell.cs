@@ -25,10 +25,5 @@ namespace MazeEscapeLibrary.src
             LeftWall = false;
             RightWall = false;
         }
-
-        public Tree<Cell> GetTreeNodePointerRoot()
-        {
-            return TreeNodePointer.GetRoot();
-        }
     }
 }
