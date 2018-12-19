@@ -33,27 +33,30 @@ namespace MazeEscapeLibrary.src
 
         public void CreateMaze()
         {
-            SetupModel();
-
-            while (CellPairs.Count > 0)
+            if (Width > 0 && Height > 0)
             {
-                TwoTuple<Cell> cellPair = CellPairs[0];
-                CellPairs.RemoveAt(0);
+                SetupModel();
 
-                Cell firstCell = cellPair.X;
-                Cell secondCell = cellPair.Y;
-
-                Tree<Cell> TreeOne = firstCell.TreeNodePointer;
-                Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
-
-                if (!TreeOne.IsInSameTreeAs(TreeTwo))
+                while (CellPairs.Count > 0)
                 {
-                    Doors.Add(cellPair);
-                    TreeOne.MergeWith(TreeTwo);
-                }
-                else
-                {
-                    Walls.Add(cellPair);
+                    TwoTuple<Cell> cellPair = CellPairs[0];
+                    CellPairs.RemoveAt(0);
+
+                    Cell firstCell = cellPair.X;
+                    Cell secondCell = cellPair.Y;
+
+                    Tree<Cell> TreeOne = firstCell.TreeNodePointer;
+                    Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
+
+                    if (!TreeOne.IsInSameTreeAs(TreeTwo))
+                    {
+                        Doors.Add(cellPair);
+                        TreeOne.MergeWith(TreeTwo);
+                    }
+                    else
+                    {
+                        Walls.Add(cellPair);
+                    }
                 }
             }
         }

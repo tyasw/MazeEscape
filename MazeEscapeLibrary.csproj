@@ -44,6 +44,7 @@
     <Compile Include="src\BeginGameCommand.cs" />
     <Compile Include="src\Cell.cs" />
     <Compile Include="src\Command.cs" />
+    <Compile Include="src\CommandParser.cs" />
     <Compile Include="src\GameController.cs" />
     <Compile Include="src\GameModel.cs" />
     <Compile Include="src\GameView.cs" />
