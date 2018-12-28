@@ -7,8 +7,8 @@
     <ProjectGuid>{2DE8C728-643F-4713-82DF-BCD63E2180FE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MazeEscapeLibrary</RootNamespace>
-    <AssemblyName>MazeEscapeLibrary</AssemblyName>
+    <RootNamespace>MazeEscape</RootNamespace>
+    <AssemblyName>MazeEscape</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>MazeEscapeLibrary.src.Program</StartupObject>
+    <StartupObject>MazeEscape.src.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

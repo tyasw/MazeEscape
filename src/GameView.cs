@@ -2,7 +2,7 @@
  * 
  * An interface for controlling what gets displayed to the user.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public interface GameView
     {

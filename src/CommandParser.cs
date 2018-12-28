@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class CommandParser
     {

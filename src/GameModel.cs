@@ -2,7 +2,7 @@
  * 
  * Holds the representation of the game state.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class GameModel
     {

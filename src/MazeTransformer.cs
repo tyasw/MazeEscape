@@ -4,7 +4,7 @@
  * 
  * Transforms the representation of a maze from a list of walls to an array of cells.
  */ 
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class MazeTransformer
     {

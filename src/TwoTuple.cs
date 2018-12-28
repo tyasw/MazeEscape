@@ -4,7 +4,7 @@
  * 
  * Stores two objects of the same type.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class TwoTuple<T>
     {

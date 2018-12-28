@@ -4,7 +4,7 @@
  * 
  * Handles the input/output of the MazeTest program.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class GuiView : GameView
     {

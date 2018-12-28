@@ -5,7 +5,7 @@ using System.Collections.Generic;
  * 
  * Holds the logic for creating the maze.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 { 
     public class MazeModel
     {

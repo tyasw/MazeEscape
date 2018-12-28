@@ -2,7 +2,7 @@
  * 
  * Controls the execution of the game.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public interface GameController
     {

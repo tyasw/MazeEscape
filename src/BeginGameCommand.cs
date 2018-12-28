@@ -1,4 +1,4 @@
-﻿namespace MazeEscapeLibrary.src
+﻿namespace MazeEscape.src
 {
     public class BeginGameCommand : Command
     {

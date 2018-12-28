@@ -7,7 +7,7 @@ using System.Collections.Generic;
  * Controls the creation of the maze, and the view presented to the user for the
  * text version of the game.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class TextController : GameController
     {

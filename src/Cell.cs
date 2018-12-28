@@ -3,7 +3,7 @@
  * A Cell contains an id, the size of the cell, and a pointer to the tree it's
  * in.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class Cell
     {

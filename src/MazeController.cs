@@ -2,7 +2,7 @@
  * 
  * Handles the creation of a maze.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class MazeController
     {

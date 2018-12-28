@@ -4,7 +4,7 @@
  * Logic is included for checking whether two nodes are in the same tree, and for
  * merging two trees together.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class Tree<T>
     {

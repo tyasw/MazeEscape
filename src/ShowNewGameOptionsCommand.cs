@@ -2,7 +2,7 @@
  * 
  * Show the options for starting a game.
  */
-namespace MazeEscapeLibrary.src
+namespace MazeEscape.src
 {
     public class ShowNewGameOptionsCommand : Command
     {
