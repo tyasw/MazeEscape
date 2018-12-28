@@ -7,7 +7,6 @@ namespace MazeEscapeLibrary.src
 {
     public interface Command
     {
-        // Run the command
         void Run();
     }
 }

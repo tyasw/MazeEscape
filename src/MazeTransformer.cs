@@ -26,20 +26,27 @@ namespace MazeEscapeLibrary.src
             MazeHeight = MazeModel.Height;
             List<TwoTuple<Cell>> mazeWalls = MazeModel.Walls;
             List<Cell> cells = MazeModel.Cells;
-            Maze = new Cell[MazeHeight, MazeWidth];
 
-            for (int row = 0; row < MazeHeight; row++)
+            if (MazeWidth > 0 && MazeHeight > 0)
             {
-                for (int col = 0; col < MazeWidth; col++)
-                {
-                    Maze[row, col] = cells[row * MazeWidth + col];
-                }
-            }
+                Maze = new Cell[MazeHeight, MazeWidth];
 
-            CreateTopMazeEdge();
-            CreateMiddleMazeWalls(mazeWalls);
-            CreateLeftAndRightMazeEdges();
-            CreateBottomMazeEdge();
+                for (int row = 0; row < MazeHeight; row++)
+                {
+                    for (int col = 0; col < MazeWidth; col++)
+                    {
+                        Maze[row, col] = cells[row * MazeWidth + col];
+                    }
+                }
+
+                CreateTopMazeEdge();
+                CreateMiddleMazeWalls(mazeWalls);
+                CreateLeftAndRightMazeEdges();
+                CreateBottomMazeEdge();
+            } else
+            {
+                Maze = new Cell[0, 0];
+            }
 
             return Maze;
         }
@@ -80,7 +87,6 @@ namespace MazeEscapeLibrary.src
                 if (col != (MazeWidth - 1))
                 {
                     Maze[MazeHeight - 1, col].BottomWall = true;
-
                 }
             }
         }
