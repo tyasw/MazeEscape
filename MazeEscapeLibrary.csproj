@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2DE8C728-643F-4713-82DF-BCD63E2180FE}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MazeEscapeLibrary</RootNamespace>
     <AssemblyName>MazeEscapeLibrary</AssemblyName>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MazeEscapeLibrary.src.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,10 +50,15 @@
     <Compile Include="src\GameController.cs" />
     <Compile Include="src\GameModel.cs" />
     <Compile Include="src\GameView.cs" />
+    <Compile Include="src\GuiController.cs" />
+    <Compile Include="src\GuiView.cs" />
     <Compile Include="src\MazeController.cs" />
     <Compile Include="src\MazeModel.cs" />
     <Compile Include="src\MazeTransformer.cs" />
+    <Compile Include="src\Program.cs" />
     <Compile Include="src\ShowNewGameOptionsCommand.cs" />
+    <Compile Include="src\TextController.cs" />
+    <Compile Include="src\TextView.cs" />
     <Compile Include="src\Tree.cs" />
     <Compile Include="src\TwoTuple.cs" />
   </ItemGroup>
