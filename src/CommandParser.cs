@@ -1,29 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MazeEscapeLibrary.src
 {
     public class CommandParser
     {
-        public GameController GameController;
-        public GameModel GameModel;
-
         private Queue<Command> Commands { get; set; }
 
-        public CommandParser(GameController controller, GameModel model)
+        public CommandParser()
         {
-            GameController = controller;
-            GameModel = model;
             Commands = new Queue<Command>();
-            AddCommand(new ShowNewGameOptionsCommand(GameController));
-            AddCommand(new BeginGameCommand(GameController, GameModel));
         }
 
         public void AddCommand(Command command)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException();
+            }
             Commands.Enqueue(command);
         }
 
