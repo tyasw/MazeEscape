@@ -13,13 +13,13 @@ namespace MazeEscapeLibrary.src
     {
         public GameModel GameModel { get; set; }
         public GameView GameView { get; set; }
-        //public CommandParser CmdParser { get; set; }
+        public CommandParser CmdParser { get; set; }
 
         public GuiController()
         {
             GameModel = new GameModel();
             GameView = new GuiView(GameModel);
-            //CmdParser = new CommandParser();
+            CmdParser = new CommandParser();
         }
 
         public void Start()
@@ -42,7 +42,7 @@ namespace MazeEscapeLibrary.src
 
         public void AddCommand(Command command)
         {
-            //CmdParser.AddCommand(command);
+            CmdParser.AddCommand(command);
         }
 
         public void ShowGameOptions()
@@ -86,7 +86,7 @@ namespace MazeEscapeLibrary.src
 
         public void RunNextCommand()
         {
-            //CmdParser.RunNextCommand();
+            CmdParser.RunNextCommand();
         }
     }
 }
