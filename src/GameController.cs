@@ -12,6 +12,8 @@ namespace MazeEscapeLibrary.src
 
         // Every once in a while, check if there are commands to run, and run them
         void Start();
+
+        void ShowMainMenu();
         
         // Add a command to be executed
         void AddCommand(Command command);
