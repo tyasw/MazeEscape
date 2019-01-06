@@ -24,9 +24,13 @@ namespace MazeEscape.src
         public void RunNextCommand()
         {
             Command command = RemoveCommandFromQueue();
-            if (command != null)
+
+            try
             {
                 command.Run();
+            } catch (NullReferenceException nre)
+            {
+                throw new Exception();
             }
         }
 

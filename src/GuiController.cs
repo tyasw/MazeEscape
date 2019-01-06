@@ -86,7 +86,13 @@ namespace MazeEscape.src
 
         public void RunNextCommand()
         {
-            CmdParser.RunNextCommand();
+            try
+            {
+                CmdParser.RunNextCommand();
+            } catch (Exception e)
+            {
+                Console.Error.WriteLine("No commands to run at " + DateTime.Now);
+            }
         }
     }
 }
