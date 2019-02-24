@@ -7,62 +7,50 @@ using System.Collections.Generic;
  * Controls the creation of the maze, and the view presented to the user for the
  * text version of the game.
  */
-namespace MazeEscape.src
-{
-    public class TextController : GameController
-    {
+namespace MazeEscape.src {
+    public class TextController : GameController {
         public GameModel GameModel { get; set; }
         public GameView GameView { get; set; }
         public CommandParser CmdParser { get; set; }
 
-        public TextController()
-        {
+        public TextController() {
             GameModel = new GameModel();
             GameView = new TextView(GameModel);
             CmdParser = new CommandParser();
         }
 
-        public void Start()
-        {
+        public void Start() {
             AddCommand(new ShowNewGameOptionsCommand(this));
-            AddCommand(new BeginGameCommand(this, GameModel));
+            AddCommand(new BeginGameCommand(this,GameModel));
 
-            while (true)
-            {
+            while (true) {
                 RunNextCommand();
             }
 
             //...
         }
 
-        public void ShowMainMenu()
-        {
+        public void ShowMainMenu() {
             throw new NotImplementedException();
         }
 
-        public void AddCommand(Command command)
-        {
+        public void AddCommand(Command command) {
             CmdParser.AddCommand(command);
         }
 
-        public void ShowGameOptions()
-        {
-            try
-            {
+        public void ShowGameOptions() {
+            try {
                 GetMazeWidthAndHeightFromUser();
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 LogError(ex);
             }
         }
 
-        private void LogError(Exception ex)
-        {
+        private void LogError(Exception ex) {
             Console.WriteLine(ex.Message);
         }
 
-        private void GetMazeWidthAndHeightFromUser()
-        {
+        private void GetMazeWidthAndHeightFromUser() {
             Console.WriteLine("What size of maze do you want?");
             Console.Write("Width: ");
             int width = Int32.Parse(Console.ReadLine().Trim());
@@ -73,25 +61,19 @@ namespace MazeEscape.src
             GameModel.SetMazeHeight(height);
         }
 
-        public void FireDrawMaze()
-        {
+        public void FireDrawMaze() {
             GameView.ShowMaze();
         }
 
-        public void FireDrawWorld()
-        {
+        public void FireDrawWorld() {
             //...
             FireDrawMaze();
         }
 
-        public void RunNextCommand()
-        {
-            try
-            {
+        public void RunNextCommand() {
+            try {
                 CmdParser.RunNextCommand();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Console.Error.WriteLine("No commands to run at " + DateTime.Now);
             }
         }

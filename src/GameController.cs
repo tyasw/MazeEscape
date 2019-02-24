@@ -2,10 +2,8 @@
  * 
  * Controls the execution of the game.
  */
-namespace MazeEscape.src
-{
-    public interface GameController
-    {
+namespace MazeEscape.src {
+    public interface GameController {
         GameModel GameModel { get; set; }
         GameView GameView { get; set; }
         CommandParser CmdParser { get; set; }
@@ -14,7 +12,7 @@ namespace MazeEscape.src
         void Start();
 
         void ShowMainMenu();
-        
+
         // Add a command to be executed
         void AddCommand(Command command);
 

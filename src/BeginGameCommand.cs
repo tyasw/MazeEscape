@@ -1,18 +1,14 @@
-﻿namespace MazeEscape.src
-{
-    public class BeginGameCommand : Command
-    {
+﻿namespace MazeEscape.src {
+    public class BeginGameCommand : Command {
         public GameController GameController { get; set; }
         public GameModel GameModel { get; set; }
 
-        public BeginGameCommand(GameController gameController, GameModel gameModel)
-        {
+        public BeginGameCommand(GameController gameController,GameModel gameModel) {
             GameController = gameController;
             GameModel = gameModel;
         }
 
-        public void Run()
-        {
+        public void Run() {
             GameModel.BeginGameWithOptionsApplied();
             GameController.FireDrawWorld();
         }

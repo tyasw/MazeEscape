@@ -3,10 +3,8 @@
  * A Cell contains an id, the size of the cell, and a pointer to the tree it's
  * in.
  */
-namespace MazeEscape.src
-{
-    public class Cell
-    {
+namespace MazeEscape.src {
+    public class Cell {
         public int Id { get; set; }
         public float Size { get; set; }           // length of one side of the cell
         public Tree<Cell> TreeNodePointer { get; set; }
@@ -15,8 +13,7 @@ namespace MazeEscape.src
         public bool LeftWall { get; set; }
         public bool RightWall { get; set; }
 
-        public Cell(int id, float size)
-        {
+        public Cell(int id,float size) {
             Id = id;
             Size = size;
             TreeNodePointer = null;

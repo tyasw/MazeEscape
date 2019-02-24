@@ -2,10 +2,8 @@
  * 
  * An interface for controlling what gets displayed to the user.
  */
-namespace MazeEscape.src
-{
-    public interface GameView
-    {
+namespace MazeEscape.src {
+    public interface GameView {
         GameModel GameModel { get; set; }
         int MazeWidth { get; set; }
         int MazeHeight { get; set; }
