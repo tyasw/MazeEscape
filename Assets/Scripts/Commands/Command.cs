@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Command {
-    void Run();
+namespace Scripts.Commands {
+    public interface Command {
+        void Run();
+    }
 }

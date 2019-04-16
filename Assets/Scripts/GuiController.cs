@@ -1,15 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using Scripts.Commands;
 
 public class GuiController : MonoBehaviour {
     public GameModel GameModel { get; set; }
     public GuiView GameView { get; set; }
     public CommandParser CmdParser { get; set; }
+    public GameOptions GameOptions { get; set; }
 
     void Start() {
         GameModel = new GameModel();
         GameView = new GuiView(GameModel);
         CmdParser = new CommandParser();
+        GameOptions = new UnityGameOptions();
 
         AddCommand(new ShowNewGameOptionsCommand(this));
         AddCommand(new BeginGameCommand(this,GameModel));
@@ -20,7 +23,23 @@ public class GuiController : MonoBehaviour {
     }
 
     public void ShowMainMenu() {
-        throw new NotImplementedException();
+        GameOptions.ShowMainMenu();
+    }
+
+    public void StartGame() {
+        GameOptions.StartGame();
+    }
+
+    public void PauseGame() {
+        GameOptions.PauseGame();
+    }
+
+    public void ResumeGame() {
+        GameOptions.ResumeGame();
+    }
+
+    public void StopGame() {
+        GameOptions.StopGame();
     }
 
     public void AddCommand(Command command) {
