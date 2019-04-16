@@ -53,10 +53,6 @@ public class GuiController : MonoBehaviour {
     }
 
     public void RunNextCommand() {
-        try {
-            CmdParser.RunNextCommand();
-        } catch (Exception e) {
-            Debug.LogError("No commands to run");
-        }
+        CmdParser.RunNextCommand();
     }
 }

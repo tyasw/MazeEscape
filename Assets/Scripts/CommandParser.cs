@@ -20,10 +20,8 @@ public class CommandParser {
     public void RunNextCommand() {
         Command command = RemoveCommandFromQueue();
 
-        try {
+        if (command != null) {
             command.Run();
-        } catch (NullReferenceException nre) {
-            throw new Exception();
         }
     }
 
