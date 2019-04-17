@@ -1,4 +1,4 @@
-﻿namespace Scripts.Commands {
+﻿namespace Assets.Scripts.Commands {
     public class BeginGameCommand : Command {
         public GuiController GameController { get; set; }
         public GameModel GameModel { get; set; }

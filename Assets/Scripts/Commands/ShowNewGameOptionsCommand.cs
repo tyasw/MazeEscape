@@ -1,17 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Scripts.Commands {
+﻿namespace Assets.Scripts.Commands {
     public class ShowNewGameOptionsCommand : Command {
-        private GuiController GameController { get; set; }
+        private UnityHandler GameOptions { get; set; }
 
-        public ShowNewGameOptionsCommand(GuiController gameController) {
-            GameController = gameController;
+        public ShowNewGameOptionsCommand(UnityHandler gameOptions) {
+            GameOptions = gameOptions;
         }
 
         public void Run() {
-            GameController.ShowGameOptions();
+            GameOptions.ShowGameOptions();
         }
     }
 }

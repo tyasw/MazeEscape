@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Commands;
 
 public class CommandParser {
     private Queue<Command> Commands { get; set; }
