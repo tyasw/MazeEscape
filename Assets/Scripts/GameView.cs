@@ -5,4 +5,5 @@
     int MazeHeight { get; set; }
 
     void DrawMaze();
+    void DrawWorld();
 }

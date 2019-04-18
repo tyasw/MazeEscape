@@ -15,7 +15,7 @@ public class UnityController : MonoBehaviour, GameController {
         GameOptions = GetComponent<UnityOptions>();
 
         AddCommand(new ShowNewGameOptionsCommand(GameOptions));
-        AddCommand(new BeginGameCommand(this,GameModel));
+        AddCommand(new BeginGameCommand(GameModel, GameView));
         AddCommand(new PauseGameCommand(GameOptions));
         AddCommand(new ResumeGameCommand(GameOptions));
     }
@@ -26,15 +26,6 @@ public class UnityController : MonoBehaviour, GameController {
 
     public void AddCommand(Command command) {
         CmdParser.AddCommand(command);
-    }
-
-    public void FireDrawMaze() {
-        GameView.DrawMaze();
-    }
-
-    public void FireDrawWorld() {
-        //...
-        FireDrawMaze();
     }
 
     public void RunNextCommand() {

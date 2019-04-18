@@ -7,7 +7,5 @@ public interface GameController {
     GameOptions GameOptions { get; set; }
 
     void AddCommand(Command command);
-    void FireDrawMaze();
-    void FireDrawWorld();
     void RunNextCommand();
 }

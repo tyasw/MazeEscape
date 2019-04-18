@@ -25,6 +25,11 @@ public class UnityView : GameView {
         DrawMazeWalls();
     }
 
+    public void DrawWorld() {
+        //...
+        DrawMaze();
+    }
+
     private void DrawMazeWalls() {
         if (MazeWidth > 0 && MazeHeight > 0) {
             float wallWidth = GameModel.MazeModel.CellSize;
