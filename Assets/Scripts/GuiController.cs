@@ -2,11 +2,11 @@
 using UnityEngine;
 using Assets.Scripts.Commands;
 
-public class GuiController : MonoBehaviour {
+public class GuiController : MonoBehaviour, GameController {
     public GameModel GameModel { get; set; }
-    public GuiView GameView { get; set; }
+    public GameView GameView { get; set; }
     public CommandParser CmdParser { get; set; }
-    public UnityHandler GameOptions { get; set; }
+    public GameOptions GameOptions { get; set; }
 
     void Start() {
         GameModel = new GameModel();

@@ -1,8 +1,8 @@
 ﻿namespace Assets.Scripts.Commands {
     public class ResumeGameCommand : Command {
-        private UnityHandler GameOptions { get; set; }
+        private GameOptions GameOptions { get; set; }
 
-        public ResumeGameCommand(UnityHandler gameOptions) {
+        public ResumeGameCommand(GameOptions gameOptions) {
             GameOptions = gameOptions;
         }
 

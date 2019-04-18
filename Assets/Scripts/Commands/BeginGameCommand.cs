@@ -1,9 +1,9 @@
 ﻿namespace Assets.Scripts.Commands {
     public class BeginGameCommand : Command {
-        public GuiController GameController { get; set; }
+        public GameController GameController { get; set; }
         public GameModel GameModel { get; set; }
 
-        public BeginGameCommand(GuiController gameController, GameModel gameModel) {
+        public BeginGameCommand(GameController gameController, GameModel gameModel) {
             GameController = gameController;
             GameModel = gameModel;
         }

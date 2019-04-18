@@ -1,8 +1,8 @@
 ﻿namespace Assets.Scripts.Commands {
     public class ShowNewGameOptionsCommand : Command {
-        private UnityHandler GameOptions { get; set; }
+        private GameOptions GameOptions { get; set; }
 
-        public ShowNewGameOptionsCommand(UnityHandler gameOptions) {
+        public ShowNewGameOptionsCommand(GameOptions gameOptions) {
             GameOptions = gameOptions;
         }
 

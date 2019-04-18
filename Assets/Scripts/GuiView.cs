@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuiView {
+public class GuiView : GameView {
     public GameModel GameModel { get; set; }
     public MazeTransformer MazeTransformer { get; set; }
     public int MazeWidth { get; set; }
@@ -22,24 +22,7 @@ public class GuiView {
         MazeWidth = GameModel.GetMazeWidth();
         MazeHeight = GameModel.GetMazeHeight();
         Maze = MazeTransformer.CreateMazeMatrix();
-        //DrawMazeWallsTest();
         DrawMazeWalls();
-    }
-
-    private void DrawMazeWallsTest() {
-        if (MazeWidth > 0 && MazeHeight > 0) {
-            float wallWidth = GameModel.MazeModel.CellSize;
-            float wallThickness = GameModel.MazeModel.CellWallThickness;
-            Wall verticalTemplateWall = createVerticalTemplateWall(wallWidth, wallThickness);
-            Wall horizontalTemplateWall = createHorizontalTemplateWall(wallWidth, wallThickness);
-            drawTopWall(horizontalTemplateWall);
-            drawLeftEdge(0,verticalTemplateWall);
-            drawLeftEdge(1,verticalTemplateWall);
-            drawBottomWall(horizontalTemplateWall);
-
-            verticalTemplateWall.Instance.SetActive(false);
-            horizontalTemplateWall.Instance.SetActive(false);
-        }
     }
 
     private void DrawMazeWalls() {

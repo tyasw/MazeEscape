@@ -1,8 +1,8 @@
 ﻿namespace Assets.Scripts.Commands {
     public class StopGameCommand : Command {
-        private UnityHandler GameOptions { get; set; }
+        private GameOptions GameOptions { get; set; }
 
-        public StopGameCommand(UnityHandler gameOptions) {
+        public StopGameCommand(GameOptions gameOptions) {
             GameOptions = gameOptions;
         }
 
