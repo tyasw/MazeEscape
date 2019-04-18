@@ -16,6 +16,8 @@ public class GuiController : MonoBehaviour, GameController {
 
         AddCommand(new ShowNewGameOptionsCommand(GameOptions));
         AddCommand(new BeginGameCommand(this,GameModel));
+        AddCommand(new PauseGameCommand(GameOptions));
+        AddCommand(new ResumeGameCommand(GameOptions));
     }
 
     void Update() {
@@ -36,6 +38,9 @@ public class GuiController : MonoBehaviour, GameController {
     }
 
     public void RunNextCommand() {
-        CmdParser.RunNextCommand();
+        string commandName = CmdParser.RunNextCommand();
+        if (commandName != "") {
+            Debug.Log(commandName + " was just run");
+        }
     }
 }

@@ -9,5 +9,9 @@
         public void Run() {
             GameOptions.PauseGame();
         }
+
+        public override string ToString() {
+            return "PauseGameCommand";
+        }
     }
 }

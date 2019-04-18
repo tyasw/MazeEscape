@@ -9,5 +9,9 @@
         public void Run() {
             GameOptions.ResumeGame();
         }
+
+        public override string ToString() {
+            return "ResumeGameCommand";
+        }
     }
 }

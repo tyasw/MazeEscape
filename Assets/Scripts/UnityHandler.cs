@@ -2,24 +2,19 @@
 using UnityEngine;
 
 public class UnityHandler : MonoBehaviour, GameOptions  {
-    void Start() {
-        
-    }
-
-    void Update() {
-        
-    }
+    private float SavedTimeScale { get; set; }
 
     public void StartGame() {
         throw new NotImplementedException();
     }
 
     public void PauseGame() {
-        throw new NotImplementedException();
+        SavedTimeScale = Time.timeScale;
+        Time.timeScale = 0.0f;
     }
 
     public void ResumeGame() {
-        throw new NotImplementedException();
+        Time.timeScale = SavedTimeScale;
     }
 
     public void StopGame() {

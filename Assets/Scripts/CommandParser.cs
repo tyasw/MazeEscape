@@ -17,12 +17,15 @@ public class CommandParser {
         Commands.Enqueue(command);
     }
 
-    public void RunNextCommand() {
+    public string RunNextCommand() {
         Command command = RemoveCommandFromQueue();
+        string commandName = "";
 
         if (command != null) {
             command.Run();
+            commandName = command.ToString();
         }
+        return commandName;
     }
 
     private Command RemoveCommandFromQueue() {

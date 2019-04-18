@@ -45,7 +45,7 @@ public class GuiView : GameView {
 
     private Wall createVerticalTemplateWall(float wallWidth, float wallThickness) {
         float totalWidth = wallWidth + 2 * wallThickness;
-        float cellHeight = 2.0f;        // TODO: should be the same as cell size
+        float cellHeight = GameModel.MazeModel.CellSize;        // TODO: should be the same as cell size
 
         GameObject exampleWall = GameObject.FindGameObjectWithTag("Wall");
 
@@ -65,7 +65,7 @@ public class GuiView : GameView {
 
     private Wall createHorizontalTemplateWall(float wallWidth, float wallThickness) {
         float totalWidth = wallWidth + 2 * wallThickness;
-        float cellHeight = 2.0f;
+        float cellHeight = GameModel.MazeModel.CellSize;
 
         GameObject exampleWall = GameObject.FindGameObjectWithTag("Wall");
 

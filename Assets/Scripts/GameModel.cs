@@ -33,6 +33,6 @@ public class GameModel {
 
     // TODO: get the options from an options file
     private void GetGameOptions() {
-        MazeModel.CellSize = 2.0f;
+        MazeModel.CellSize = 4.0f;
     }
 }

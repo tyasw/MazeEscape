@@ -12,5 +12,9 @@
             GameModel.BeginGameWithOptionsApplied();
             GameController.FireDrawWorld();
         }
+
+        public override string ToString() {
+            return "BeginGameCommand";
+        }
     }
 }

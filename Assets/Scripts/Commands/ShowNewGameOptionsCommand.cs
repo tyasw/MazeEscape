@@ -9,5 +9,9 @@
         public void Run() {
             GameOptions.ShowGameOptions();
         }
+
+        public override string ToString() {
+            return "ShowNewGameOptionsCommand";
+        }
     }
 }
