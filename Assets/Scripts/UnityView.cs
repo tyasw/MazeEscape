@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuiView : GameView {
+public class UnityView : GameView {
     public GameModel GameModel { get; set; }
     public MazeTransformer MazeTransformer { get; set; }
     public int MazeWidth { get; set; }
@@ -11,14 +11,14 @@ public class GuiView : GameView {
 
     private Cell[,] Maze { get; set; }  // row x col
 
-    public GuiView(GameModel gameModel) {
+    public UnityView(GameModel gameModel) {
         GameModel = gameModel;
         MazeTransformer = new MazeTransformer(GameModel.MazeModel);
         MazeWidth = GameModel.GetMazeWidth();
         MazeHeight = GameModel.GetMazeHeight();
     }
 
-    public void ShowMaze() {
+    public void DrawMaze() {
         MazeWidth = GameModel.GetMazeWidth();
         MazeHeight = GameModel.GetMazeHeight();
         Maze = MazeTransformer.CreateMazeMatrix();
@@ -45,7 +45,7 @@ public class GuiView : GameView {
 
     private Wall createVerticalTemplateWall(float wallWidth, float wallThickness) {
         float totalWidth = wallWidth + 2 * wallThickness;
-        float cellHeight = GameModel.MazeModel.CellSize;        // TODO: should be the same as cell size
+        float cellHeight = GameModel.MazeModel.CellSize;
 
         GameObject exampleWall = GameObject.FindGameObjectWithTag("Wall");
 
@@ -108,11 +108,9 @@ public class GuiView : GameView {
         float yPos = template.transform.position.y;
         float zPos = template.transform.position.z;
         for (int col = 0; col < (MazeWidth - 1); col++) {       // Leave bottom right open for exit
-            //Debug.Log("Intended = (" + xPos + ", 0.0f, " + zPos + ")");
             Vector3 wallPosition = new Vector3(xPos, yPos, zPos);
             Quaternion wallRotation = template.transform.rotation;
             GameObject wall = GameObject.Instantiate(template, wallPosition, wallRotation);
-            //Debug.Log("Actual = (" + wall.transform.position.x + ", " + wall.transform.position.y + ", " + wall.transform.position.z + ")");
             zPos += wallWidth + wallThickness;
         }
     }

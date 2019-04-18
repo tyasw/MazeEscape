@@ -2,7 +2,7 @@
 using UnityEngine;
 using Assets.Scripts.Commands;
 
-public class GuiController : MonoBehaviour, GameController {
+public class UnityController : MonoBehaviour, GameController {
     public GameModel GameModel { get; set; }
     public GameView GameView { get; set; }
     public CommandParser CmdParser { get; set; }
@@ -10,9 +10,9 @@ public class GuiController : MonoBehaviour, GameController {
 
     void Start() {
         GameModel = new GameModel();
-        GameView = new GuiView(GameModel);
+        GameView = new UnityView(GameModel);
         CmdParser = new CommandParser();
-        GameOptions = GetComponent<UnityHandler>();
+        GameOptions = GetComponent<UnityOptions>();
 
         AddCommand(new ShowNewGameOptionsCommand(GameOptions));
         AddCommand(new BeginGameCommand(this,GameModel));
@@ -29,7 +29,7 @@ public class GuiController : MonoBehaviour, GameController {
     }
 
     public void FireDrawMaze() {
-        GameView.ShowMaze();
+        GameView.DrawMaze();
     }
 
     public void FireDrawWorld() {

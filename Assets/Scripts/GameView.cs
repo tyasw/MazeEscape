@@ -4,5 +4,5 @@
     int MazeWidth { get; set; }
     int MazeHeight { get; set; }
 
-    void ShowMaze();
+    void DrawMaze();
 }

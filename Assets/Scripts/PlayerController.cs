@@ -19,22 +19,22 @@ public class PlayerController : MonoBehaviour {
         Quaternion cameraNewRotation;
         float movement = 0.5f;
 
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetKey(KeyCode.W)) {
             newPosition = new Vector3(oldPosition.x, oldPosition.y, oldPosition.z + movement);
             newRotation = oldRotation;
             cameraNewPosition = new Vector3(cameraOldPosition.x, cameraOldPosition.y, cameraOldPosition.z + movement);
             cameraNewRotation = cameraOldRotation;
-        } else if (Input.GetKeyDown(KeyCode.A)) {
+        } else if (Input.GetKey(KeyCode.A)) {
             newPosition = new Vector3(oldPosition.x - movement, oldPosition.y, oldPosition.z);
             newRotation = oldRotation;
             cameraNewPosition = new Vector3(cameraOldPosition.x - movement, cameraOldPosition.y, cameraOldPosition.z);
             cameraNewRotation = cameraOldRotation;
-        } else if (Input.GetKeyDown(KeyCode.S)) {
+        } else if (Input.GetKey(KeyCode.S)) {
             newPosition = new Vector3(oldPosition.x, oldPosition.y, oldPosition.z - movement);
             newRotation = oldRotation;
             cameraNewPosition = new Vector3(cameraOldPosition.x, cameraOldPosition.y, cameraOldPosition.z - movement);
             cameraNewRotation = cameraOldRotation;
-        } else if (Input.GetKeyDown(KeyCode.D)) {
+        } else if (Input.GetKey(KeyCode.D)) {
             newPosition = new Vector3(oldPosition.x + movement, oldPosition.y, oldPosition.z);
             newRotation = oldRotation;
             cameraNewPosition = new Vector3(cameraOldPosition.x + movement, cameraOldPosition.y, cameraOldPosition.z);
