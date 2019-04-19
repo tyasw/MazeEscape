@@ -18,16 +18,16 @@ public class UnityView : GameView {
         MazeHeight = GameModel.GetMazeHeight();
     }
 
+    public void DrawWorld() {
+        //...
+        DrawMaze();
+    }
+
     public void DrawMaze() {
         MazeWidth = GameModel.GetMazeWidth();
         MazeHeight = GameModel.GetMazeHeight();
         Maze = MazeTransformer.CreateMazeMatrix();
         DrawMazeWalls();
-    }
-
-    public void DrawWorld() {
-        //...
-        DrawMaze();
     }
 
     private void DrawMazeWalls() {
