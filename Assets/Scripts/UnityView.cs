@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class UnityView : GameView {
     public GameModel GameModel { get; set; }
-    public MazeTransformer MazeTransformer { get; set; }
     public int MazeWidth { get; set; }
     public int MazeHeight { get; set; }
 
@@ -13,7 +12,7 @@ public class UnityView : GameView {
 
     public UnityView(GameModel gameModel) {
         GameModel = gameModel;
-        MazeTransformer = new MazeTransformer(GameModel.MazeModel);
+        Maze = new Cell[0,0];
         MazeWidth = GameModel.GetMazeWidth();
         MazeHeight = GameModel.GetMazeHeight();
     }
@@ -26,7 +25,7 @@ public class UnityView : GameView {
     public void DrawMaze() {
         MazeWidth = GameModel.GetMazeWidth();
         MazeHeight = GameModel.GetMazeHeight();
-        Maze = MazeTransformer.CreateMazeMatrix();
+        Maze = GameModel.MazeModel.Maze;
         DrawMazeWalls();
     }
 

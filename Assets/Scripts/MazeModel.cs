@@ -9,6 +9,7 @@ public class MazeModel {
     public float CellSize { get; set; }
     public float CellWallThickness { get; set; }
     public List<Cell> Cells { get; set; }
+    public Cell[,] Maze { get; set; }
     public List<TwoTuple<Cell>> Walls { get; set; }
 
     private List<TwoTuple<Cell>> CellPairs { get; set; }
@@ -20,9 +21,10 @@ public class MazeModel {
         CellSize = 0.0f;
         CellWallThickness = 0.1f;
         Cells = new List<Cell>();
+        Maze = new Cell[0,0];
+        Walls = new List<TwoTuple<Cell>>();
         CellPairs = new List<TwoTuple<Cell>>();
         Doors = new List<TwoTuple<Cell>>();
-        Walls = new List<TwoTuple<Cell>>();
     }
 
     public void CreateMaze() {
@@ -46,8 +48,71 @@ public class MazeModel {
                     Walls.Add(cellPair);
                 }
             }
+
+            Maze = CreateMazeMatrix();
         }
     }
+
+    private Cell[,] CreateMazeMatrix() {
+        if (Width > 0 && Height > 0) {
+            Maze = new Cell[Height,Width];
+
+            for (int row = 0; row < Height; row++) {
+                for (int col = 0; col < Width; col++) {
+                    Maze[row,col] = Cells[row * Width + col];
+                }
+            }
+
+            CreateTopMazeEdge();
+            CreateMiddleMazeWalls(Walls);
+            CreateLeftAndRightMazeEdges();
+            CreateBottomMazeEdge();
+        } else {
+            Maze = new Cell[0,0];
+        }
+
+        return Maze;      
+    }
+
+    private void CreateTopMazeEdge() {
+        for (int col = 0; col < Width; col++) {
+            Maze[0,col].TopWall = true;
+        }
+    }
+
+    private void CreateMiddleMazeWalls(List<TwoTuple<Cell>> mazeWalls) {
+        foreach (TwoTuple<Cell> tuple in mazeWalls) {
+            int cellOneId = tuple.X.Id;
+            int cellTwoId = tuple.Y.Id;
+            int mazeRow = cellOneId / Width + 1;
+
+            if (Width == 1 || ((cellTwoId - cellOneId) > 1)) {   // cellOne on top of cellTwo
+                tuple.X.BottomWall = true;
+                tuple.Y.TopWall = true;
+            } else {   // cellTwo to the right of cellOne
+                tuple.X.RightWall = true;
+                tuple.Y.LeftWall = true;
+            }
+        }
+    }
+
+    private void CreateBottomMazeEdge() {
+        for (int col = 0; col < Width; col++) {
+            if (col != (Width - 1)) {
+                Maze[Height - 1,col].BottomWall = true;
+            }
+        }
+    }
+
+    private void CreateLeftAndRightMazeEdges() {
+        for (int row = 0; row < Height; row++) {
+            if (row != 0) {
+                Maze[row,0].LeftWall = true;
+            }
+            Maze[row,Width - 1].RightWall = true;
+        }
+    }
+
 
     private void SetupModel() {
         CreateCells();
