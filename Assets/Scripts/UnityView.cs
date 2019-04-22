@@ -35,13 +35,13 @@ public class UnityView : GameView {
             float wallThickness = GameModel.MazeModel.CellWallThickness;
             Wall verticalTemplateWall = createVerticalTemplateWall(wallWidth, wallThickness);
             Wall horizontalTemplateWall = createHorizontalTemplateWall(wallWidth, wallThickness);
+
             drawTopWall(horizontalTemplateWall);
             for (int row = 0; row < MazeHeight; row++) {
                 drawLeftEdge(row, verticalTemplateWall);
                 drawInteriorRow(row, verticalTemplateWall, horizontalTemplateWall);
             }
             drawBottomWall(horizontalTemplateWall);
-
             verticalTemplateWall.Instance.SetActive(false);
             horizontalTemplateWall.Instance.SetActive(false);
         }

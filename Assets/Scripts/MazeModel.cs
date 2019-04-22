@@ -13,112 +13,55 @@ public class MazeModel {
     public List<TwoTuple<Cell>> Walls { get; set; }
 
     private List<TwoTuple<Cell>> CellPairs { get; set; }
-    private List<TwoTuple<Cell>> Doors { get; set; }
 
     public MazeModel() {
-        Width = 20;
-        Height = 20;
+        Width = 0;
+        Height = 0;
         CellSize = 0.0f;
-        CellWallThickness = 0.1f;
+        CellWallThickness = 0.0f;
         Cells = new List<Cell>();
         Maze = new Cell[0,0];
         Walls = new List<TwoTuple<Cell>>();
         CellPairs = new List<TwoTuple<Cell>>();
-        Doors = new List<TwoTuple<Cell>>();
     }
 
     public void CreateMaze() {
         if (Width > 0 && Height > 0) {
             SetupModel();
-
-            while (CellPairs.Count > 0) {
-                TwoTuple<Cell> cellPair = CellPairs[0];
-                CellPairs.RemoveAt(0);
-
-                Cell firstCell = cellPair.X;
-                Cell secondCell = cellPair.Y;
-
-                Tree<Cell> TreeOne = firstCell.TreeNodePointer;
-                Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
-
-                if (!TreeOne.IsInSameTreeAs(TreeTwo)) {
-                    Doors.Add(cellPair);
-                    TreeOne.MergeWith(TreeTwo);
-                } else {
-                    Walls.Add(cellPair);
-                }
-            }
-
             Maze = CreateMazeMatrix();
         }
     }
-
-    private Cell[,] CreateMazeMatrix() {
-        if (Width > 0 && Height > 0) {
-            Maze = new Cell[Height,Width];
-
-            for (int row = 0; row < Height; row++) {
-                for (int col = 0; col < Width; col++) {
-                    Maze[row,col] = Cells[row * Width + col];
-                }
-            }
-
-            CreateTopMazeEdge();
-            CreateMiddleMazeWalls(Walls);
-            CreateLeftAndRightMazeEdges();
-            CreateBottomMazeEdge();
-        } else {
-            Maze = new Cell[0,0];
-        }
-
-        return Maze;      
-    }
-
-    private void CreateTopMazeEdge() {
-        for (int col = 0; col < Width; col++) {
-            Maze[0,col].TopWall = true;
-        }
-    }
-
-    private void CreateMiddleMazeWalls(List<TwoTuple<Cell>> mazeWalls) {
-        foreach (TwoTuple<Cell> tuple in mazeWalls) {
-            int cellOneId = tuple.X.Id;
-            int cellTwoId = tuple.Y.Id;
-            int mazeRow = cellOneId / Width + 1;
-
-            if (Width == 1 || ((cellTwoId - cellOneId) > 1)) {   // cellOne on top of cellTwo
-                tuple.X.BottomWall = true;
-                tuple.Y.TopWall = true;
-            } else {   // cellTwo to the right of cellOne
-                tuple.X.RightWall = true;
-                tuple.Y.LeftWall = true;
-            }
-        }
-    }
-
-    private void CreateBottomMazeEdge() {
-        for (int col = 0; col < Width; col++) {
-            if (col != (Width - 1)) {
-                Maze[Height - 1,col].BottomWall = true;
-            }
-        }
-    }
-
-    private void CreateLeftAndRightMazeEdges() {
-        for (int row = 0; row < Height; row++) {
-            if (row != 0) {
-                Maze[row,0].LeftWall = true;
-            }
-            Maze[row,Width - 1].RightWall = true;
-        }
-    }
-
 
     private void SetupModel() {
         CreateCells();
         CreateCellPairs();
         CreateCellPartitions();
         RandomizeListOfCellPairs();
+        CreateInteriorWallsAndDoors();
+    }
+
+    private void CreateInteriorWallsAndDoors() {
+        while (CellPairs.Count > 0) {
+            TwoTuple<Cell> cellPair = CellPairs[0];
+            CellPairs.RemoveAt(0);
+            if (CellsInSameTree(cellPair)) {
+                CreateDoor(cellPair);
+            } else {
+                CreateWall(cellPair);
+            }
+        }
+    }
+
+    private Cell[,] CreateMazeMatrix() {
+        if (Width > 0 && Height > 0) {
+            Maze = new Cell[Height,Width];
+            InitializeMazeMatrix();
+            Maze = CreateOutsideWallsAndDoors(Maze);
+        } else {
+            Maze = new Cell[0,0];
+        }
+
+        return Maze;      
     }
 
     private void CreateCells() {
@@ -156,5 +99,74 @@ public class MazeModel {
             CellPairs[i] = secondPair;
             CellPairs[randomPosition] = firstPair;
         }
+    }
+
+    private bool CellsInSameTree(TwoTuple<Cell> cellPair) {
+        Cell firstCell = cellPair.X;
+        Cell secondCell = cellPair.Y;
+        Tree<Cell> TreeOne = firstCell.TreeNodePointer;
+        Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
+        return (!TreeOne.IsInSameTreeAs(TreeTwo));
+    }
+
+    private void CreateWall(TwoTuple<Cell> cellPair) {
+        Walls.Add(cellPair);
+
+        Cell firstCell = cellPair.X;
+        Cell secondCell = cellPair.Y;
+
+        if (CellsOnTopOfEachOther(cellPair)) {
+            firstCell.BottomWall = true;
+            secondCell.TopWall = true;
+        } else {
+            firstCell.RightWall = true;
+            secondCell.LeftWall = true;
+        }
+    }
+
+    private bool CellsOnTopOfEachOther(TwoTuple<Cell> cellPair) {
+        Cell firstCell = cellPair.X;
+        Cell secondCell = cellPair.Y;
+        return firstCell.Id != (secondCell.Id - 1);
+    }
+
+    private void CreateDoor(TwoTuple<Cell> cellPair) {
+        Cell firstCell = cellPair.X;
+        Cell secondCell = cellPair.Y;
+        Tree<Cell> treeOne = firstCell.TreeNodePointer;
+        Tree<Cell> treeTwo = secondCell.TreeNodePointer;
+        treeOne.MergeWith(treeTwo);
+    }
+
+    private void InitializeMazeMatrix() {
+        for (int row = 0; row < Height; row++) {
+            for (int col = 0; col < Width; col++) {
+                Maze[row,col] = Cells[row * Width + col];
+            }
+        }
+    }
+
+    private Cell[,] CreateOutsideWallsAndDoors(Cell[,] mazeWithoutOutsideWalls) {
+        Cell[,] maze = mazeWithoutOutsideWalls;
+        for (int row = 0; row < Height; row++) {
+            for (int col = 0; col < Width; col++) {
+                if (col == 0 && row != 0) {
+                    maze[row, col].LeftWall = true;
+                }
+
+                if (row == 0) {
+                    maze[row, col].TopWall = true;
+                }
+
+                if (col == (Width - 1)) {
+                    maze[row, col].RightWall = true;
+                }
+
+                if ((row == (Height - 1)) && (col != (Width - 1))) {
+                    maze[row, col].BottomWall = true;
+                }
+            }
+        }
+        return maze;
     }
 }
