@@ -5,22 +5,6 @@
         MazeModel = new MazeModel();
     }
 
-    public void SetMazeWidth(int width) {
-        MazeModel.Width = width;
-    }
-
-    public void SetMazeHeight(int height) {
-        MazeModel.Height = height;
-    }
-
-    public int GetMazeWidth() {
-        return MazeModel.Width;
-    }
-
-    public int GetMazeHeight() {
-        return MazeModel.Height;
-    }
-
     public void BeginGameWithOptionsApplied() {
         GetGameOptions();
         MazeController mazeController = new MazeController(MazeModel);
