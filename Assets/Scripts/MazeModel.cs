@@ -7,7 +7,6 @@ public class MazeModel {
     public float CellWallThickness { get; set; }
     public List<Cell> Cells { get; set; }
     public Cell[,] Maze { get; set; }
-    public List<TwoTuple<Cell>> Walls { get; set; }
 
     private List<TwoTuple<Cell>> CellPairs { get; set; }
 
@@ -18,7 +17,6 @@ public class MazeModel {
         CellWallThickness = 0.0f;
         Cells = new List<Cell>();
         Maze = new Cell[0,0];
-        Walls = new List<TwoTuple<Cell>>();
         CellPairs = new List<TwoTuple<Cell>>();
     }
 
@@ -37,28 +35,16 @@ public class MazeModel {
         CreateInteriorWallsAndDoors();
     }
 
-    private void CreateInteriorWallsAndDoors() {
-        while (CellPairs.Count > 0) {
-            TwoTuple<Cell> cellPair = CellPairs[0];
-            CellPairs.RemoveAt(0);
-            if (CellsInSameTree(cellPair)) {
-                CreateDoor(cellPair);
-            } else {
-                CreateWall(cellPair);
-            }
-        }
-    }
-
     private Cell[,] CreateMazeMatrix() {
         if (Width > 0 && Height > 0) {
             Maze = new Cell[Height, Width];
             InitializeMazeMatrix();
             Maze = CreateOutsideWallsAndDoors(Maze);
         } else {
-            Maze = new Cell[0,0];
+            Maze = new Cell[0, 0];
         }
 
-        return Maze;      
+        return Maze;
     }
 
     private void CreateCells() {
@@ -70,10 +56,10 @@ public class MazeModel {
     // Assumes that cells have already been created
     private void CreateCellPairs() {
         for (int i = 0; i < (Width * Height); i++) {
-            if ((i + 1) % Width != 0) {   // Not at far right edge
+            if (!AtRightEdge(i)) {
                 CellPairs.Add(new TwoTuple<Cell>(Cells[i],Cells[i + 1]));
             }
-            if (!(((Height - 1) * Width) <= i && i < (Height * Width))) {   // Not at bottom edge
+            if (!AtBottomEdge(i)) {
                 CellPairs.Add(new TwoTuple<Cell>(Cells[i],Cells[i + Width]));
             }
         }
@@ -83,14 +69,6 @@ public class MazeModel {
         for (int i = 0; i < (Width * Height); i++) {
             Tree<Cell> tree = new Tree<Cell>(Cells[i]);
             Cells[i].TreeNodePointer = tree;
-        }
-    }
-
-    private void InitializeMazeMatrix() {
-        for (int row = 0; row < Height; row++) {
-            for (int col = 0; col < Width; col++) {
-                Maze[row, col] = Cells[row * Width + col];
-            }
         }
     }
 
@@ -105,6 +83,37 @@ public class MazeModel {
         }
     }
 
+    private void CreateInteriorWallsAndDoors() {
+        while (CellPairs.Count > 0) {
+            TwoTuple<Cell> cellPair = CellPairs[0];
+            CellPairs.RemoveAt(0);
+            if (CellsInSameTree(cellPair)) {
+                CreateDoor(cellPair);
+            } else {
+                CreateWall(cellPair);
+            }
+        }
+    }
+
+    private Cell[,] CreateOutsideWallsAndDoors(Cell[,] mazeWithoutOutsideWalls) {
+        Cell[,] maze = mazeWithoutOutsideWalls;
+        for (int row = 0; row < Height; row++) {
+            for (int col = 0; col < Width; col++) {
+                Cell cell = maze[row, col];
+                AddOutsideWallsAndDoorsToCell(cell, row, col);
+            }
+        }
+        return maze;
+    }
+
+    private void InitializeMazeMatrix() {
+        for (int row = 0; row < Height; row++) {
+            for (int col = 0; col < Width; col++) {
+                Maze[row, col] = Cells[row * Width + col];
+            }
+        }
+    }
+
     private void CreateDoor(TwoTuple<Cell> cellPair) {
         Cell firstCell = cellPair.X;
         Cell secondCell = cellPair.Y;
@@ -114,8 +123,6 @@ public class MazeModel {
     }
 
     private void CreateWall(TwoTuple<Cell> cellPair) {
-        Walls.Add(cellPair);
-
         Cell firstCell = cellPair.X;
         Cell secondCell = cellPair.Y;
 
@@ -128,28 +135,22 @@ public class MazeModel {
         }
     }
 
-    private Cell[,] CreateOutsideWallsAndDoors(Cell[,] mazeWithoutOutsideWalls) {
-        Cell[,] maze = mazeWithoutOutsideWalls;
-        for (int row = 0; row < Height; row++) {
-            for (int col = 0; col < Width; col++) {
-                if (col == 0 && row != 0) {
-                    maze[row, col].LeftWall = true;
-                }
-
-                if (row == 0) {
-                    maze[row, col].TopWall = true;
-                }
-
-                if (col == (Width - 1)) {
-                    maze[row, col].RightWall = true;
-                }
-
-                if ((row == (Height - 1)) && (col != (Width - 1))) {
-                    maze[row, col].BottomWall = true;
-                }
-            }
+    private void AddOutsideWallsAndDoorsToCell(Cell cell, int row, int col) {
+        if (PartOfLeftEdge(row, col)) {
+            cell.LeftWall = true;
         }
-        return maze;
+
+        if (PartOfTopEdge(row)) {
+            cell.TopWall = true;
+        }
+
+        if (PartOfRightEdge(col)) {
+            cell.RightWall = true;
+        }
+
+        if (PartOfBottomEdge(row, col)) {
+            cell.BottomWall = true;
+        }
     }
 
     private bool CellsOnTopOfEachOther(TwoTuple<Cell> cellPair) {
@@ -164,5 +165,29 @@ public class MazeModel {
         Tree<Cell> TreeOne = firstCell.TreeNodePointer;
         Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
         return (!TreeOne.IsInSameTreeAs(TreeTwo));
+    }
+
+    private bool AtRightEdge(int cellId) {
+        return (cellId + 1) % Width == 0;
+    }
+
+    private bool AtBottomEdge(int cellId) {
+        return ((Height - 1) * Width) <= cellId && cellId < (Height * Width);
+    }
+
+    private bool PartOfLeftEdge(int row, int col) {
+        return col == 0 && row != 0;
+    }
+
+    private bool PartOfRightEdge(int col) {
+        return col == (Width - 1);
+    }
+
+    private bool PartOfTopEdge(int row) {
+        return row == 0;
+    }
+
+    private bool PartOfBottomEdge(int row, int col) {
+        return (row == (Height - 1)) && (col != (Width - 1));
     }
 }
