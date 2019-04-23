@@ -1,36 +1,37 @@
-﻿using UnityEngine;
-using Assets.Scripts.Commands;
+﻿using Assets.Scripts.Commands;
 
-public class UnityController : MonoBehaviour, GameController {
+public class UnityController : GameController {
     public GameModel GameModel { get; set; }
     public GameView GameView { get; set; }
-    public CommandParser CmdParser { get; set; }
+    public CommandParser CommandParser { get; set; }
+    public CommandRunner CommandRunner { get; set; }
     public GameOptions GameOptions { get; set; }
 
-    void Start() {
-        GameModel = new GameModel();
-        GameView = new UnityView(GameModel);
-        CmdParser = new CommandParser();
-        GameOptions = GetComponent<UnityOptions>();
-
-        AddCommand(new ShowNewGameOptionsCommand(GameOptions));
-        AddCommand(new BeginGameCommand(GameModel, GameView));
-        AddCommand(new PauseGameCommand(GameOptions));
-        AddCommand(new ResumeGameCommand(GameOptions));
-    }
-
-    void Update() {
-        RunNextCommand();
+    public UnityController(GameModel gameModel, GameView gameView, CommandParser commandParser, CommandRunner commandRunner, GameOptions gameOptions) {
+        GameModel = gameModel;
+        GameView = gameView;
+        CommandParser = commandParser;
+        CommandRunner = commandRunner;
+        GameOptions = gameOptions;
     }
 
     public void AddCommand(Command command) {
-        CmdParser.AddCommand(command);
+        CommandParser.AddCommand(command);
     }
 
-    public void RunNextCommand() {
-        string commandName = CmdParser.RunNextCommand();
-        if (commandName != "") {
-            Debug.Log(commandName + " was just run");
-        }
+    public void StartNewGame() {
+        GameModel.BeginGameWithOptionsApplied();
+    }
+
+    public void PauseGame() {
+        GameOptions.PauseGame();
+    }
+
+    public void ResumeGame() {
+        GameOptions.ResumeGame();
+    }
+
+    public void ShowMenu() {
+        GameOptions.ShowMainMenu();
     }
 }
