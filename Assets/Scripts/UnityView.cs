@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class UnityView : GameView {
+﻿public class UnityView : GameView {
     public GameModel GameModel { get; set; }
     public int MazeWidth { get; set; }
     public int MazeHeight { get; set; }

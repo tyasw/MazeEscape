@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Tree<T> {
+﻿public class Tree<T> {
     public Tree<T> Parent { get; set; }
     public T Data { get; set; }
 

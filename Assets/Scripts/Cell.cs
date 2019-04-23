@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Cell {
+﻿public class Cell {
     public int Id { get; set; }
     public float Size { get; set; }           // length of one side of the cell
     public Tree<Cell> TreeNodePointer { get; set; }

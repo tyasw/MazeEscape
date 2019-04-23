@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MazeController {
+﻿public class MazeController {
     private MazeModel Model { get; set; }
 
     public MazeController(MazeModel model) {

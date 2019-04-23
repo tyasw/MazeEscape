@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Scripts.Commands;
 
 public class UnityController : MonoBehaviour, GameController {
