@@ -54,7 +54,7 @@ public class MazeModel {
 
     private Cell[,] CreateMazeMatrix() {
         if (Width > 0 && Height > 0) {
-            Maze = new Cell[Height,Width];
+            Maze = new Cell[Height, Width];
             InitializeMazeMatrix();
             Maze = CreateOutsideWallsAndDoors(Maze);
         } else {
@@ -89,7 +89,14 @@ public class MazeModel {
         }
     }
 
-    // For each cell pair, swap with a pair at a random location
+    private void InitializeMazeMatrix() {
+        for (int row = 0; row < Height; row++) {
+            for (int col = 0; col < Width; col++) {
+                Maze[row, col] = Cells[row * Width + col];
+            }
+        }
+    }
+
     private void RandomizeListOfCellPairs() {
         System.Random r = new System.Random();
         for (int i = 0; i < CellPairs.Count; i++) {
@@ -101,12 +108,12 @@ public class MazeModel {
         }
     }
 
-    private bool CellsInSameTree(TwoTuple<Cell> cellPair) {
+    private void CreateDoor(TwoTuple<Cell> cellPair) {
         Cell firstCell = cellPair.X;
         Cell secondCell = cellPair.Y;
-        Tree<Cell> TreeOne = firstCell.TreeNodePointer;
-        Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
-        return (!TreeOne.IsInSameTreeAs(TreeTwo));
+        Tree<Cell> treeOne = firstCell.TreeNodePointer;
+        Tree<Cell> treeTwo = secondCell.TreeNodePointer;
+        treeOne.MergeWith(treeTwo);
     }
 
     private void CreateWall(TwoTuple<Cell> cellPair) {
@@ -121,28 +128,6 @@ public class MazeModel {
         } else {
             firstCell.RightWall = true;
             secondCell.LeftWall = true;
-        }
-    }
-
-    private bool CellsOnTopOfEachOther(TwoTuple<Cell> cellPair) {
-        Cell firstCell = cellPair.X;
-        Cell secondCell = cellPair.Y;
-        return firstCell.Id != (secondCell.Id - 1);
-    }
-
-    private void CreateDoor(TwoTuple<Cell> cellPair) {
-        Cell firstCell = cellPair.X;
-        Cell secondCell = cellPair.Y;
-        Tree<Cell> treeOne = firstCell.TreeNodePointer;
-        Tree<Cell> treeTwo = secondCell.TreeNodePointer;
-        treeOne.MergeWith(treeTwo);
-    }
-
-    private void InitializeMazeMatrix() {
-        for (int row = 0; row < Height; row++) {
-            for (int col = 0; col < Width; col++) {
-                Maze[row,col] = Cells[row * Width + col];
-            }
         }
     }
 
@@ -168,5 +153,19 @@ public class MazeModel {
             }
         }
         return maze;
+    }
+
+    private bool CellsOnTopOfEachOther(TwoTuple<Cell> cellPair) {
+        Cell firstCell = cellPair.X;
+        Cell secondCell = cellPair.Y;
+        return firstCell.Id != (secondCell.Id - 1);
+    }
+
+    private bool CellsInSameTree(TwoTuple<Cell> cellPair) {
+        Cell firstCell = cellPair.X;
+        Cell secondCell = cellPair.Y;
+        Tree<Cell> TreeOne = firstCell.TreeNodePointer;
+        Tree<Cell> TreeTwo = secondCell.TreeNodePointer;
+        return (!TreeOne.IsInSameTreeAs(TreeTwo));
     }
 }
