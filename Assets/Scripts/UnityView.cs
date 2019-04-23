@@ -1,21 +1,18 @@
 ﻿using UnityEngine;
 
 public class UnityView : MonoBehaviour, GameView {
+    public MazeData MazeData { get; set; }
     public GameModel GameModel { get; set; }
-    public MazeModel MazeModel { get; set; }
-    public int MazeWidth { get; set; }
-    public int MazeHeight { get; set; }
 
-    private Cell[,] Maze { get; set; }  // row x col
     private MenuView MenuView { get; set; }
 
     void Start() {
+        MazeData = MazeData.GetInstance();
+
         UnityController gameController = GetComponent<UnityController>();
         GameModel = GameModel.GetInstance();
-        MazeModel = GameModel.MazeModel;
-        Maze = new Cell[0, 0];
-        MazeWidth = MazeModel.Width;
-        MazeHeight = MazeModel.Height;
+
+
         MenuView = GetComponent<MenuView>();    // Change later to access dynamically?
     }
 
@@ -25,12 +22,12 @@ public class UnityView : MonoBehaviour, GameView {
     }
 
     public void DrawMaze() {
-        MazeWidth = MazeModel.Width;
-        MazeHeight = MazeModel.Height;
-        Maze = MazeModel.Maze;
-        float wallWidth = MazeModel.CellSize;
-        float wallThickness = MazeModel.CellWallThickness;
-        MazeDrawer mazeDrawer = new MazeDrawer(MazeWidth, MazeHeight, Maze, wallWidth, wallThickness);
+        int mazeWidth = MazeData.Width;
+        int mazeHeight = MazeData.Height;
+        Cell[,] maze = MazeData.Maze;
+        float wallWidth = MazeData.CellSize;
+        float wallThickness = MazeData.CellWallThickness;
+        MazeDrawer mazeDrawer = new MazeDrawer(mazeWidth, mazeHeight, maze, wallWidth, wallThickness);
         mazeDrawer.DrawMaze();
     }
 }

@@ -1,5 +1,5 @@
 ﻿public class GameModel {
-    private static GameModel GameModelInstance { get; set; }
+    private static GameModel GameModelInstance = null;
     public MazeModel MazeModel { get; set; }
 
     private GameModel() {
@@ -21,9 +21,9 @@
 
     // TODO: get the options from an options file
     private void GetGameOptions() {
-        MazeModel.CellSize = 4.0f;
-        MazeModel.Width = 5;
-        MazeModel.Height = 4;
-        MazeModel.CellWallThickness = 0.1f;
+        GameModelInstance.MazeModel.MazeData.CellSize = 4.0f;
+        GameModelInstance.MazeModel.MazeData.Width = 5;
+        GameModelInstance.MazeModel.MazeData.Height = 4;
+        GameModelInstance.MazeModel.MazeData.CellWallThickness = 0.1f;
     }
 }
