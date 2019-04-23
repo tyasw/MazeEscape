@@ -9,8 +9,9 @@ public class UnityView : MonoBehaviour, GameView {
     private Cell[,] Maze { get; set; }  // row x col
     private MenuView MenuView { get; set; }
 
-    public UnityView(GameModel gameModel) {
-        GameModel = gameModel;
+    void Start() {
+        UnityController gameController = GetComponent<UnityController>();
+        GameModel = GameModel.GetInstance();
         MazeModel = GameModel.MazeModel;
         Maze = new Cell[0, 0];
         MazeWidth = MazeModel.Width;

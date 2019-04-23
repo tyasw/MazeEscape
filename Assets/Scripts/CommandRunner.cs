@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 
-public class CommandRunner : MonoBehaviour {
+public class CommandRunner {
     private CommandParser CommandParser { get; set; }
 
-    private void Start() {
-        CommandParser = GetComponent<CommandParser>();
+    public CommandRunner(CommandParser commandParser) {
+        CommandParser = commandParser;
     }
 
-    private void Update() {
-        RunNextCommand();
-    }
-
-    private void RunNextCommand() {
+    public void RunNextCommand() {
         string commandName = CommandParser.RunNextCommand();
         if (commandName != "") {
             Debug.Log(commandName + " was just run");

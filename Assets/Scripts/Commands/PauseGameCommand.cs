@@ -1,13 +1,13 @@
 ﻿namespace Assets.Scripts.Commands {
     public class PauseGameCommand : Command {
-        private GameOptions GameOptions { get; set; }
+        private GameController GameController { get; set; }
 
-        public PauseGameCommand(GameOptions gameOptions) {
-            GameOptions = gameOptions;
+        public PauseGameCommand(GameController gameController) {
+            GameController = gameController;
         }
 
         public void Run() {
-            GameOptions.PauseGame();
+            GameController.PauseGame();
         }
 
         public override string ToString() {

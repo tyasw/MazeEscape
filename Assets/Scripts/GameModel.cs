@@ -1,8 +1,16 @@
 ﻿public class GameModel {
+    private static GameModel GameModelInstance { get; set; }
     public MazeModel MazeModel { get; set; }
 
-    public GameModel() {
+    private GameModel() {
         MazeModel = new MazeModel();
+    }
+
+    public static GameModel GetInstance() {
+        if (GameModelInstance == null) {
+            GameModelInstance = new GameModel();
+        }
+        return GameModelInstance;
     }
 
     public void BeginGameWithOptionsApplied() {

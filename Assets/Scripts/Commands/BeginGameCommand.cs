@@ -1,16 +1,13 @@
 ﻿namespace Assets.Scripts.Commands {
     public class BeginGameCommand : Command {
-        public GameModel GameModel { get; set; }
-        public GameView GameView { get; set; }
+        public GameController GameController { get; set; }
 
-        public BeginGameCommand(GameModel gameModel, GameView gameView) {
-            GameModel = gameModel;
-            GameView = gameView;
+        public BeginGameCommand(GameController gameController) {
+            GameController = gameController;
         }
 
         public void Run() {
-            GameModel.BeginGameWithOptionsApplied();
-            GameView.DrawWorld();
+            GameController.StartNewGame();
         }
 
         public override string ToString() {

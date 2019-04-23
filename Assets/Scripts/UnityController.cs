@@ -1,18 +1,26 @@
-﻿using Assets.Scripts.Commands;
+﻿using UnityEngine;
+using Assets.Scripts.Commands;
 
-public class UnityController : GameController {
-    public GameModel GameModel { get; set; }
-    public GameView GameView { get; set; }
-    public CommandParser CommandParser { get; set; }
-    public CommandRunner CommandRunner { get; set; }
-    public GameOptions GameOptions { get; set; }
+public class UnityController : MonoBehaviour, GameController {
+    public GameModel GameModel;
+    public GameView GameView;
+    public CommandParser CommandParser;
+    public CommandRunner CommandRunner;
+    public GameOptions GameOptions;
 
-    public UnityController(GameModel gameModel, GameView gameView, CommandParser commandParser, CommandRunner commandRunner, GameOptions gameOptions) {
-        GameModel = gameModel;
-        GameView = gameView;
-        CommandParser = commandParser;
-        CommandRunner = commandRunner;
-        GameOptions = gameOptions;
+    void Start() {
+        GameModel = GameModel.GetInstance();
+        GameView = GetComponent<UnityView>();
+        CommandParser = new CommandParser();
+        CommandRunner = new CommandRunner(CommandParser);
+        GameOptions = GetComponent<UnityOptions>();
+
+        AddCommand(new ShowNewGameOptionsCommand(this));
+        AddCommand(new BeginGameCommand(this));
+    }
+
+    void Update() {
+        CommandRunner.RunNextCommand();
     }
 
     public void AddCommand(Command command) {
@@ -21,6 +29,7 @@ public class UnityController : GameController {
 
     public void StartNewGame() {
         GameModel.BeginGameWithOptionsApplied();
+        GameView.DrawWorld();
     }
 
     public void PauseGame() {
@@ -31,7 +40,15 @@ public class UnityController : GameController {
         GameOptions.ResumeGame();
     }
 
+    public void StopGame() {
+        GameOptions.StopGame();
+    }
+
     public void ShowMenu() {
         GameOptions.ShowMainMenu();
+    }
+
+    public void ShowGameOptions() {
+        GameOptions.ShowGameOptions();
     }
 }

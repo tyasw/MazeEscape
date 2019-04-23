@@ -1,13 +1,13 @@
 ﻿namespace Assets.Scripts.Commands {
     public class ResumeGameCommand : Command {
-        private GameOptions GameOptions { get; set; }
+        private GameController GameController { get; set; }
 
-        public ResumeGameCommand(GameOptions gameOptions) {
-            GameOptions = gameOptions;
+        public ResumeGameCommand(GameController gameController) {
+            GameController = gameController;
         }
 
         public void Run() {
-            GameOptions.ResumeGame();
+            GameController.ResumeGame();
         }
 
         public override string ToString() {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class UnityOptions : MonoBehaviour, GameOptions  {
+public class UnityOptions : MonoBehaviour, GameOptions {
     private float SavedTimeScale { get; set; }
 
     public void StartGame() {

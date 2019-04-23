@@ -1,13 +1,13 @@
 ﻿namespace Assets.Scripts.Commands {
     public class ShowNewGameOptionsCommand : Command {
-        private GameOptions GameOptions { get; set; }
+        private GameController GameController { get; set; }
 
-        public ShowNewGameOptionsCommand(GameOptions gameOptions) {
-            GameOptions = gameOptions;
+        public ShowNewGameOptionsCommand(GameController gameController) {
+            GameController = gameController;
         }
 
         public void Run() {
-            GameOptions.ShowGameOptions();
+            GameController.ShowGameOptions();
         }
 
         public override string ToString() {
