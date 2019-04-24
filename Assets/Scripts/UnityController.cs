@@ -11,7 +11,7 @@ public class UnityController : MonoBehaviour, GameController {
     void Start() {
         GameModel = GameModel.GetInstance();
         GameView = GetComponent<UnityView>();
-        CommandParser = new CommandParser();
+        CommandParser = CommandParser.GetInstance();
         CommandRunner = new CommandRunner(CommandParser);
         GameOptions = GetComponent<UnityOptions>();
 

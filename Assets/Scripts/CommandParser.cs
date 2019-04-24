@@ -5,8 +5,17 @@ using Assets.Scripts.Commands;
 public class CommandParser {
     private Queue<Command> Commands { get; set; }
 
-    public CommandParser() {
+    private static CommandParser CommandParserInstance = null;
+
+    private CommandParser() {
         Commands = new Queue<Command>();
+    }
+
+    public static CommandParser GetInstance() {
+        if (CommandParserInstance == null) {
+            CommandParserInstance = new CommandParser();
+        }
+        return CommandParserInstance;
     }
 
     public void AddCommand(Command command) {
