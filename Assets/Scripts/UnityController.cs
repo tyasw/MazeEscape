@@ -4,6 +4,7 @@ using Assets.Scripts.Commands;
 public class UnityController : MonoBehaviour, GameController {
     public GameModel GameModel;
     public GameView GameView;
+    public EventHandler EventHandler;
     public CommandParser CommandParser;
     public CommandRunner CommandRunner;
     public GameOptions GameOptions;
@@ -11,6 +12,7 @@ public class UnityController : MonoBehaviour, GameController {
     void Start() {
         GameModel = GameModel.GetInstance();
         GameView = GetComponent<UnityView>();
+        EventHandler = EventHandler.GetInstance();
         CommandParser = CommandParser.GetInstance();
         CommandRunner = new CommandRunner(CommandParser);
         GameOptions = GetComponent<UnityOptions>();
