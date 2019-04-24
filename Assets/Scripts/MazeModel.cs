@@ -1,21 +1,20 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class MazeModel {
-    public MazeData MazeData;
-
+    private static MazeModel MazeModelInstance = null;
+    private MazeData MazeData;
     private List<TwoTuple<Cell>> CellPairs { get; set; }
 
-    public MazeModel() {
+    private MazeModel() {
         MazeData = MazeData.GetInstance();
-        MazeData.Width = 0;
-        MazeData.Height = 0;
-        MazeData.CellSize = 0.0f;
-        MazeData.CellWallThickness = 0.0f;
-        MazeData.Cells = new List<Cell>();
-        MazeData.Maze = new Cell[0,0];
-
         CellPairs = new List<TwoTuple<Cell>>();
+    }
+
+    public static MazeModel GetInstance() {
+        if (MazeModelInstance == null) {
+            MazeModelInstance = new MazeModel();
+        }
+        return MazeModelInstance;
     }
 
     public void CreateMaze() {
@@ -38,7 +37,7 @@ public class MazeModel {
         if (MazeData.Width > 0 && MazeData.Height > 0) {
             MazeData.Maze = new Cell[MazeData.Height, MazeData.Width];
             InitializeMazeMatrix();
-            Maze = CreateOutsideWallsAndDoors(MazeData.Maze);
+            Maze = CreateOutsideWallsAndDoors();
         }
 
         return Maze;
@@ -92,8 +91,8 @@ public class MazeModel {
         }
     }
 
-    private Cell[,] CreateOutsideWallsAndDoors(Cell[,] mazeWithoutOutsideWalls) {
-        Cell[,] maze = mazeWithoutOutsideWalls;
+    private Cell[,] CreateOutsideWallsAndDoors() {
+        Cell[,] maze = MazeData.Maze;
         for (int row = 0; row < MazeData.Height; row++) {
             for (int col = 0; col < MazeData.Width; col++) {
                 Cell cell = maze[row, col];
