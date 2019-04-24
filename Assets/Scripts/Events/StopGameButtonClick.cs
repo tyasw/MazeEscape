@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Events {
-    class StopGameButtonClick : MonoBehaviour, ButtonClick {
+    public class StopGameButtonClick : MonoBehaviour, ButtonClick {
         [SerializeField]
         private Button _Button;
         public Button Button {
