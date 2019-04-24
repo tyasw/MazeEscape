@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-class ShowGameOptionsButtonClick : MonoBehaviour, ButtonClick {
+class PauseGameButtonClick : MonoBehaviour, ButtonClick {
     [SerializeField]
     private Button _Button;
     public Button Button {
@@ -17,10 +17,10 @@ class ShowGameOptionsButtonClick : MonoBehaviour, ButtonClick {
     }
 
     public void HandleClick() {
-        Debug.Log("Show new game options!");
+        Debug.Log("Pause Game!");
         GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
         GameController gameController = gameControllerObject.GetComponent<GameController>();
-        Command command = new ShowNewGameOptionsCommand(gameController);
+        Command command = new PauseGameCommand(gameController);
         EventHandler.Notify(command);
     }
 }

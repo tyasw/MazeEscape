@@ -17,7 +17,7 @@ public class StartGameButtonClick : MonoBehaviour, ButtonClick {
     }
 
     public void HandleClick() {
-        Debug.Log("You have clicked the start game button!");
+        Debug.Log("Start game!");
         GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
         GameController gameController = gameControllerObject.GetComponent<GameController>();
         Command command = new BeginGameCommand(gameController);
