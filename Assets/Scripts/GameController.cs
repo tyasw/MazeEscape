@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Commands;
-
-public interface GameController {
-    void AddCommand(Command command);
+﻿public interface GameController {
     void StartNewGame();
     void PauseGame();
     void ResumeGame();
