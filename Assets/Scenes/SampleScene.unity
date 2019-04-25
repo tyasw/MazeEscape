@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 344361859}
   - component: {fileID: 344361858}
   - component: {fileID: 344361861}
+  - component: {fileID: 344361862}
   - component: {fileID: 344361857}
   m_Layer: 5
   m_Name: PauseGameButton
@@ -571,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781e6a85824e31e4587e272ef017d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Button: {fileID: 344361858}
+  Button: {fileID: 344361858}
 --- !u!114 &344361858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +667,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce2b37e833fde94ca0e9c147bd99d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &344361862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344361855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eaaa389a5193504eae74b822936bf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyCode: 27
 --- !u!1 &425424192
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781e6a85824e31e4587e272ef017d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Button: {fileID: 677063338}
+  Button: {fileID: 677063338}
 --- !u!114 &677063338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781e6a85824e31e4587e272ef017d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Button: {fileID: 850725093}
+  Button: {fileID: 850725093}
 --- !u!114 &850725093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781e6a85824e31e4587e272ef017d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Button: {fileID: 1272607307}
+  Button: {fileID: 1272607307}
 --- !u!114 &1272607307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,7 +1868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781e6a85824e31e4587e272ef017d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Button: {fileID: 2032083396}
+  Button: {fileID: 2032083396}
 --- !u!114 &2032083396
 MonoBehaviour:
   m_ObjectHideFlags: 0

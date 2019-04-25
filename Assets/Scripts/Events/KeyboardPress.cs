@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Events {
-    public class ButtonClick : MonoBehaviour {
-        public Button Button;
+    public class KeyboardPress : MonoBehaviour {
+        public KeyCode KeyCode;
         public GameEvent Event;
         public GameController GameController;
 
         private void Start() {
             GameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-            Button.onClick.AddListener(OnClick);
             Event = GetComponent<GameEvent>();
         }
 
-        private void OnClick() {
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode)) {
+                OnKeyDown();
+            }
+        }
+
+        private void OnKeyDown() {
             Event.Trigger(GameController);
         }
     }
