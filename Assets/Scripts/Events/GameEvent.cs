@@ -1,7 +1,7 @@
-﻿namespace Assets.Scripts.Events {
-    public interface GameEvent {
-        EventHandler EventHandler { get; set; }
+﻿using System.Collections.Generic;
 
-        void Trigger(GameController gameController);
+namespace Assets.Scripts.Events {
+    public interface GameEvent : Subject {
+        List<Observer> Observers { get; set; }
     }
 }

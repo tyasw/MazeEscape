@@ -1,17 +1,22 @@
-﻿using UnityEngine;
-using Assets.Scripts.Commands;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Events {
-    class StartGameEvent : MonoBehaviour, GameEvent {
-        public EventHandler EventHandler { get; set; }
+    class StartGameEvent : MonoBehaviour, Subject {
+        public List<Observer> Observers { get; set; }
 
-        public StartGameEvent() {
-            EventHandler = EventHandler.GetInstance();
+        public void Attach(Observer observer) {
+            Observers.Add(observer);
         }
 
-        public void Trigger(GameController gameController) {
-            Command command = new BeginGameCommand(gameController);
-            EventHandler.Notify(command);
+        public void Detach(Observer observer) {
+            Observers.Remove(observer);
+        }
+
+        public void Notify() {
+            foreach (Observer observer in Observers) {
+                observer.Update(this);
+            }
         }
     }
 }
