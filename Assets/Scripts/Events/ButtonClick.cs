@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Commands;
 
 namespace Assets.Scripts.Events {
     public class ButtonClick : MonoBehaviour {
         public Button Button;
-        public GameEvent Event;
-        public GameController GameController;
+        public CommandParser CommandParser;
+        public Command Command;
 
         private void Start() {
-            GameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            CommandParser = CommandParser.GetInstance();
+            Command = GetComponent<Command>();  // Command should be a MonoBehaviour
             Button.onClick.AddListener(OnClick);
-            Event = GetComponent<GameEvent>();
         }
 
         private void OnClick() {
-            Event.Trigger(GameController);
+            CommandParser.AddCommand(Command);
+            CommandParser.RunNextCommand();
         }
     }
 }

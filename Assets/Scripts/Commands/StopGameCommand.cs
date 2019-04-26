@@ -6,7 +6,7 @@
             GameController = gameController;
         }
 
-        public void Run() {
+        public override void Run() {
             GameController.StopGame();
         }
 

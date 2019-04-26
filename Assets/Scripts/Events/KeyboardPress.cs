@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Commands;
 
 namespace Assets.Scripts.Events {
     public class KeyboardPress : MonoBehaviour {
         public KeyCode KeyCode;
-        public GameEvent Event;
-        public GameController GameController;
+        public CommandParser CommandParser;
+        public Command Command;
 
         private void Start() {
-            GameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-            Event = GetComponent<GameEvent>();
+            CommandParser = CommandParser.GetInstance();
+            Command = GetComponent<Command>();  // Command should be a MonoBehaviour
         }
 
         private void Update() {
@@ -18,7 +19,8 @@ namespace Assets.Scripts.Events {
         }
 
         private void OnKeyDown() {
-            Event.Trigger(GameController);
+            CommandParser.AddCommand(Command);
+            CommandParser.RunNextCommand();
         }
     }
 }
