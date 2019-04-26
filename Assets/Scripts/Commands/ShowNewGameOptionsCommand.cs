@@ -5,16 +5,14 @@ using UnityEngine;
 namespace Assets.Scripts.Commands {
     public class ShowNewGameOptionsCommand : Command {
         private void Start() {
-            Events = new List<GameEvent>();
+            Subjects = new List<Subject>();
             GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            GameEvent Event = EventsObject.GetComponent<ShowGameOptionsEvent>();
-            Events.Add(Event);
+            Subject Event = EventsObject.GetComponent<ShowGameOptionsEvent>();
+            Subjects.Add(Event);
         }
 
         public override void Run() {
-            foreach (GameEvent Event in Events) {
-                Event.Notify();
-            }
+            base.Run();
         }
 
         public override string ToString() {

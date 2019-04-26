@@ -5,16 +5,14 @@ using Assets.Scripts.Events;
 namespace Assets.Scripts.Commands {
     public class ResumeGameCommand : Command {
         private void Start() {
-            Events = new List<GameEvent>();
+            Subjects = new List<Subject>();
             GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            GameEvent Event = EventsObject.GetComponent<ResumeGameEvent>();
-            Events.Add(Event);
+            Subject Event = EventsObject.GetComponent<ResumeGameEvent>();
+            Subjects.Add(Event);
         }
 
         public override void Run() {
-            foreach (GameEvent Event in Events) {
-                Event.Notify();
-            }
+            base.Run();
         }
 
         public override string ToString() {

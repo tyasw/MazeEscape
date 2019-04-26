@@ -5,16 +5,14 @@ using Assets.Scripts.Events;
 namespace Assets.Scripts.Commands {
     public class StopGameCommand : Command {
         private void Start() {
-            Events = new List<GameEvent>();
+            Subjects = new List<Subject>();
             GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            GameEvent Event = EventsObject.GetComponent<StopGameEvent>();
-            Events.Add(Event);
+            Subject Event = EventsObject.GetComponent<StopGameEvent>();
+            Subjects.Add(Event);
         }
 
         public override void Run() {
-            foreach (GameEvent Event in Events) {
-                Event.Notify();
-            }
+            base.Run();
         }
 
         public override string ToString() {
