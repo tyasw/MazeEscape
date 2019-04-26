@@ -20,11 +20,17 @@ public class UnityController : MonoBehaviour, GameController, Observer {
 
     private List<Subject> InitializeEvents() {
         List<Subject> watchingEvents = new List<Subject>();
-        watchingEvents.Add(new StopGameEvent());
-        watchingEvents.Add(new PauseGameEvent());
-        watchingEvents.Add(new ResumeGameEvent());
-        watchingEvents.Add(new ShowGameOptionsEvent());
-        watchingEvents.Add(new StartGameEvent());
+        GameObject EventObject = GameObject.FindGameObjectWithTag("Events");
+        StopGameEvent StopGameEvent = EventObject.GetComponent<StopGameEvent>();
+        PauseGameEvent PauseGameEvent = EventObject.GetComponent<PauseGameEvent>();
+        ResumeGameEvent ResumeGameEvent = EventObject.GetComponent<ResumeGameEvent>();
+        ShowGameOptionsEvent ShowGameOptionsEvent = EventObject.GetComponent<ShowGameOptionsEvent>();
+        StartGameEvent StartGameEvent = EventObject.GetComponent<StartGameEvent>();
+        watchingEvents.Add(StopGameEvent);
+        watchingEvents.Add(PauseGameEvent);
+        watchingEvents.Add(ResumeGameEvent);
+        watchingEvents.Add(ShowGameOptionsEvent);
+        watchingEvents.Add(StartGameEvent);
         return watchingEvents;
     }
 
@@ -34,7 +40,7 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         }
     }
 
-    public void Update(Subject subject) {
+    public void UpdateObserver(Subject subject) {
         Debug.Log(subject.ToString());
     }
 

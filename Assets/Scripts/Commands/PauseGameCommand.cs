@@ -1,13 +1,17 @@
-﻿namespace Assets.Scripts.Commands {
-    public class PauseGameCommand : Command {
-        private GameController GameController { get; set; }
+﻿using UnityEngine;
+using Assets.Scripts.Events;
 
-        public PauseGameCommand(GameController gameController) {
-            GameController = gameController;
+namespace Assets.Scripts.Commands {
+    public class PauseGameCommand : Command {
+        public PauseGameEvent Event { get; set; }
+
+        private void Start() {
+            GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
+            Event = EventsObject.GetComponent<PauseGameEvent>();
         }
 
         public override void Run() {
-            GameController.PauseGame();
+            Event.Notify();
         }
 
         public override string ToString() {

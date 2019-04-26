@@ -1,13 +1,17 @@
-﻿namespace Assets.Scripts.Commands {
-    public class ShowNewGameOptionsCommand : Command {
-        private GameController GameController { get; set; }
+﻿using Assets.Scripts.Events;
+using UnityEngine;
 
-        public ShowNewGameOptionsCommand(GameController gameController) {
-            GameController = gameController;
+namespace Assets.Scripts.Commands {
+    public class ShowNewGameOptionsCommand : Command {
+        public ShowGameOptionsEvent Event { get; set; }
+
+        private void Start() {
+            GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
+            Event = EventsObject.GetComponent<ShowGameOptionsEvent>();
         }
 
         public override void Run() {
-            GameController.ShowGameOptions();
+            Event.Notify();
         }
 
         public override string ToString() {

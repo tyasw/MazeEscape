@@ -2,8 +2,12 @@
 using UnityEngine;
 
 namespace Assets.Scripts.Events {
-    class StopGameEvent : MonoBehaviour, Subject {
+    public class StopGameEvent : MonoBehaviour, Subject {
         public List<Observer> Observers { get; set; }
+
+        private void Start() {
+            Observers = new List<Observer>();
+        }
 
         public void Attach(Observer observer) {
             Observers.Add(observer);
@@ -15,7 +19,7 @@ namespace Assets.Scripts.Events {
 
         public void Notify() {
             foreach (Observer observer in Observers) {
-                observer.Update(this);
+                observer.UpdateObserver(this);
             }
         }
 
