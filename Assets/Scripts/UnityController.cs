@@ -22,26 +22,30 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         List<Subject> watchingEvents = new List<Subject>();
         GameObject EventObject = GameObject.FindGameObjectWithTag("Events");
         StopGameEvent StopGameEvent = EventObject.GetComponent<StopGameEvent>();
-        PauseGameEvent PauseGameEvent = EventObject.GetComponent<PauseGameEvent>();
-        ResumeGameEvent ResumeGameEvent = EventObject.GetComponent<ResumeGameEvent>();
-        ShowGameOptionsEvent ShowGameOptionsEvent = EventObject.GetComponent<ShowGameOptionsEvent>();
         StartGameEvent StartGameEvent = EventObject.GetComponent<StartGameEvent>();
         watchingEvents.Add(StopGameEvent);
-        watchingEvents.Add(PauseGameEvent);
-        watchingEvents.Add(ResumeGameEvent);
-        watchingEvents.Add(ShowGameOptionsEvent);
         watchingEvents.Add(StartGameEvent);
         return watchingEvents;
     }
 
     private void AttachToEvents() {
-        foreach(Subject subject in Events) {
+        foreach (Subject subject in Events) {
             subject.Attach(this);
         }
     }
 
     public void UpdateObserver(Subject subject) {
-        Debug.Log(subject.ToString());
+        switch (subject.ToString()) {
+            case "StopGameEvent":
+                StopGame();
+                break;
+            case "StartGameEvent":
+                StartNewGame();
+                break;
+            default:
+                Debug.LogError("Should not get here!");
+                break;
+        }
     }
 
     public void StartNewGame() {
@@ -49,23 +53,7 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         GameView.DrawWorld();
     }
 
-    public void PauseGame() {
-        GameOptions.PauseGame();
-    }
-
-    public void ResumeGame() {
-        GameOptions.ResumeGame();
-    }
-
     public void StopGame() {
         GameOptions.StopGame();
-    }
-
-    public void ShowMenu() {
-        GameOptions.ShowMainMenu();
-    }
-
-    public void ShowGameOptions() {
-        GameOptions.ShowGameOptions();
     }
 }
