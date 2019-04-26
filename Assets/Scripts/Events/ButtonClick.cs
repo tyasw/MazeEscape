@@ -10,7 +10,7 @@ namespace Assets.Scripts.Events {
 
         private void Start() {
             CommandParser = CommandParser.GetInstance();
-            Command = GetComponent<Command>();  // Command should be a MonoBehaviour
+            Command = GetComponent<Command>();
             Button.onClick.AddListener(OnClick);
         }
 

@@ -18,5 +18,9 @@ namespace Assets.Scripts.Events {
                 observer.Update(this);
             }
         }
+
+        public override string ToString() {
+            return "ShowGameOptionsEvent";
+        }
     }
 }
