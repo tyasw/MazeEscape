@@ -1,17 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     public class ResumeGameCommand : Command {
-        public ResumeGameEvent Event { get; set; }
-
         private void Start() {
+            Events = new List<GameEvent>();
             GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Event = EventsObject.GetComponent<ResumeGameEvent>();
+            GameEvent Event = EventsObject.GetComponent<ResumeGameEvent>();
+            Events.Add(Event);
         }
 
         public override void Run() {
-            Event.Notify();
+            foreach (GameEvent Event in Events) {
+                Event.Notify();
+            }
         }
 
         public override string ToString() {

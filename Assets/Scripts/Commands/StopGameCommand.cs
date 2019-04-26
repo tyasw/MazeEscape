@@ -1,17 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     public class StopGameCommand : Command {
-        public StopGameEvent Event { get; set; }
-
         private void Start() {
+            Events = new List<GameEvent>();
             GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Event = EventsObject.GetComponent<StopGameEvent>();
+            GameEvent Event = EventsObject.GetComponent<StopGameEvent>();
+            Events.Add(Event);
         }
 
         public override void Run() {
-            Event.Notify();
+            foreach (GameEvent Event in Events) {
+                Event.Notify();
+            }
         }
 
         public override string ToString() {

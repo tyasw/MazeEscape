@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.Scripts.Events {
-    public class PauseGameEvent : MonoBehaviour, Subject {
+    public class PauseGameEvent : MonoBehaviour, Subject, GameEvent {
         public List<Observer> Observers { get; set; }
 
         private void Start() {

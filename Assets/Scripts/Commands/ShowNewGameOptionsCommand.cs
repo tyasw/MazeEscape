@@ -1,17 +1,20 @@
-﻿using Assets.Scripts.Events;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Events;
 using UnityEngine;
 
 namespace Assets.Scripts.Commands {
     public class ShowNewGameOptionsCommand : Command {
-        public ShowGameOptionsEvent Event { get; set; }
-
         private void Start() {
+            Events = new List<GameEvent>();
             GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Event = EventsObject.GetComponent<ShowGameOptionsEvent>();
+            GameEvent Event = EventsObject.GetComponent<ShowGameOptionsEvent>();
+            Events.Add(Event);
         }
 
         public override void Run() {
-            Event.Notify();
+            foreach (GameEvent Event in Events) {
+                Event.Notify();
+            }
         }
 
         public override string ToString() {

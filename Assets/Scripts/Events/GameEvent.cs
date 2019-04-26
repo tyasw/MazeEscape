@@ -2,6 +2,6 @@
 
 namespace Assets.Scripts.Events {
     public interface GameEvent : Subject {
-        List<Observer> Observers { get; set; }
+        //List<Observer> Observers { get; set; }
     }
 }

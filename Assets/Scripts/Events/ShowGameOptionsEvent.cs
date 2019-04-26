@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.Scripts.Events {
-    public class ShowGameOptionsEvent : MonoBehaviour, Subject {
+    public class ShowGameOptionsEvent : MonoBehaviour, Subject, GameEvent {
         public List<Observer> Observers { get; set; }
 
         private void Start() {
