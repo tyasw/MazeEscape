@@ -1,4 +1,6 @@
-﻿public class GameModel {
+﻿using Assets.Scripts.Maze;
+
+public class GameModel {
     public GameData GameData { get; set; }
     public MazeModel MazeModel { get; set; }
 

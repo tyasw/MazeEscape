@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Scripts.Maze;
 
 public class UnityView : MonoBehaviour, GameView {
     public MazeData MazeData { get; set; }

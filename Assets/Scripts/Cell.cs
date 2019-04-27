@@ -1,4 +1,6 @@
-﻿public class Cell {
+﻿using Assets.Scripts.Maze;
+
+public class Cell {
     public int Id { get; set; }
     public float Size { get; set; }           // length of one side of the cell
     public Tree<Cell> TreeNodePointer { get; set; }
