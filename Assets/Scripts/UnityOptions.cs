@@ -5,7 +5,7 @@ using Assets.Scripts.Events;
 
 public class UnityOptions : MonoBehaviour, GameOptions, Observer {
     private float SavedTimeScale { get; set; }
-    public List<Subject> Events;
+    public List<Subject> Events { get; set; }
 
     void Start() {
         Events = InitializeEvents();

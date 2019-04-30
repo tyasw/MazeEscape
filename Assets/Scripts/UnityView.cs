@@ -9,11 +9,7 @@ public class UnityView : MonoBehaviour, GameView {
 
     void Start() {
         MazeData = MazeData.GetInstance();
-
-        UnityController gameController = GetComponent<UnityController>();
         GameModel = GameModel.GetInstance();
-
-
         MenuView = GetComponent<MenuView>();    // Change later to access dynamically?
     }
 

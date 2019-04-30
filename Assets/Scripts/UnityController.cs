@@ -2,6 +2,12 @@
 using UnityEngine;
 using Assets.Scripts.Events;
 
+/*
+ * UnityController
+ * 
+ * The top-level class in Maze Escape. It creates the game model and view,
+ * and subscribes to a couple events: StopGameEvent and StartGameEvent.
+ */
 public class UnityController : MonoBehaviour, GameController, Observer {
     public GameModel GameModel;
     public GameView GameView;
