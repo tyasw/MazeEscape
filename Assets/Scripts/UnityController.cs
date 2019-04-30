@@ -11,14 +11,12 @@ using Assets.Scripts.Events;
 public class UnityController : MonoBehaviour, GameController, Observer {
     public GameModel GameModel;
     public GameView GameView;
-    public EventHandler EventHandler;
     public GameOptions GameOptions;
     public List<Subject> Events;
 
     void Start() {
         GameModel = GameModel.GetInstance();
         GameView = GetComponent<UnityView>();
-        EventHandler = EventHandler.GetInstance();
         GameOptions = GetComponent<UnityOptions>();
         Events = InitializeEvents();
         AttachToEvents();
