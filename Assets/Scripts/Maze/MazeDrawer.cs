@@ -11,12 +11,12 @@ namespace Assets.Scripts.Maze {
         private float WallWidth { get; set; }
         private float WallThickness { get; set; }
 
-        public MazeDrawer(int mazeWidth, int mazeHeight, Cell[,] maze, float wallWidth, float wallThickness) {
-            MazeWidth = mazeWidth;
-            MazeHeight = mazeHeight;
-            Maze = maze;
-            WallWidth = wallWidth;
-            WallThickness = wallThickness;
+        public MazeDrawer(MazeData mazeData) {
+            MazeWidth = mazeData.Width;
+            MazeHeight = mazeData.Height;
+            Maze = mazeData.Maze;
+            WallWidth = mazeData.CellSize;
+            WallThickness = mazeData.CellWallThickness;
         }
 
         public void DrawMaze() {

@@ -23,12 +23,7 @@ public class UnityView : MonoBehaviour, GameView {
     }
 
     public void DrawMaze() {
-        int mazeWidth = MazeData.Width;
-        int mazeHeight = MazeData.Height;
-        Cell[,] maze = MazeData.Maze;
-        float wallWidth = MazeData.CellSize;
-        float wallThickness = MazeData.CellWallThickness;
-        MazeDrawer mazeDrawer = new MazeDrawer(mazeWidth, mazeHeight, maze, wallWidth, wallThickness);
+        MazeDrawer mazeDrawer = new MazeDrawer(MazeData);
         mazeDrawer.DrawMaze();
     }
 }

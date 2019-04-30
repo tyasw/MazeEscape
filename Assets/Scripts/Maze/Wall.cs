@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Assets.Scripts.Maze {
-    class Wall {
+    public class Wall {
         public float Thickness { get; set; }
         public float Width { get; set; }
         public GameObject Instance { get; set; }
