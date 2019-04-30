@@ -5,8 +5,6 @@ namespace Assets.Scripts.Maze {
         private int MazeWidth { get; set; }
         private int MazeHeight { get; set; }
         private Cell[,] Maze { get; set; }  // row x col
-        private GameObject VerticalTemplate { get; set; }
-        private GameObject HorizontalTemplate { get; set; }
         private float WallWidth { get; set; }
         private float WallThickness { get; set; }
 
@@ -58,18 +56,18 @@ namespace Assets.Scripts.Maze {
             float totalWidth = WallWidth + 2 * WallThickness;
             float cellHeight = WallWidth; // Change later?
 
-            GameObject exampleWall = GameObject.FindGameObjectWithTag("Wall");
-
             float xPos = (cellHeight + WallThickness) / 2;
             float yPos = cellHeight / 2;
             float zPos = 0.0f;
             Vector3 position = new Vector3(xPos, yPos, zPos);
-            Quaternion rotation = exampleWall.transform.rotation;
+            Quaternion rotation = new Quaternion();
+
+            GameObject exampleWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
             GameObject templateWall = GameObject.Instantiate(exampleWall, position, rotation);
             templateWall.name = "Vertical Template";
-
             templateWall.transform.localScale = new Vector3(totalWidth, cellHeight, WallThickness);
 
+            exampleWall.SetActive(false);
             return templateWall;
         }
 
@@ -77,18 +75,19 @@ namespace Assets.Scripts.Maze {
             float totalWidth = WallWidth + 2 * WallThickness;
             float cellHeight = WallWidth; // Change later?
 
-            GameObject exampleWall = GameObject.FindGameObjectWithTag("Wall");
-
             float xPos = 0.0f;
             float yPos = cellHeight / 2;
             float zPos = (cellHeight + WallThickness) / 2;
             Vector3 position = new Vector3(xPos, yPos, zPos);
-            Quaternion rotation = exampleWall.transform.rotation;
+            Quaternion rotation = new Quaternion();
+
+            GameObject exampleWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
             GameObject templateWall = GameObject.Instantiate(exampleWall, position, rotation);
             templateWall.name = "Horizontal Template";
 
             templateWall.transform.localScale = new Vector3(WallThickness, cellHeight, totalWidth);
 
+            exampleWall.SetActive(false);
             return templateWall;
         }
 
