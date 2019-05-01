@@ -2,20 +2,14 @@
 
 namespace Assets.Scripts.Maze {
     public class MazeModel {
-        private static MazeModel MazeModelInstance = null;
+        public ClassFactory ClassFactory { get; set; }
         private MazeData MazeData;
         private List<TwoTuple<Cell>> CellPairs { get; set; }
 
-        private MazeModel() {
-            MazeData = MazeData.GetInstance();
+        public MazeModel() {
+            ClassFactory = ClassFactory.GetInstance();
+            MazeData = ClassFactory.GetMazeData();
             CellPairs = new List<TwoTuple<Cell>>();
-        }
-
-        public static MazeModel GetInstance() {
-            if (MazeModelInstance == null) {
-                MazeModelInstance = new MazeModel();
-            }
-            return MazeModelInstance;
         }
 
         public void CreateMaze() {

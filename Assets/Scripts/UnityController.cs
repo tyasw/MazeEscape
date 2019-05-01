@@ -9,13 +9,15 @@ using Assets.Scripts.Events;
  * and subscribes to a couple events: StopGameEvent and StartGameEvent.
  */
 public class UnityController : MonoBehaviour, GameController, Observer {
+    public ClassFactory ClassFactory { get; set; }
     public GameModel GameModel;
     public GameView GameView;
     public GameOptions GameOptions;
     public List<Subject> Events;
 
     void Start() {
-        GameModel = GameModel.GetInstance();
+        ClassFactory = ClassFactory.GetInstance();
+        GameModel = ClassFactory.GetGameModel();
         GameView = GetComponent<UnityView>();
         GameOptions = GetComponent<UnityOptions>();
         Events = InitializeEvents();

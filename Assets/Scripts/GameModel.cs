@@ -1,21 +1,14 @@
 ﻿using Assets.Scripts.Maze;
 
 public class GameModel {
+    public ClassFactory ClassFactory { get; set; }
     public GameData GameData { get; set; }
     public MazeModel MazeModel { get; set; }
 
-    private static GameModel GameModelInstance = null;
-
-    private GameModel() {
-        GameData = GameData.GetInstance();
-        MazeModel = MazeModel.GetInstance();
-    }
-
-    public static GameModel GetInstance() {
-        if (GameModelInstance == null) {
-            GameModelInstance = new GameModel();
-        }
-        return GameModelInstance;
+    public GameModel() {
+        ClassFactory = ClassFactory.GetInstance();
+        GameData = ClassFactory.GetGameData();
+        MazeModel = ClassFactory.GetMazeModel();
     }
 
     public void BeginGameWithOptionsApplied() {
@@ -26,7 +19,7 @@ public class GameModel {
 
     // TODO: get the options from an options file
     private void GetGameOptions() {
-        MazeData mazeData = MazeData.GetInstance();
+        MazeData mazeData = ClassFactory.GetMazeData();
         mazeData.CellSize = 4.0f;
         mazeData.Width = 8;
         mazeData.Height = 8;

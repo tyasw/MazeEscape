@@ -9,22 +9,13 @@ namespace Assets.Scripts.Maze {
         public List<Cell> Cells { get; set; }
         public Cell[,] Maze { get; set; }   // row x col
 
-        private static MazeData MazeDataInstance = null;
-
-        private MazeData() {
+        public MazeData() {
             Width = 0;
             Height = 0;
             CellSize = 0.0f;
             CellWallThickness = 0.0f;
             Cells = new List<Cell>();
             Maze = new Cell[0, 0];
-        }
-
-        public static MazeData GetInstance() {
-            if (MazeDataInstance == null) {
-                MazeDataInstance = new MazeData();
-            }
-            return MazeDataInstance;
         }
     }
 }

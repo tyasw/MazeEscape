@@ -2,14 +2,16 @@
 using Assets.Scripts.Maze;
 
 public class UnityView : MonoBehaviour, GameView {
+    public ClassFactory ClassFactory { get; set; }
     public MazeData MazeData { get; set; }
     public GameModel GameModel { get; set; }
 
     private MenuView MenuView { get; set; }
 
     void Start() {
-        MazeData = MazeData.GetInstance();
-        GameModel = GameModel.GetInstance();
+        ClassFactory = ClassFactory.GetInstance();
+        GameModel = ClassFactory.GetGameModel();
+        MazeData = ClassFactory.GetMazeData();
         MenuView = GetComponent<MenuView>();    // Change later to access dynamically?
     }
 
