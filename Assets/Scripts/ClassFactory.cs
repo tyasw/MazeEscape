@@ -20,7 +20,9 @@ public class ClassFactory {
 
     public GameModel GetGameModel() {
         if (GameModelInstance == null) {
-            GameModelInstance = new GameModel();
+            GameData gameData = GetGameData();
+            MazeModel mazeModel = GetMazeModel();
+            GameModelInstance = new GameModel(gameData, mazeModel);
         }
         return GameModelInstance;
     }
@@ -34,7 +36,8 @@ public class ClassFactory {
 
     public MazeModel GetMazeModel() {
         if (MazeModelInstance == null) {
-            MazeModelInstance = new MazeModel();
+            MazeData mazeData = GetMazeData();
+            MazeModelInstance = new MazeModel(mazeData);
         }
         return MazeModelInstance;
     }

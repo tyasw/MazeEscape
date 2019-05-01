@@ -6,9 +6,8 @@ namespace Assets.Scripts.Maze {
         private MazeData MazeData;
         private List<TwoTuple<Cell>> CellPairs { get; set; }
 
-        public MazeModel() {
-            ClassFactory = ClassFactory.GetInstance();
-            MazeData = ClassFactory.GetMazeData();
+        public MazeModel(MazeData mazeData) {
+            MazeData = mazeData;
             CellPairs = new List<TwoTuple<Cell>>();
         }
 
