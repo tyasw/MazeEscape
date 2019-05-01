@@ -5,22 +5,23 @@ using Assets.Scripts.Events;
 
 public class UnityOptions : MonoBehaviour, GameOptions, Observer {
     private float SavedTimeScale { get; set; }
+    public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events { get; set; }
 
     void Start() {
+        ClassFactory = ClassFactory.GetInstance();
         Events = InitializeEvents();
         AttachToEvents();
     }
 
     private List<Subject> InitializeEvents() {
         List<Subject> watchingEvents = new List<Subject>();
-        GameObject EventObject = GameObject.FindGameObjectWithTag("Events");
-        PauseGameEvent PauseGameEvent = EventObject.GetComponent<PauseGameEvent>();
-        ResumeGameEvent ResumeGameEvent = EventObject.GetComponent<ResumeGameEvent>();
-        ShowGameOptionsEvent ShowGameOptionsEvent = EventObject.GetComponent<ShowGameOptionsEvent>();
-        watchingEvents.Add(PauseGameEvent);
-        watchingEvents.Add(ResumeGameEvent);
-        watchingEvents.Add(ShowGameOptionsEvent);
+        PauseGameEvent pauseGameEvent = ClassFactory.GetPauseGameEvent();
+        ResumeGameEvent resumeGameEvent = ClassFactory.GetResumeGameEvent();
+        ShowGameOptionsEvent showGameOptionsEvent = ClassFactory.GetShowGameOptionsEvent();
+        watchingEvents.Add(pauseGameEvent);
+        watchingEvents.Add(resumeGameEvent);
+        watchingEvents.Add(showGameOptionsEvent);
         return watchingEvents;
     }
 

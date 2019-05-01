@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Scripts.Events {
-    public class ResumeGameEvent : MonoBehaviour, Subject {
+    public class ResumeGameEvent : Subject {
         public List<Observer> Observers { get; set; }
 
-        private void Start() {
+        public ResumeGameEvent() {
             Observers = new List<Observer>();
         }
 

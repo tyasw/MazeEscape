@@ -26,11 +26,10 @@ public class UnityController : MonoBehaviour, GameController, Observer {
 
     private List<Subject> InitializeEvents() {
         List<Subject> watchingEvents = new List<Subject>();
-        GameObject EventObject = GameObject.FindGameObjectWithTag("Events");
-        StopGameEvent StopGameEvent = EventObject.GetComponent<StopGameEvent>();
-        StartGameEvent StartGameEvent = EventObject.GetComponent<StartGameEvent>();
-        watchingEvents.Add(StopGameEvent);
-        watchingEvents.Add(StartGameEvent);
+        StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
+        StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
+        watchingEvents.Add(stopGameEvent);
+        watchingEvents.Add(startGameEvent);
         return watchingEvents;
     }
 

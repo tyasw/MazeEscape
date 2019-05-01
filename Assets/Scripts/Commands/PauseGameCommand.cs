@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     public class PauseGameCommand : Command {
         private void Start() {
+            ClassFactory classFactory = ClassFactory.GetInstance();
             Subjects = new List<Subject>();
-            GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Subject Event = EventsObject.GetComponent<PauseGameEvent>();
+            Subject Event = classFactory.GetPauseGameEvent();
             Subjects.Add(Event);
         }
 

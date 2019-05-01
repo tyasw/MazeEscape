@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     public class StopGameCommand : Command {
         private void Start() {
+            ClassFactory classFactory = ClassFactory.GetInstance();
             Subjects = new List<Subject>();
-            GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Subject Event = EventsObject.GetComponent<StopGameEvent>();
+            Subject Event = classFactory.GetStopGameEvent();
             Subjects.Add(Event);
         }
 

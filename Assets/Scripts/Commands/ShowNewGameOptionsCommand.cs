@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Events;
-using UnityEngine;
 
 namespace Assets.Scripts.Commands {
     public class ShowNewGameOptionsCommand : Command {
         private void Start() {
+            ClassFactory classFactory = ClassFactory.GetInstance();
             Subjects = new List<Subject>();
-            GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Subject Event = EventsObject.GetComponent<ShowGameOptionsEvent>();
+            Subject Event = classFactory.GetShowGameOptionsEvent();
             Subjects.Add(Event);
         }
 

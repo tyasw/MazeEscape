@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     public class BeginGameCommand : Command {
         private void Start() {
+            ClassFactory classFactory = ClassFactory.GetInstance();
             Subjects = new List<Subject>();
-            GameObject EventsObject = GameObject.FindGameObjectWithTag("Events");
-            Subject Event = EventsObject.GetComponent<StartGameEvent>();
+            Subject Event = classFactory.GetStartGameEvent();
             Subjects.Add(Event);
         }
 

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Maze;
+﻿using Assets.Scripts.Events;
+using Assets.Scripts.Maze;
 
 public class ClassFactory {
     private static ClassFactory Instance { get; set; }
@@ -6,6 +7,12 @@ public class ClassFactory {
     private GameData GameDataInstance { get; set; }
     private MazeModel MazeModelInstance { get; set; }
     private MazeData MazeDataInstance { get; set; }
+
+    private PauseGameEvent PauseGameEventInstance { get; set; }
+    private ResumeGameEvent ResumeGameEventInstance { get; set; }
+    private ShowGameOptionsEvent ShowGameOptionsEventInstance { get; set; }
+    private StartGameEvent StartGameEventInstance { get; set; }
+    private StopGameEvent StopGameEventInstance { get; set; }
 
     private ClassFactory() {
 
@@ -47,5 +54,40 @@ public class ClassFactory {
             MazeDataInstance = new MazeData();
         }
         return MazeDataInstance;
+    }
+
+    public PauseGameEvent GetPauseGameEvent() {
+        if (PauseGameEventInstance == null) {
+            PauseGameEventInstance = new PauseGameEvent();
+        }
+        return PauseGameEventInstance;
+    }
+
+    public ResumeGameEvent GetResumeGameEvent() {
+        if (ResumeGameEventInstance == null) {
+            ResumeGameEventInstance = new ResumeGameEvent();
+        }
+        return ResumeGameEventInstance;
+    }
+
+    public ShowGameOptionsEvent GetShowGameOptionsEvent() {
+        if (ShowGameOptionsEventInstance == null) {
+            ShowGameOptionsEventInstance = new ShowGameOptionsEvent();
+        }
+        return ShowGameOptionsEventInstance;
+    }
+
+    public StartGameEvent GetStartGameEvent() {
+        if (StartGameEventInstance == null) {
+            StartGameEventInstance = new StartGameEvent();
+        }
+        return StartGameEventInstance;
+    }
+
+    public StopGameEvent GetStopGameEvent() {
+        if (StopGameEventInstance == null) {
+            StopGameEventInstance = new StopGameEvent();
+        }
+        return StopGameEventInstance;
     }
 }
