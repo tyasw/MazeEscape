@@ -30,10 +30,12 @@
         // Merge this tree with another tree of the same type. Note that trees
         // are merged at their roots.
         public void MergeWith(Tree<T> OtherTree) {
-            Tree<T> ThisRoot = GetRoot();
-            Tree<T> OtherRoot = OtherTree.GetRoot();
-            if (ThisRoot != OtherRoot) {
-                OtherRoot.Parent = ThisRoot;
+            if (OtherTree != null) {
+                Tree<T> ThisRoot = GetRoot();
+                Tree<T> OtherRoot = OtherTree.GetRoot();
+                if (ThisRoot != OtherRoot) {
+                    OtherRoot.Parent = ThisRoot;
+                }
             }
         }
     }
