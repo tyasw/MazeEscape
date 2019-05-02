@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets.Scripts.Events;
 
 public class UIManager : MonoBehaviour, Observer {
+    public Canvas PauseMenu;
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events;
 
@@ -11,6 +12,7 @@ public class UIManager : MonoBehaviour, Observer {
         ClassFactory = ClassFactory.GetInstance();
         Events = InitializeEvents();
         AttachToEvents();
+        PauseMenu.gameObject.SetActive(false);
     }
 
     private List<Subject> InitializeEvents() {
@@ -61,10 +63,16 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void PauseGame() {
-        // Show pause menu if not already displayed
+        bool menuShown = PauseMenu.gameObject.activeSelf;
+        if (!menuShown) {       // Sanity check
+            PauseMenu.gameObject.SetActive(true);
+        }
     }
 
     private void ResumeGame() {
-        // Close pause menu if not already closed
+        bool menuShown = PauseMenu.gameObject.activeSelf;
+        if (menuShown) {        // Sanity check
+            PauseMenu.gameObject.SetActive(false);
+        }
     }
 }
