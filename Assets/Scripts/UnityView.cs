@@ -8,7 +8,7 @@ public class UnityView : MonoBehaviour, GameView {
 
     private MenuView MenuView { get; set; }
 
-    void Start() {
+    void Awake() {
         ClassFactory = ClassFactory.GetInstance();
         GameModel = ClassFactory.GetGameModel();
         MazeData = ClassFactory.GetMazeData();

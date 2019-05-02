@@ -8,7 +8,7 @@ public class UnityOptions : MonoBehaviour, GameOptions, Observer {
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events { get; set; }
 
-    void Start() {
+    void Awake() {
         ClassFactory = ClassFactory.GetInstance();
         Events = InitializeEvents();
         AttachToEvents();

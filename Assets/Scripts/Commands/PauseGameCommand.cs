@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Commands {
     public class PauseGameCommand : Command {
-        private void Start() {
+        private void Awake() {
             ClassFactory classFactory = ClassFactory.GetInstance();
             Subjects = new List<Subject>();
             Subject Event = classFactory.GetPauseGameEvent();

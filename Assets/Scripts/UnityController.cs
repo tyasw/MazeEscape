@@ -15,7 +15,7 @@ public class UnityController : MonoBehaviour, GameController, Observer {
     public GameOptions GameOptions;
     public List<Subject> Events;
 
-    void Start() {
+    void Awake() {
         ClassFactory = ClassFactory.GetInstance();
         GameModel = ClassFactory.GetGameModel();
         GameView = GetComponent<UnityView>();
