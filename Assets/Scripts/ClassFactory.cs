@@ -8,6 +8,7 @@ public class ClassFactory {
     private MazeModel MazeModelInstance { get; set; }
     private MazeData MazeDataInstance { get; set; }
 
+    private CommandParser CommandParserInstance { get; set; }
     private PauseGameEvent PauseGameEventInstance { get; set; }
     private ResumeGameEvent ResumeGameEventInstance { get; set; }
     private ShowGameOptionsEvent ShowGameOptionsEventInstance { get; set; }
@@ -54,6 +55,13 @@ public class ClassFactory {
             MazeDataInstance = new MazeData();
         }
         return MazeDataInstance;
+    }
+
+    public CommandParser GetCommandParser() {
+        if (CommandParserInstance == null) {
+            CommandParserInstance = new CommandParser();
+        }
+        return CommandParserInstance;
     }
 
     public PauseGameEvent GetPauseGameEvent() {

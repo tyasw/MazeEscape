@@ -9,7 +9,8 @@ namespace Assets.Scripts.Events {
         public Command Command;
 
         private void Start() {
-            CommandParser = CommandParser.GetInstance();
+            ClassFactory classFactory = ClassFactory.GetInstance();
+            CommandParser = classFactory.GetCommandParser();
             Command = GetComponent<Command>();
             Button.onClick.AddListener(OnClick);
         }

@@ -8,8 +8,9 @@ namespace Assets.Scripts.Events {
         public Command Command;
 
         private void Start() {
-            CommandParser = CommandParser.GetInstance();
-            Command = GetComponent<Command>();  // Command should be a MonoBehaviour
+            ClassFactory classFactory = ClassFactory.GetInstance();
+            CommandParser = classFactory.GetCommandParser();
+            Command = GetComponent<Command>();
         }
 
         private void Update() {
