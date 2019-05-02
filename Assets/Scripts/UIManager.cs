@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets.Scripts.Events;
 
 public class UIManager : MonoBehaviour, Observer {
+    public Canvas MainMenu;
     public Canvas PauseMenu;
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events;
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour, Observer {
         ClassFactory = ClassFactory.GetInstance();
         Events = InitializeEvents();
         AttachToEvents();
+        MainMenu.gameObject.SetActive(true);
         PauseMenu.gameObject.SetActive(false);
     }
 
@@ -55,7 +57,10 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void StartNewGame() {
-
+        bool mainMenuShown = MainMenu.gameObject.activeSelf;
+        if (mainMenuShown) {
+            MainMenu.gameObject.SetActive(false);
+        }
     }
 
     private void StopGame() {
