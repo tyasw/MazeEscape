@@ -66,28 +66,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateCameraPositionAndRotation(KeyCode pressedKey) {
-        Vector3 cameraOldPosition = Camera.transform.position;
-        Vector3 cameraNewPosition;
-        Quaternion cameraOldRotation = Camera.transform.rotation;
-        Quaternion cameraNewRotation;
-
-        if (pressedKey == KeyCode.W) {
-            cameraNewPosition = new Vector3(cameraOldPosition.x, cameraOldPosition.y, cameraOldPosition.z + MovementStep);
-            cameraNewRotation = cameraOldRotation;
-        } else if (pressedKey == KeyCode.A) {
-            cameraNewPosition = new Vector3(cameraOldPosition.x - MovementStep, cameraOldPosition.y, cameraOldPosition.z);
-            cameraNewRotation = cameraOldRotation;
-        } else if (pressedKey == KeyCode.S) {
-            cameraNewPosition = new Vector3(cameraOldPosition.x, cameraOldPosition.y, cameraOldPosition.z - MovementStep);
-            cameraNewRotation = cameraOldRotation;
-        } else if (pressedKey == KeyCode.D) {
-            cameraNewPosition = new Vector3(cameraOldPosition.x + MovementStep, cameraOldPosition.y, cameraOldPosition.z);
-            cameraNewRotation = cameraOldRotation;
-        } else {
-            cameraNewPosition = cameraOldPosition;
-            cameraNewRotation = cameraOldRotation;
-        }
-
-        Camera.transform.SetPositionAndRotation(cameraNewPosition, Camera.transform.rotation);
+        Vector3 buffer = new Vector3(0.0f, 3.0f, 0.0f);
+        Vector3 cameraNewPosition = transform.position - transform.forward * 7.0f + buffer;
+        Quaternion cameraNewRotation = transform.rotation * Quaternion.Euler(new Vector3(20.0f, 0.0f, 0.0f));
+        Camera.transform.SetPositionAndRotation(cameraNewPosition, cameraNewRotation);
     }
 }
