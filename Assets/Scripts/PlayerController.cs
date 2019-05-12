@@ -3,16 +3,16 @@
 public class PlayerController : MonoBehaviour {
     public GameObject Camera;
     public float MovementStep;
-    public Vector3 MovementStepVector;
     public float RotationStep;
     public Vector3 RotationStepVector;
+    public Vector3 CameraBuffer;
     public KeyCode PressedKey;
 
     private void Start() {
         MovementStep = 0.5f;
         RotationStep = 10.0f;
-        MovementStepVector = new Vector3(0.0f, 0.0f, MovementStep);
         RotationStepVector = new Vector3(0.0f, RotationStep, 0.0f);
+        CameraBuffer = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     void Update () {
@@ -46,13 +46,13 @@ public class PlayerController : MonoBehaviour {
         Quaternion newRotation;
 
         if (pressedKey == KeyCode.W) {
-            newPosition = oldPosition + MovementStepVector;
+            newPosition = oldPosition + transform.forward * MovementStep;
             newRotation = oldRotation;
         } else if (pressedKey == KeyCode.A) {
             newPosition = oldPosition;
             newRotation = oldRotation * Quaternion.Euler(RotationStepVector);
         } else if (pressedKey == KeyCode.S) {
-            newPosition = oldPosition - MovementStepVector;
+            newPosition = oldPosition - transform.forward * MovementStep;
             newRotation = oldRotation;
         } else if (pressedKey == KeyCode.D) {
             newPosition = oldPosition;
@@ -66,8 +66,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateCameraPositionAndRotation(KeyCode pressedKey) {
-        Vector3 buffer = new Vector3(0.0f, 3.0f, 0.0f);
-        Vector3 cameraNewPosition = transform.position - transform.forward * 7.0f + buffer;
+        Vector3 cameraNewPosition = transform.position - transform.forward * 4.0f + CameraBuffer;
         Quaternion cameraNewRotation = transform.rotation * Quaternion.Euler(new Vector3(20.0f, 0.0f, 0.0f));
         Camera.transform.SetPositionAndRotation(cameraNewPosition, cameraNewRotation);
     }

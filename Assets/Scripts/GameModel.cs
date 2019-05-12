@@ -19,7 +19,7 @@ public class GameModel {
     private void GetGameOptions() {
         ClassFactory classFactory = ClassFactory.GetInstance();
         MazeData mazeData = classFactory.GetMazeData();
-        mazeData.CellSize = 4.0f;
+        mazeData.CellSize = 10.0f;
         mazeData.Width = 8;
         mazeData.Height = 8;
         mazeData.CellWallThickness = 0.1f;
