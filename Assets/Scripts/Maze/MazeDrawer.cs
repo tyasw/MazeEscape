@@ -63,6 +63,11 @@ namespace Assets.Scripts.Maze {
             Quaternion rotation = new Quaternion();
 
             GameObject exampleWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+            BoxCollider boxCollider = exampleWall.GetComponent<BoxCollider>();
+            boxCollider.size = new Vector3(1.05f, 5.0f, 10.0f);
+
+            exampleWall.isStatic = true;
             GameObject templateWall = GameObject.Instantiate(exampleWall, position, rotation);
             templateWall.name = "Vertical Template";
             templateWall.transform.localScale = new Vector3(totalWidth, cellHeight, WallThickness);
@@ -82,6 +87,11 @@ namespace Assets.Scripts.Maze {
             Quaternion rotation = new Quaternion();
 
             GameObject exampleWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+            BoxCollider boxCollider = exampleWall.GetComponent<BoxCollider>();
+            boxCollider.size = new Vector3(10.0f, 5.0f, 1.05f);
+
+            exampleWall.isStatic = true;
             GameObject templateWall = GameObject.Instantiate(exampleWall, position, rotation);
             templateWall.name = "Horizontal Template";
 
@@ -89,6 +99,13 @@ namespace Assets.Scripts.Maze {
 
             exampleWall.SetActive(false);
             return templateWall;
+        }
+
+
+        private GameObject MakeNecessaryComponentAdjustments(GameObject gameObject) {
+            BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+            boxCollider.size = new Vector3(10.0f, 5.0f, 1.05f);
+            return gameObject;
         }
 
         private void DrawTopWall(int col, GameObject horizontalTemplate) {
