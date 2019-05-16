@@ -6,7 +6,7 @@ public class GameModel : Observer {
     public ClassFactory ClassFactory { get; set; }
     public GameData GameData { get; set; }
     public MazeModel MazeModel { get; set; }
-    public List<Subject> Events;
+    private List<Subject> Events;
 
     public GameModel(GameData gameData, MazeModel mazeModel) {
         ClassFactory = ClassFactory.GetInstance();
