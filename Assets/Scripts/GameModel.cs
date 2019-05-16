@@ -48,6 +48,8 @@ public class GameModel : Observer {
     public void UpdateObserver(Subject subject) {
         switch (subject.ToString()) {
             case "GameWonEvent":
+                GameData.GameWon = true;
+                GameData.Notify();
                 break;
             default:
                 break;
