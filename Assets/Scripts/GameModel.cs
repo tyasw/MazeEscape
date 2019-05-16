@@ -1,12 +1,19 @@
-﻿using Assets.Scripts.Maze;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Events;
+using Assets.Scripts.Maze;
 
-public class GameModel {
+public class GameModel : Observer {
+    public ClassFactory ClassFactory { get; set; }
     public GameData GameData { get; set; }
     public MazeModel MazeModel { get; set; }
+    public List<Subject> Events;
 
     public GameModel(GameData gameData, MazeModel mazeModel) {
+        ClassFactory = ClassFactory.GetInstance();
         GameData = gameData;
         MazeModel = mazeModel;
+        Events = InitializeEvents();
+        AttachToEvents();
     }
 
     public void BeginGameWithOptionsApplied() {
@@ -23,5 +30,27 @@ public class GameModel {
         mazeData.Width = 8;
         mazeData.Height = 8;
         mazeData.CellWallThickness = 0.1f;
+    }
+
+    private List<Subject> InitializeEvents() {
+        List<Subject> watchingEvents = new List<Subject>();
+        WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
+        watchingEvents.Add(wonGameEvent);
+        return watchingEvents;
+    }
+
+    private void AttachToEvents() {
+        foreach (Subject subject in Events) {
+            subject.Attach(this);
+        }
+    }
+
+    public void UpdateObserver(Subject subject) {
+        switch (subject.ToString()) {
+            case "GameWonEvent":
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -14,6 +14,7 @@ public class ClassFactory {
     private ShowGameOptionsEvent ShowGameOptionsEventInstance { get; set; }
     private StartGameEvent StartGameEventInstance { get; set; }
     private StopGameEvent StopGameEventInstance { get; set; }
+    private WonGameEvent WonGameEventInstance { get; set; }
 
     private ClassFactory() {
 
@@ -97,5 +98,12 @@ public class ClassFactory {
             StopGameEventInstance = new StopGameEvent();
         }
         return StopGameEventInstance;
+    }
+
+    public WonGameEvent GetWonGameEvent() {
+        if (WonGameEventInstance == null) {
+            WonGameEventInstance = new WonGameEvent();
+        }
+        return WonGameEventInstance;
     }
 }
