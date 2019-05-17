@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using Assets.Scripts.Maze;
+using Assets.Scripts.Commands;
 
 public class UnityView : MonoBehaviour, GameView {
     public ClassFactory ClassFactory { get; set; }
@@ -55,6 +56,8 @@ public class UnityView : MonoBehaviour, GameView {
         float triggerZPosition = CalculateEndTriggerZPosition();
         GameObject triggerObject = ObjectFactory.CreateGameObject("EndTrigger");
         triggerObject.transform.position = new Vector3(triggerXPosition, triggerYPosition, triggerZPosition);
+        triggerObject.AddComponent<FinishGameCommand>();
+        triggerObject.AddComponent<WinTrigger>();
         triggerObject.AddComponent<BoxCollider>();
         Collider colliderComponent = triggerObject.GetComponent<BoxCollider>();
         colliderComponent.isTrigger = true;

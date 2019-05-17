@@ -6,6 +6,7 @@ public class GameData : Subject {
 
     public GameData() {
         GameWon = false;
+        Observers = new List<Observer>();
     }
 
     public void Attach(Observer observer) {
@@ -20,5 +21,9 @@ public class GameData : Subject {
         foreach (Observer observer in Observers) {
             observer.UpdateObserver(this);
         }
+    }
+
+    public override string ToString() {
+        return "GameData";
     }
 }

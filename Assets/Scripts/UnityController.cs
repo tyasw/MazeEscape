@@ -28,8 +28,11 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         List<Subject> watchingEvents = new List<Subject>();
         StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
         StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
+        WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
+        GameData gameData = ClassFactory.GetGameData();
         watchingEvents.Add(stopGameEvent);
         watchingEvents.Add(startGameEvent);
+        watchingEvents.Add(gameData);
         return watchingEvents;
     }
 
@@ -47,6 +50,9 @@ public class UnityController : MonoBehaviour, GameController, Observer {
             case "StartGameEvent":
                 StartNewGame();
                 break;
+            case "GameData":
+                HandleGameDataChanged(subject as GameData);
+                break;
             default:
                 Debug.LogError("Should not get here!");
                 break;
@@ -60,5 +66,11 @@ public class UnityController : MonoBehaviour, GameController, Observer {
 
     public void StopGame() {
         GameOptions.StopGame();
+    }
+
+    private void HandleGameDataChanged(GameData gameData) {
+        if (gameData.GameWon) {
+            Debug.Log("Won Game!");
+        }
     }
 }

@@ -16,6 +16,19 @@ public class GameModel : Observer {
         AttachToEvents();
     }
 
+    private List<Subject> InitializeEvents() {
+        List<Subject> watchingEvents = new List<Subject>();
+        WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
+        watchingEvents.Add(wonGameEvent);
+        return watchingEvents;
+    }
+
+    private void AttachToEvents() {
+        foreach (Subject subject in Events) {
+            subject.Attach(this);
+        }
+    }
+
     public void BeginGameWithOptionsApplied() {
         GetGameOptions();
         MazeController mazeController = new MazeController(MazeModel);
@@ -30,19 +43,6 @@ public class GameModel : Observer {
         mazeData.Width = 8;
         mazeData.Height = 8;
         mazeData.CellWallThickness = 0.1f;
-    }
-
-    private List<Subject> InitializeEvents() {
-        List<Subject> watchingEvents = new List<Subject>();
-        WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
-        watchingEvents.Add(wonGameEvent);
-        return watchingEvents;
-    }
-
-    private void AttachToEvents() {
-        foreach (Subject subject in Events) {
-            subject.Attach(this);
-        }
     }
 
     public void UpdateObserver(Subject subject) {
