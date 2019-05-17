@@ -28,9 +28,11 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         List<Subject> watchingEvents = new List<Subject>();
         StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
         StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
+        MazeStartedEvent mazeStartedEvent = ClassFactory.GetMazeStartedEvent();
         WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
         watchingEvents.Add(stopGameEvent);
         watchingEvents.Add(startGameEvent);
+        watchingEvents.Add(mazeStartedEvent);
         watchingEvents.Add(wonGameEvent);
         return watchingEvents;
     }
@@ -49,6 +51,9 @@ public class UnityController : MonoBehaviour, GameController, Observer {
             case "StartGameEvent":
                 StartNewGame();
                 break;
+            case "MazeStartedEvent":
+                BeginTimer();
+                break;
             case "WonGameEvent":
                 WinGame();
                 break;
@@ -65,6 +70,10 @@ public class UnityController : MonoBehaviour, GameController, Observer {
 
     public void StopGame() {
         GameOptions.StopGame();
+    }
+
+    private void BeginTimer() {
+        Debug.Log("Begin Timer!");
     }
 
     private void WinGame() {

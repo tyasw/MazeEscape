@@ -43,6 +43,8 @@ public class UnityView : MonoBehaviour, GameView {
         float triggerZPosition = 0.0f;
         GameObject triggerObject = ObjectFactory.CreateGameObject("StartTrigger");
         triggerObject.transform.position = new Vector3(triggerXPosition, triggerYPosition, triggerZPosition);
+        triggerObject.AddComponent<BeginTimerCommand>();
+        triggerObject.AddComponent<BeginTimerTrigger>();
         triggerObject.AddComponent<BoxCollider>();
         Collider colliderComponent = triggerObject.GetComponent<BoxCollider>();
         colliderComponent.isTrigger = true;

@@ -14,6 +14,7 @@ public class ClassFactory {
     private ShowGameOptionsEvent ShowGameOptionsEventInstance { get; set; }
     private StartGameEvent StartGameEventInstance { get; set; }
     private StopGameEvent StopGameEventInstance { get; set; }
+    private MazeStartedEvent MazeStartedEventInstance { get; set; }
     private WonGameEvent WonGameEventInstance { get; set; }
 
     private ClassFactory() {
@@ -98,6 +99,13 @@ public class ClassFactory {
             StopGameEventInstance = new StopGameEvent();
         }
         return StopGameEventInstance;
+    }
+
+    public MazeStartedEvent GetMazeStartedEvent() {
+        if (MazeStartedEventInstance == null) {
+            MazeStartedEventInstance = new MazeStartedEvent();
+        }
+        return MazeStartedEventInstance;
     }
 
     public WonGameEvent GetWonGameEvent() {
