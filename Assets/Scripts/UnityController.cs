@@ -29,10 +29,9 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
         StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
         WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
-        GameData gameData = ClassFactory.GetGameData();
         watchingEvents.Add(stopGameEvent);
         watchingEvents.Add(startGameEvent);
-        watchingEvents.Add(gameData);
+        watchingEvents.Add(wonGameEvent);
         return watchingEvents;
     }
 
@@ -50,8 +49,8 @@ public class UnityController : MonoBehaviour, GameController, Observer {
             case "StartGameEvent":
                 StartNewGame();
                 break;
-            case "GameData":
-                HandleGameDataChanged(subject as GameData);
+            case "WonGameEvent":
+                WinGame();
                 break;
             default:
                 Debug.LogError("Should not get here!");
@@ -68,9 +67,8 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         GameOptions.StopGame();
     }
 
-    private void HandleGameDataChanged(GameData gameData) {
-        if (gameData.GameWon) {
-            Debug.Log("Won Game!");
-        }
+    private void WinGame() {
+        GameModel.GameData.GameWon = true;
+        Debug.Log("Won Game!");
     }
 }
