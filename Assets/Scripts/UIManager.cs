@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour, Observer {
     public List<Subject> Events;
 
     private bool mazeStarted;
+    private float timeStartedMaze;
+    private float elapsedTime;
 
     void Awake() {
         ClassFactory = ClassFactory.GetInstance();
@@ -26,7 +28,8 @@ public class UIManager : MonoBehaviour, Observer {
 
     private void Update() {
         if (mazeStarted) {
-            GameTime.text = Time.time.ToString();
+            elapsedTime = Time.time - timeStartedMaze;
+            GameTime.text = elapsedTime.ToString();
         }
     }
 
@@ -81,6 +84,7 @@ public class UIManager : MonoBehaviour, Observer {
 
     private void StartTimer() {
         mazeStarted = true;
+        timeStartedMaze = Time.time;
         HUDOverlay.gameObject.SetActive(true);
     }
 
