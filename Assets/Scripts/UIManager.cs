@@ -104,16 +104,10 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void PauseGame() {
-        bool menuShown = PauseMenu.gameObject.activeSelf;
-        if (!menuShown) {       // Sanity check
-            PauseMenu.gameObject.SetActive(true);
-        }
+        PauseMenu.gameObject.SetActive(true);
     }
 
     private void ResumeGame() {
-        bool menuShown = PauseMenu.gameObject.activeSelf;
-        if (menuShown) {        // Sanity check
-            PauseMenu.gameObject.SetActive(false);
-        }
+        PauseMenu.gameObject.SetActive(false);
     }
 }
