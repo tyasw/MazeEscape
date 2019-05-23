@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using Assets.Scripts.Events;
 
 public class UIManager : MonoBehaviour, Observer {
-    public Canvas MainMenu;
-    public Canvas PauseMenu;
+    //public Canvas MainMenu;
+    //public Canvas PauseMenu;
     public Canvas HUDOverlay;
     public Animator HUDAnimator;
     public Text GameTime;
@@ -21,8 +21,8 @@ public class UIManager : MonoBehaviour, Observer {
         ClassFactory = ClassFactory.GetInstance();
         Events = InitializeEvents();
         AttachToEvents();
-        MainMenu.gameObject.SetActive(true);
-        PauseMenu.gameObject.SetActive(false);
+        //MainMenu.gameObject.SetActive(true);
+        //PauseMenu.gameObject.SetActive(false);
         HUDOverlay.gameObject.SetActive(true);
         GameTime.gameObject.SetActive(false);
         mazeStarted = false;
@@ -108,10 +108,13 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void PauseGame() {
-        PauseMenu.gameObject.SetActive(true);
+        HUDAnimator.SetBool("Paused", true);
+        //PauseMenu.gameObject.SetActive(true);
     }
 
     private void ResumeGame() {
-        PauseMenu.gameObject.SetActive(false);
+        HUDAnimator.SetBool("Paused", false);
+        //HUDAnimator.SetTrigger("UnpauseGame");
+        //PauseMenu.gameObject.SetActive(false);
     }
 }

@@ -626,8 +626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a708dd7462ba648a5cb0acd3f878b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenu: {fileID: 1185731824}
-  PauseMenu: {fileID: 1264635598}
   HUDOverlay: {fileID: 1576292517}
   HUDAnimator: {fileID: 1576292519}
   GameTime: {fileID: 1288902638}
@@ -1461,6 +1459,7 @@ GameObject:
   - component: {fileID: 1251296821}
   - component: {fileID: 1251296823}
   - component: {fileID: 1251296822}
+  - component: {fileID: 1251296824}
   m_Layer: 5
   m_Name: MainMenuImage
   m_TagString: Untagged
@@ -1524,6 +1523,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251296820}
   m_CullTransparentMesh: 0
+--- !u!95 &1251296824
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251296820}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 466c7354a26765747b75baad26e402df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1264635595
 GameObject:
   m_ObjectHideFlags: 0
