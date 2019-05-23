@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour, Observer {
     public Canvas MainMenu;
     public Canvas PauseMenu;
     public Canvas HUDOverlay;
+    public Animator HUDAnimator;
     public Text GameTime;
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events;
@@ -22,14 +23,15 @@ public class UIManager : MonoBehaviour, Observer {
         AttachToEvents();
         MainMenu.gameObject.SetActive(true);
         PauseMenu.gameObject.SetActive(false);
-        HUDOverlay.gameObject.SetActive(false);
+        HUDOverlay.gameObject.SetActive(true);
+        GameTime.gameObject.SetActive(false);
         mazeStarted = false;
     }
 
     private void Update() {
         if (mazeStarted) {
             elapsedTime = Time.time - timeStartedMaze;
-            GameTime.text = elapsedTime.ToString();
+            GameTime.text = "Time: " + elapsedTime.ToString();
         }
     }
 
@@ -85,7 +87,7 @@ public class UIManager : MonoBehaviour, Observer {
     private void StartTimer() {
         mazeStarted = true;
         timeStartedMaze = Time.time;
-        HUDOverlay.gameObject.SetActive(true);
+        GameTime.gameObject.SetActive(true);
     }
 
     private void StopTimer() {
@@ -93,10 +95,7 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void StartNewGame() {
-        bool mainMenuShown = MainMenu.gameObject.activeSelf;
-        if (mainMenuShown) {
-            MainMenu.gameObject.SetActive(false);
-        }
+        HUDAnimator.SetTrigger("MainMenuDisappear");
     }
 
     private void StopGame() {
