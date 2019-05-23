@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour, Observer {
                 ResumeGame();
                 break;
             case "WonGameEvent":
-                StopTimer();
+                GameWon();
                 break;
             default:
                 Debug.LogError("Should not get here!");
@@ -88,6 +88,11 @@ public class UIManager : MonoBehaviour, Observer {
         mazeStarted = true;
         timeStartedMaze = Time.time;
         GameTime.gameObject.SetActive(true);
+    }
+
+    private void GameWon() {
+        StopTimer();
+        HUDAnimator.SetTrigger("WinGame");
     }
 
     private void StopTimer() {
