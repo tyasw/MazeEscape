@@ -49,13 +49,13 @@ public class UnityOptions : MonoBehaviour, GameOptions, Observer {
     }
 
     public void PauseGame() {
-        SavedTimeScale = Time.timeScale;
-        Time.timeScale = 0.0f;
+        //SavedTimeScale = Time.timeScale;
+        //Time.timeScale = 0.0f;
         Debug.Log("Pause Game!");
     }
 
     public void ResumeGame() {
-        Time.timeScale = SavedTimeScale;
+        //Time.timeScale = SavedTimeScale;
         Debug.Log("Resume Game!");
     }
 
