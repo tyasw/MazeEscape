@@ -24,18 +24,13 @@ public class UnityView : MonoBehaviour, GameView {
 
     public void DrawMaze() {
         DrawMazeWalls();
-        DrawBoundaryAreas();
+        DrawEntryBoundaryArea();
         CreateStartAndEndTriggers();
     }
 
     private void DrawMazeWalls() {
         MazeDrawer mazeDrawer = new MazeDrawer(MazeData);
         mazeDrawer.DrawMaze();
-    }
-
-    private void DrawBoundaryAreas() {
-        DrawEntryBoundaryArea();
-        DrawExitBoundaryArea();
     }
 
     private void DrawEntryBoundaryArea() {
@@ -57,10 +52,6 @@ public class UnityView : MonoBehaviour, GameView {
         float wallThreeYPos = wallThree.transform.position.y;
         float wallThreeZPos = wallThree.transform.position.z - 15.55f;
         wallThree.transform.position = new Vector3(wallThreeXPos, wallThreeYPos, wallThreeZPos);
-    }
-
-    private void DrawExitBoundaryArea() {
-
     }
 
     private GameObject CreateBoundaryWall(float xScale, float yScale, float zScale) {
