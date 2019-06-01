@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour, Observer {
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events;
 
-    private bool mazeStarted;
     private float timeStartedMaze;
     private float elapsedTime;
 
@@ -23,7 +22,6 @@ public class UIManager : MonoBehaviour, Observer {
         //PauseMenu.gameObject.SetActive(false);
         HUDOverlay.gameObject.SetActive(true);
         GameTimer.gameObject.SetActive(false);
-        mazeStarted = false;
     }
 
     private List<Subject> InitializeEvents() {
@@ -76,7 +74,6 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void StartTimer() {
-        mazeStarted = true;
         GameTimer.gameObject.SetActive(true);
     }
 
@@ -86,7 +83,7 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void StopTimer() {
-        mazeStarted = false;
+        GameTimer.StopTimer();
     }
 
     private void StartNewGame() {
