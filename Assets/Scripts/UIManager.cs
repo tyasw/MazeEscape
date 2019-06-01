@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Assets.Scripts.Events;
 
 public class UIManager : MonoBehaviour, Observer {
@@ -9,7 +7,7 @@ public class UIManager : MonoBehaviour, Observer {
     //public Canvas PauseMenu;
     public Canvas HUDOverlay;
     public Animator HUDAnimator;
-    public Text GameTime;
+    public GameTimer GameTimer;
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events;
 
@@ -24,15 +22,8 @@ public class UIManager : MonoBehaviour, Observer {
         //MainMenu.gameObject.SetActive(true);
         //PauseMenu.gameObject.SetActive(false);
         HUDOverlay.gameObject.SetActive(true);
-        GameTime.gameObject.SetActive(false);
+        GameTimer.gameObject.SetActive(false);
         mazeStarted = false;
-    }
-
-    private void Update() {
-        if (mazeStarted) {
-            elapsedTime = Time.time - timeStartedMaze;
-            GameTime.text = "Time: " + elapsedTime.ToString();
-        }
     }
 
     private List<Subject> InitializeEvents() {
@@ -86,8 +77,7 @@ public class UIManager : MonoBehaviour, Observer {
 
     private void StartTimer() {
         mazeStarted = true;
-        timeStartedMaze = Time.time;
-        GameTime.gameObject.SetActive(true);
+        GameTimer.gameObject.SetActive(true);
     }
 
     private void GameWon() {
