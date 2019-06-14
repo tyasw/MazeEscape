@@ -19,9 +19,11 @@ public class UnityOptions : MonoBehaviour, GameOptions, Observer {
         PauseGameEvent pauseGameEvent = ClassFactory.GetPauseGameEvent();
         ResumeGameEvent resumeGameEvent = ClassFactory.GetResumeGameEvent();
         ShowGameOptionsEvent showGameOptionsEvent = ClassFactory.GetShowGameOptionsEvent();
+        RestartGameEvent restartGameEvent = ClassFactory.GetRestartGameEvent();
         watchingEvents.Add(pauseGameEvent);
         watchingEvents.Add(resumeGameEvent);
         watchingEvents.Add(showGameOptionsEvent);
+        watchingEvents.Add(restartGameEvent);
         return watchingEvents;
     }
 
@@ -41,6 +43,9 @@ public class UnityOptions : MonoBehaviour, GameOptions, Observer {
                 break;
             case "ShowGameOptionsEvent":
                 ShowGameOptions();
+                break;
+            case "RestartGameEvent":
+                RestartGame();
                 break;
             default:
                 Debug.LogError("Should not get here!");
@@ -74,6 +79,10 @@ public class UnityOptions : MonoBehaviour, GameOptions, Observer {
         } catch (Exception ex) {
             LogError(ex);
         }
+    }
+
+    public void RestartGame() {
+        Debug.Log("Restart Game");
     }
 
     private void GetMazeWidthAndHeightFromUser() {
