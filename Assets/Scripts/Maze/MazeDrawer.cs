@@ -18,37 +18,50 @@ namespace Assets.Scripts.Maze {
 
         public void DrawMaze() {
             if (MazeWidth > 0 && MazeHeight > 0) {
-                GameObject verticalTemplateWall = CreateVerticalTemplateWall();
-                GameObject horizontalTemplateWall = CreateHorizontalTemplateWall();
-                DrawWalls(verticalTemplateWall, horizontalTemplateWall);
-                verticalTemplateWall.SetActive(false);
-                horizontalTemplateWall.SetActive(false);
+                DrawVerticalWalls();
+                DrawHorizontalWalls();
             }
         }
 
-        private void DrawWalls(GameObject verticalTemplate, GameObject horizontalTemplate) {
+        private void DrawVerticalWalls() {
+            GameObject template = CreateVerticalTemplateWall();
+
             for (int row = 0; row < MazeHeight; row++) {
                 for (int col = 0; col < MazeWidth; col++) {
-                    DrawWall(row, col, verticalTemplate, horizontalTemplate);
+                    DrawVerticalWall(row, col, template);
                 }
+            }
+
+            template.SetActive(false);
+        }
+
+        private void DrawHorizontalWalls() {
+            GameObject template = CreateHorizontalTemplateWall();
+
+            for (int row = 0; row < MazeHeight; row++) {
+                for (int col = 0; col < MazeWidth; col++) {
+                    DrawHorizontalWall(row, col, template);
+                }
+            }
+
+            template.SetActive(false);
+        }
+
+        private void DrawVerticalWall(int row, int col, GameObject template) {
+            if (AtLeftEdge(row, col)) {
+                DrawLeftEdge(row, template);
+            }
+            if (ShouldDrawRightWall(row, col)) {
+                DrawRightWall(row, col, template);
             }
         }
 
-        private void DrawWall(int row, int col, GameObject verticalTemplate, GameObject horizontalTemplate) {
-            if (row == 0) {
-                DrawTopWall(col, horizontalTemplate);
+        private void DrawHorizontalWall(int row, int col, GameObject template) {
+            if (AtTopRow(row)) {
+                DrawTopWall(col, template);
             }
-
-            if (col == 0 && row != 0) {
-                DrawLeftEdge(row, verticalTemplate);
-            }
-
-            if (Maze[row, col].RightWall) {
-                DrawRightWall(row, col, verticalTemplate);
-            }
-
-            if (Maze[row, col].BottomWall) {
-                DrawBottomWall(row, col, horizontalTemplate);
+            if (ShouldDrawBottomWall(row, col)) {
+                DrawBottomWall(row, col, template);
             }
         }
 
@@ -101,29 +114,22 @@ namespace Assets.Scripts.Maze {
             return templateWall;
         }
 
-
-        private GameObject MakeNecessaryComponentAdjustments(GameObject gameObject) {
-            BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
-            boxCollider.size = new Vector3(10.0f, 5.0f, 1.05f);
-            return gameObject;
+        private void DrawTopWall(int col, GameObject templateWall) {
+            float xPos = templateWall.transform.position.x;
+            float yPos = templateWall.transform.position.y;
+            float zPos = col * (WallWidth + WallThickness) + templateWall.transform.position.z;
+            Vector3 wallPosition = new Vector3(xPos, yPos, zPos);
+            Quaternion wallRotation = templateWall.transform.rotation;
+            GameObject wall = GameObject.Instantiate(templateWall, wallPosition, wallRotation);
         }
 
-        private void DrawTopWall(int col, GameObject horizontalTemplate) {
-            float xPos = horizontalTemplate.transform.position.x;
-            float yPos = horizontalTemplate.transform.position.y;
-            float zPos = col * (WallWidth + WallThickness) + horizontalTemplate.transform.position.z;
+        private void DrawBottomWall(int row, int col, GameObject templateWall) {
+            float xPos = (row + 1) * (WallWidth + WallThickness) + templateWall.transform.position.x;
+            float yPos = templateWall.transform.position.y;
+            float zPos = col * (WallWidth + WallThickness) + templateWall.transform.position.z;
             Vector3 wallPosition = new Vector3(xPos, yPos, zPos);
-            Quaternion wallRotation = horizontalTemplate.transform.rotation;
-            GameObject wall = GameObject.Instantiate(horizontalTemplate, wallPosition, wallRotation);
-        }
-
-        private void DrawBottomWall(int row, int col, GameObject horizontalTemplate) {
-            float xPos = (row + 1) * (WallWidth + WallThickness) + horizontalTemplate.transform.position.x;
-            float yPos = horizontalTemplate.transform.position.y;
-            float zPos = col * (WallWidth + WallThickness) + horizontalTemplate.transform.position.z;
-            Vector3 wallPosition = new Vector3(xPos, yPos, zPos);
-            Quaternion wallRotation = horizontalTemplate.transform.rotation;
-            GameObject wall = GameObject.Instantiate(horizontalTemplate, wallPosition, wallRotation);
+            Quaternion wallRotation = templateWall.transform.rotation;
+            GameObject wall = GameObject.Instantiate(templateWall, wallPosition, wallRotation);
         }
 
         private void DrawLeftEdge(int row, GameObject templateWall) {
@@ -135,13 +141,29 @@ namespace Assets.Scripts.Maze {
             GameObject wall = GameObject.Instantiate(templateWall, wallPosition, wallRotation);
         }
 
-        private void DrawRightWall(int row, int col, GameObject verticalTemplate) {
-            float xPos = row * (WallWidth + WallThickness) + verticalTemplate.transform.position.x;
-            float yPos = verticalTemplate.transform.position.y;
-            float zPos = (col + 1) * (WallWidth + WallThickness) + verticalTemplate.transform.position.z;
+        private void DrawRightWall(int row, int col, GameObject templateWall) {
+            float xPos = row * (WallWidth + WallThickness) + templateWall.transform.position.x;
+            float yPos = templateWall.transform.position.y;
+            float zPos = (col + 1) * (WallWidth + WallThickness) + templateWall.transform.position.z;
             Vector3 wallPosition = new Vector3(xPos, yPos, zPos);
-            Quaternion wallRotation = verticalTemplate.transform.rotation;
-            GameObject wall = GameObject.Instantiate(verticalTemplate, wallPosition, wallRotation);
+            Quaternion wallRotation = templateWall.transform.rotation;
+            GameObject wall = GameObject.Instantiate(templateWall, wallPosition, wallRotation);
+        }
+
+        private bool AtLeftEdge(int row, int col) {
+            return (col == 0 && row != 0);
+        }
+
+        private bool AtTopRow(int row) {
+            return row == 0;
+        }
+
+        private bool ShouldDrawRightWall(int row, int col) {
+            return Maze[row, col].RightWall;
+        }
+
+        private bool ShouldDrawBottomWall(int row, int col) {
+            return Maze[row, col].BottomWall;
         }
     }
 }
