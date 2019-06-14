@@ -2115,7 +2115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288902636}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fe09ee1a24c13442ba053a67a95a093, type: 3}
   m_Name: 
@@ -2123,6 +2123,7 @@ MonoBehaviour:
   GameTimeText: {fileID: 0}
   timeStartedMaze: 0
   elapsedTime: 0
+  timerShouldRun: 0
 --- !u!1 &1338108309
 GameObject:
   m_ObjectHideFlags: 0

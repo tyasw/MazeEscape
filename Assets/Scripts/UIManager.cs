@@ -3,23 +3,16 @@ using UnityEngine;
 using Assets.Scripts.Events;
 
 public class UIManager : MonoBehaviour, Observer {
-    //public Canvas MainMenu;
-    //public Canvas PauseMenu;
     public Canvas HUDOverlay;
     public Animator HUDAnimator;
     public GameTimer GameTimer;
     public ClassFactory ClassFactory { get; set; }
     public List<Subject> Events;
 
-    private float timeStartedMaze;
-    private float elapsedTime;
-
     void Awake() {
         ClassFactory = ClassFactory.GetInstance();
         Events = InitializeEvents();
         AttachToEvents();
-        //MainMenu.gameObject.SetActive(true);
-        //PauseMenu.gameObject.SetActive(false);
         HUDOverlay.gameObject.SetActive(true);
         GameTimer.gameObject.SetActive(false);
     }
@@ -74,16 +67,11 @@ public class UIManager : MonoBehaviour, Observer {
     }
 
     private void StartTimer() {
-        GameTimer.gameObject.SetActive(true);
+        HUDAnimator.SetBool("InsideMaze", true);
     }
 
     private void GameWon() {
-        StopTimer();
         HUDAnimator.SetTrigger("WinGame");
-    }
-
-    private void StopTimer() {
-        GameTimer.StopTimer();
     }
 
     private void StartNewGame() {
@@ -96,12 +84,9 @@ public class UIManager : MonoBehaviour, Observer {
 
     private void PauseGame() {
         HUDAnimator.SetBool("Paused", true);
-        //PauseMenu.gameObject.SetActive(true);
     }
 
     private void ResumeGame() {
         HUDAnimator.SetBool("Paused", false);
-        //HUDAnimator.SetTrigger("UnpauseGame");
-        //PauseMenu.gameObject.SetActive(false);
     }
 }

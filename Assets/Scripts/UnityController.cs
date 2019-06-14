@@ -6,7 +6,9 @@ using Assets.Scripts.Events;
  * UnityController
  * 
  * The top-level class in Maze Escape. It creates the game model and view,
- * and subscribes to a couple events: StopGameEvent and StartGameEvent.
+ * and subscribes to a few events: StopGameEvent, StartGameEvent, and
+ * WonGameEvent. When you need to control the order in which different observers
+ * respond to a change, do it here.
  */
 public class UnityController : MonoBehaviour, GameController, Observer {
     public ClassFactory ClassFactory { get; set; }
@@ -28,11 +30,9 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         List<Subject> watchingEvents = new List<Subject>();
         StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
         StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
-        MazeStartedEvent mazeStartedEvent = ClassFactory.GetMazeStartedEvent();
         WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
         watchingEvents.Add(stopGameEvent);
         watchingEvents.Add(startGameEvent);
-        watchingEvents.Add(mazeStartedEvent);
         watchingEvents.Add(wonGameEvent);
         return watchingEvents;
     }
@@ -51,9 +51,6 @@ public class UnityController : MonoBehaviour, GameController, Observer {
             case "StartGameEvent":
                 StartNewGame();
                 break;
-            case "MazeStartedEvent":
-                BeginTimer();
-                break;
             case "WonGameEvent":
                 WinGame();
                 break;
@@ -70,10 +67,6 @@ public class UnityController : MonoBehaviour, GameController, Observer {
 
     public void StopGame() {
         GameOptions.StopGame();
-    }
-
-    private void BeginTimer() {
-        Debug.Log("Begin Timer!");
     }
 
     private void WinGame() {
