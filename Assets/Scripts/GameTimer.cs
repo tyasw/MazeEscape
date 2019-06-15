@@ -3,24 +3,19 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour {
     public Text GameTimeText;
-    public float timeStartedMaze;
     public float elapsedTime;
-
-    public bool timerShouldRun;
 
     private void Awake() {
         GameTimeText = GetComponent<Text>();
     }
 
     private void Start() {
-        timeStartedMaze = Time.time;
+        elapsedTime = 0.0f;
         GameTimeText.text = " ";
     }
 
     private void Update() {
-        if (timerShouldRun) {
-            elapsedTime = Time.time - timeStartedMaze;
-            GameTimeText.text = "Time: " + elapsedTime.ToString().Substring(0, 4); 
-        }
+        elapsedTime += Time.deltaTime;
+        GameTimeText.text = "Time: " + elapsedTime.ToString("f2"); 
     }
 }

@@ -1,21 +1,14 @@
 ﻿using UnityEngine;
 
 class PauseGame : MonoBehaviour {
-    public bool Paused;
-
     private float SavedTimescale;
 
-    private void Start() {
-        Paused = false;
+    private void OnEnable() {
         SavedTimescale = Time.timeScale;
+        Time.timeScale = 0.0f;
     }
 
-    private void Update() {
-        if (Paused) {
-            SavedTimescale = Time.timeScale;
-            Time.timeScale = 0.0f;
-        } else {
-            Time.timeScale = SavedTimescale;
-        }
+    private void OnDisable() {
+        Time.timeScale = SavedTimescale;
     }
 }
