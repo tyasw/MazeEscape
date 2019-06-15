@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class PauseGame : MonoBehaviour {
+public class PauseGame : MonoBehaviour {
     private float SavedTimescale;
 
     private void OnEnable() {

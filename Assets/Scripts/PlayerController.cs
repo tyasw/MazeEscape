@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public Vector3 RotationStepVector;
     public Vector3 CameraBuffer;
     public KeyCode PressedKey;
+    public PauseGame PauseGame;
 
     private void Start() {
         MovementStep = 0.5f;
@@ -16,9 +17,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update () {
-        PressedKey = GetKeyPressed();
-        UpdatePlayerPositionAndRotation(PressedKey);
-        UpdateCameraPositionAndRotation(PressedKey);
+        if (!PauseGame.isActiveAndEnabled) {
+            PressedKey = GetKeyPressed();
+            UpdatePlayerPositionAndRotation(PressedKey);
+            UpdateCameraPositionAndRotation(PressedKey);
+        }
     }
 
     private KeyCode GetKeyPressed() {

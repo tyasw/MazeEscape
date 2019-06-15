@@ -5,10 +5,14 @@ namespace Assets.Scripts.Maze {
     public class BoundaryAreaDrawer {
         private float WallWidth { get; set; }
         private float WallThickness { get; set; }
+        private float DistanceFromEntrance { get; set; }
+        private float BoundaryWallThickness { get; set; }
 
         public BoundaryAreaDrawer(MazeData mazeData) {
             this.WallWidth = mazeData.CellSize;
             this.WallThickness = mazeData.CellWallThickness;
+            this.DistanceFromEntrance = 15.0f;
+            this.BoundaryWallThickness = 2.0f;
         }
 
         public void CreateBoundaryAreas() {
@@ -16,33 +20,60 @@ namespace Assets.Scripts.Maze {
         }
 
         private void DrawEntryBoundaryArea() {
-            float totalWidth = WallWidth + 2 * WallThickness;
-            float cellHeight = WallWidth; // Change later?
-            float xPos = 0.0f;
-            float yPos = cellHeight / 2;
-            float zPos = -1 * (WallWidth + WallThickness) + (cellHeight + WallThickness) / 2;
+            GameObject boundaryObjects = ObjectFactory.CreateGameObject("BoundaryObjects");
 
+            GameObject wallOne = CreateEntryBoundaryWallOne();
+            GameObject wallTwo = CreateEntryBoundaryWallTwo();
+            GameObject wallThree = CreateEntryBoundaryWallThree();
+
+            wallOne.transform.parent = boundaryObjects.transform;
+            wallTwo.transform.parent = boundaryObjects.transform;
+            wallThree.transform.parent = boundaryObjects.transform;
+
+            boundaryObjects.transform.position = new Vector3(-1.95f, 0.0f, -0.05f);
+        }
+
+        private GameObject CreateEntryBoundaryWallOne() {
             GameObject wallOne = ObjectFactory.CreateGameObject("EntryBoundaryWallOne");
-            wallOne.transform.position = new Vector3(xPos - 0.5f, yPos, zPos - 5.05f);
-            wallOne.transform.localScale = new Vector3(1.0f, WallWidth, WallWidth * 2);
+            float wallOneScaleX = BoundaryWallThickness;
+            float wallOneScaleY = WallWidth * 2.0f;
+            float wallOneScaleZ = DistanceFromEntrance + BoundaryWallThickness;
+            wallOne.transform.localScale = new Vector3(wallOneScaleX, wallOneScaleY, wallOneScaleZ);
+            wallOne.transform.localPosition = new Vector3(BoundaryWallThickness / 2.0f, 0.0f, wallOneScaleZ / -2.0f);
             wallOne = AddCollider(wallOne);
 
+            return wallOne;
+        }
+
+        private GameObject CreateEntryBoundaryWallTwo() {
             GameObject wallTwo = ObjectFactory.CreateGameObject("EntryBoundaryWallTwo");
-            wallTwo.transform.position = new Vector3(xPos + 10.6f, yPos, zPos - 5.05f);
-            wallTwo.transform.localScale = new Vector3(1.0f, WallWidth, WallWidth * 2);
+            float wallTwoScaleX = WallWidth + 2.0f * BoundaryWallThickness;
+            float wallTwoScaleY = WallWidth * 2.0f;
+            float wallTwoScaleZ = BoundaryWallThickness;
+            wallTwo.transform.localScale = new Vector3(wallTwoScaleX, wallTwoScaleY, wallTwoScaleZ);
+            wallTwo.transform.localPosition = new Vector3(wallTwoScaleX / 2.0f, 0.0f, -(DistanceFromEntrance + (BoundaryWallThickness / 2.0f)));
             wallTwo = AddCollider(wallTwo);
 
+            return wallTwo;
+        }
+
+        private GameObject CreateEntryBoundaryWallThree() {
             GameObject wallThree = ObjectFactory.CreateGameObject("EntryBoundaryWallThree");
-            wallThree.transform.position = new Vector3(xPos + 5.1f, yPos, zPos - 15.55f);
-            wallThree.transform.localScale = new Vector3(WallWidth + 2.2f, WallWidth, 1.0f);
+            float wallThreeScaleX = BoundaryWallThickness;
+            float wallThreeScaleY = WallWidth * 2.0f;
+            float wallThreeScaleZ = DistanceFromEntrance + BoundaryWallThickness;
+            wallThree.transform.localScale = new Vector3(wallThreeScaleX, wallThreeScaleY, wallThreeScaleZ);
+            wallThree.transform.localPosition = new Vector3(WallWidth + 1.5f * BoundaryWallThickness, 0.0f, wallThreeScaleZ / -2.0f);
             wallThree = AddCollider(wallThree);
+
+            return wallThree;
         }
 
         private GameObject AddCollider(GameObject wall) {
             wall.AddComponent<BoxCollider>();
-            float xScale = wall.transform.localScale.x + 0.2f;
-            float yScale = wall.transform.localScale.y * 3.0f;
-            float zScale = wall.transform.localScale.z + 0.2f;
+            float xScale = wall.transform.localScale.x;
+            float yScale = wall.transform.localScale.y;
+            float zScale = wall.transform.localScale.z;
             Collider collider = wall.GetComponent<BoxCollider>();
             collider.isTrigger = false;
             collider.transform.localScale = new Vector3(xScale, yScale, zScale);

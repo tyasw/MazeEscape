@@ -22,18 +22,13 @@ namespace Assets.Scripts.Maze {
         }
 
         private GameObject CreateStartTrigger() {
-            float triggerXPosition = WallWidth / 2 + WallThickness / 2;
-            float triggerYPosition = WallWidth / 2;
-            float triggerZPosition = 0.0f;
+            float triggerXPosition = CalculateStartTriggerXPosition();
+            float triggerYPosition = CalculateStartTriggerYPosition();
+            float triggerZPosition = CalculateStartTriggerZPosition();
             GameObject triggerObject = ObjectFactory.CreateGameObject("StartTrigger");
             triggerObject.transform.position = new Vector3(triggerXPosition, triggerYPosition, triggerZPosition);
-            triggerObject.AddComponent<BeginTimerCommand>();
-            triggerObject.AddComponent<BeginTimerTrigger>();
-            triggerObject.AddComponent<BoxCollider>();
-
-            Collider colliderComponent = triggerObject.GetComponent<BoxCollider>();
-            colliderComponent.isTrigger = true;
-            colliderComponent.transform.localScale = new Vector3(WallWidth, WallWidth, 1.0f);
+            triggerObject.transform.localScale = new Vector3(WallWidth, WallWidth, 1.0f);
+            triggerObject = AddStartTriggerComponents(triggerObject);
             return triggerObject;
         }
 
@@ -43,14 +38,48 @@ namespace Assets.Scripts.Maze {
             float triggerZPosition = CalculateEndTriggerZPosition();
             GameObject triggerObject = ObjectFactory.CreateGameObject("EndTrigger");
             triggerObject.transform.position = new Vector3(triggerXPosition, triggerYPosition, triggerZPosition);
-            triggerObject.AddComponent<FinishGameCommand>();
-            triggerObject.AddComponent<WinTrigger>();
-            triggerObject.AddComponent<BoxCollider>();
-
-            Collider colliderComponent = triggerObject.GetComponent<BoxCollider>();
-            colliderComponent.isTrigger = true;
-            colliderComponent.transform.localScale = new Vector3(1.0f, WallWidth, WallWidth);
+            triggerObject.transform.localScale = new Vector3(1.0f, WallWidth, WallWidth);
+            triggerObject = AddEndTriggerComponents(triggerObject);
             return triggerObject;
+        }
+
+        private GameObject AddStartTriggerComponents(GameObject gameObject) {
+            gameObject.AddComponent<BeginTimerCommand>();
+            gameObject.AddComponent<BeginTimerTrigger>();
+            gameObject = AddCollider(gameObject);
+
+            return gameObject;
+        }
+
+        private GameObject AddEndTriggerComponents(GameObject gameObject) {
+            gameObject.AddComponent<FinishGameCommand>();
+            gameObject.AddComponent<WinTrigger>();
+            gameObject = AddCollider(gameObject);
+            return gameObject;
+        }
+
+        private GameObject AddCollider(GameObject gameObject) {
+            gameObject.AddComponent<BoxCollider>();
+            float xScale = gameObject.transform.localScale.x;
+            float yScale = gameObject.transform.localScale.y;
+            float zScale = gameObject.transform.localScale.z;
+            Collider collider = gameObject.GetComponent<BoxCollider>();
+            collider.isTrigger = true;
+            collider.transform.localScale = new Vector3(xScale, yScale, zScale);
+
+            return gameObject;
+        }
+
+        private float CalculateStartTriggerXPosition() {
+            return WallWidth / 2 + WallThickness / 2;
+        }
+
+        private float CalculateStartTriggerYPosition() {
+            return WallWidth / 2;
+        }
+
+        private float CalculateStartTriggerZPosition() {
+            return 0.0f;
         }
 
         private float CalculateEndTriggerXPosition() {
