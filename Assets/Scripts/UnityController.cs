@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Assets.Scripts.Events;
 
 /*
@@ -26,13 +27,19 @@ public class UnityController : MonoBehaviour, GameController, Observer {
         AttachToEvents();
     }
 
+    private void Start() {
+        StartNewGame();
+    }
+
     private List<Subject> InitializeEvents() {
         List<Subject> watchingEvents = new List<Subject>();
         StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
-        StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
+        RestartGameEvent restartGameEvent = ClassFactory.GetRestartGameEvent();
+        //StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
         WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
         watchingEvents.Add(stopGameEvent);
-        watchingEvents.Add(startGameEvent);
+        watchingEvents.Add(restartGameEvent);
+        //watchingEvents.Add(startGameEvent);
         watchingEvents.Add(wonGameEvent);
         return watchingEvents;
     }
@@ -48,9 +55,12 @@ public class UnityController : MonoBehaviour, GameController, Observer {
             case "StopGameEvent":
                 StopGame();
                 break;
-            case "StartGameEvent":
-                StartNewGame();
+            case "RestartGameEvent":
+                RestartGame();
                 break;
+            //case "StartGameEvent":
+            //    StartNewGame();
+            //    break;
             case "WonGameEvent":
                 WinGame();
                 break;
@@ -63,6 +73,10 @@ public class UnityController : MonoBehaviour, GameController, Observer {
     public void StartNewGame() {
         GameModel.BeginGameWithOptionsApplied();
         GameView.DrawWorld();
+    }
+
+    public void RestartGame() {
+        SceneManager.LoadScene("Game");
     }
 
     public void StopGame() {

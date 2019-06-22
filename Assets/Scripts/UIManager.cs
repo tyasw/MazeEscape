@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour, Observer {
         AttachToEvents();
         HUDOverlay.gameObject.SetActive(true);
         GameTimer.gameObject.SetActive(false);
+        HUDAnimator = GameObject.Find("HUD").GetComponent<Animator>();
     }
 
     private List<Subject> InitializeEvents() {
