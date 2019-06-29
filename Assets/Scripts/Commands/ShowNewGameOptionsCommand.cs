@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
+    /*
+     * Display the new game options dialog.
+     */
     public class ShowNewGameOptionsCommand : Command {
         private CustomEventSystem eventSystem;
 

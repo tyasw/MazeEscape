@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Commands;
 
+/*
+ * Placed at the beginning of the maze. The "instantiation" of this class is
+ * controlled by the CheckpointCreator.
+ */
 public class BeginTimerTrigger : MonoBehaviour {
     public BeginTimerCommand BeginTimerCommand;
 

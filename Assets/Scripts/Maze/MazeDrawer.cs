@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
 namespace Assets.Scripts.Maze {
+    /*
+     * Draw a maze in the game based on the internal representation of the maze.
+     */
     public class MazeDrawer {
         private int MazeWidth { get; set; }
         private int MazeHeight { get; set; }

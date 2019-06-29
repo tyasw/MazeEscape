@@ -1,4 +1,7 @@
 ﻿namespace Assets.Scripts.Maze {
+    /*
+     * A generic tree useful when generating a maze.
+     */
     public class Tree<T> {
         public Tree<T> Parent { get; set; }
         public T Data { get; set; }

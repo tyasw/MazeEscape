@@ -1,4 +1,7 @@
 ﻿namespace Assets.Scripts.Maze {
+    /*
+     * Control when the maze model is generated.
+     */
     public class MazeController {
         private MazeModel Model { get; set; }
 

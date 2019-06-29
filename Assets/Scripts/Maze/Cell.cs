@@ -1,5 +1,8 @@
 ﻿using Assets.Scripts.Maze;
 
+/*
+ * A single cell in a maze.
+ */
 public class Cell {
     public int Id { get; set; }
     public float Size { get; set; }           // length of one side of the cell

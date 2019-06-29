@@ -2,6 +2,9 @@
 using Assets.Scripts.Commands;
 
 namespace Assets.Scripts.Events {
+    /*
+     * Run a command when the user presses a specified key on the keyboard.
+     */
     public class KeyboardPress : MonoBehaviour {
         public KeyCode KeyCode;
         public CommandParser CommandParser;

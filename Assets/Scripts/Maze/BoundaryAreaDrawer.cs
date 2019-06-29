@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 namespace Assets.Scripts.Maze {
     public class BoundaryAreaDrawer {
@@ -20,7 +19,7 @@ namespace Assets.Scripts.Maze {
         }
 
         private void DrawEntryBoundaryArea() {
-            GameObject boundaryObjects = ObjectFactory.CreateGameObject("BoundaryObjects");
+            GameObject boundaryObjects = new GameObject("BoundaryObjects");
 
             GameObject wallOne = CreateEntryBoundaryWallOne();
             GameObject wallTwo = CreateEntryBoundaryWallTwo();
@@ -34,7 +33,7 @@ namespace Assets.Scripts.Maze {
         }
 
         private GameObject CreateEntryBoundaryWallOne() {
-            GameObject wallOne = ObjectFactory.CreateGameObject("EntryBoundaryWallOne");
+            GameObject wallOne = new GameObject("EntryBoundaryWallOne");
             float wallOneScaleX = BoundaryWallThickness;
             float wallOneScaleY = WallWidth * 2.0f;
             float wallOneScaleZ = DistanceFromEntrance + BoundaryWallThickness;
@@ -46,7 +45,7 @@ namespace Assets.Scripts.Maze {
         }
 
         private GameObject CreateEntryBoundaryWallTwo() {
-            GameObject wallTwo = ObjectFactory.CreateGameObject("EntryBoundaryWallTwo");
+            GameObject wallTwo = new GameObject("EntryBoundaryWallTwo");
             float wallTwoScaleX = WallWidth + 2.0f * BoundaryWallThickness;
             float wallTwoScaleY = WallWidth * 2.0f;
             float wallTwoScaleZ = BoundaryWallThickness;
@@ -58,7 +57,7 @@ namespace Assets.Scripts.Maze {
         }
 
         private GameObject CreateEntryBoundaryWallThree() {
-            GameObject wallThree = ObjectFactory.CreateGameObject("EntryBoundaryWallThree");
+            GameObject wallThree = new GameObject("EntryBoundaryWallThree");
             float wallThreeScaleX = BoundaryWallThickness;
             float wallThreeScaleY = WallWidth * 2.0f;
             float wallThreeScaleZ = DistanceFromEntrance + BoundaryWallThickness;

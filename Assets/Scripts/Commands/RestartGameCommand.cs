@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
+    /*
+     * Start fresh from the beginning of the maze.
+     */
     public class RestartGameCommand : Command {
         private CustomEventSystem eventSystem;
 

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/*
+ * Controls player movement and camera position.
+ */
 public class PlayerController : MonoBehaviour {
     public GameObject Camera;
     public float MovementStep;

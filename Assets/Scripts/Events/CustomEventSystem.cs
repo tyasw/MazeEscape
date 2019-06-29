@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Events {
+    /*
+     * The central authority for event handling. Clients register a listener.
+     * Another client will fire the event, which will trigger all listeners
+     * who are listening to that event to be notified.
+     */
     public class CustomEventSystem : MonoBehaviour {
         public delegate void EventListener();
         Dictionary<System.Type, List<EventListener>> eventListeners;

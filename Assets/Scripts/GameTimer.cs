@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Controls the timer that runs while the player traverses the maze. It should
+ * be attached to the same object that the UIManager is attached to.
+ */
 public class GameTimer : MonoBehaviour {
     public Text GameTimeText;
     public float elapsedTime;

@@ -3,6 +3,11 @@ using UnityEngine;
 using System.Collections.Generic;
 using Assets.Scripts.Commands;
 
+/*
+ * Runs commands. It should be attached to a GameObject in the scene. Scripts
+ * that require the CommandParser will search the scene for a GameObject of
+ * this type.
+ */
 public class CommandParser : MonoBehaviour {
     private Queue<Command> Commands { get; set; }
 

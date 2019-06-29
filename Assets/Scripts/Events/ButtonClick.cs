@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using Assets.Scripts.Commands;
 
 namespace Assets.Scripts.Events {
+    /*
+     * Run a command when the user clicks on a specified button.
+     */
     public class ButtonClick : MonoBehaviour {
         public Button Button;
         public CommandParser CommandParser;

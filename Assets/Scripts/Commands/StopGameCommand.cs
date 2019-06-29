@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
+    /*
+     * Exit the game. The user should not be returned to the main menu.
+     */
     public class StopGameCommand : Command {
         private CustomEventSystem eventSystem;
 

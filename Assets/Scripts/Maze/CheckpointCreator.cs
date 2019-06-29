@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using Assets.Scripts.Commands;
 
 namespace Assets.Scripts.Maze {
+    /*
+     * Create triggers in the game, such as the trigger that starts the
+     * game timer, and the trigger that displays the win screen.
+     */
     public class CheckpointCreator {
         private float WallWidth { get; set; }
         private float WallThickness { get; set; }
@@ -25,7 +28,7 @@ namespace Assets.Scripts.Maze {
             float triggerXPosition = CalculateStartTriggerXPosition();
             float triggerYPosition = CalculateStartTriggerYPosition();
             float triggerZPosition = CalculateStartTriggerZPosition();
-            GameObject triggerObject = ObjectFactory.CreateGameObject("StartTrigger");
+            GameObject triggerObject = new GameObject("StartTrigger");
             triggerObject.transform.position = new Vector3(triggerXPosition, triggerYPosition, triggerZPosition);
             triggerObject.transform.localScale = new Vector3(WallWidth, WallWidth, 1.0f);
             triggerObject = AddStartTriggerComponents(triggerObject);
@@ -36,7 +39,7 @@ namespace Assets.Scripts.Maze {
             float triggerXPosition = CalculateEndTriggerXPosition();
             float triggerYPosition = CalculateEndTriggerYPosition();
             float triggerZPosition = CalculateEndTriggerZPosition();
-            GameObject triggerObject = ObjectFactory.CreateGameObject("EndTrigger");
+            GameObject triggerObject = new GameObject("EndTrigger");
             triggerObject.transform.position = new Vector3(triggerXPosition, triggerYPosition, triggerZPosition);
             triggerObject.transform.localScale = new Vector3(1.0f, WallWidth, WallWidth);
             triggerObject = AddEndTriggerComponents(triggerObject);

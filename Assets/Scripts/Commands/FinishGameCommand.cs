@@ -2,6 +2,9 @@
 using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
+    /*
+     * The player has completed the maze.
+     */
     public class FinishGameCommand : Command {
         private CustomEventSystem eventSystem;
 

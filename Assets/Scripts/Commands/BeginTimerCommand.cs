@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 using Assets.Scripts.Events;
-using UnityEngine;
 
 namespace Assets.Scripts.Commands {
+    /*
+     * Start the game timer. This should be run when the player first enters
+     * the maze.
+     */
     public class BeginTimerCommand : Command {
         private CustomEventSystem eventSystem;
 

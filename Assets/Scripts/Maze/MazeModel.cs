@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.Maze {
+    /*
+     * Creates a random maze.
+     */
     public class MazeModel {
         public MazeData MazeData;
         private List<TwoTuple<Cell>> CellPairs { get; set; }

@@ -1,28 +1,22 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Events;
 
 /*
- * UnityController
- * 
- * The top-level class in Maze Escape. It creates the game model and view,
- * and subscribes to a few events: StopGameEvent, StartGameEvent, and
- * WonGameEvent. When you need to control the order in which different observers
- * respond to a change, do it here.
+ * The top-level class in Maze Escape. It should be attached to a GameObject
+ * in Unity. It creates the game model and view, and subscribes to a few events.
+ * When you need to control the order in which different observers respond to
+ * a change, do it here.
  */
 public class UnityController : MonoBehaviour, GameController {
     public GameModel GameModel;
     public UnityView GameView;
-    public GameOptions GameOptions;
-
     public CustomEventSystem EventSystem;
 
     void Awake() {
         EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
         GameModel = GetComponent<GameModel>();
         GameView = GetComponent<UnityView>();
-        GameOptions = GetComponent<UnityOptions>();
         InitializeEvents();
     }
 
@@ -42,16 +36,14 @@ public class UnityController : MonoBehaviour, GameController {
     }
 
     public void RestartGame() {
-        Debug.Log("Load game again");
         SceneManager.LoadScene("Game");
     }
 
     public void StopGame() {
-        GameOptions.StopGame();
+        Application.Quit();
     }
 
-    private void WinGame() {
+    public void WinGame() {
         GameModel.GameData.GameWon = true;
-        Debug.Log("Won Game!");
     }
 }
