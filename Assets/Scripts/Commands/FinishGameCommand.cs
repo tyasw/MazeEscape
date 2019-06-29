@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
+using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     public class FinishGameCommand : Command {
+        private CustomEventSystem eventSystem;
+
         private void Awake() {
-            ClassFactory classFactory = ClassFactory.GetInstance();
-            Subjects = new List<Subject>();
-            Subject Event = classFactory.GetWonGameEvent();
-            Subjects.Add(Event);
+            eventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
         }
 
         public override void Run() {
-            base.Run();
+            eventSystem.FireEvent(typeof(WonGameEvent));
         }
 
         public override string ToString() {

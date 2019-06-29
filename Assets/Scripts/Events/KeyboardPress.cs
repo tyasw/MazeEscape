@@ -7,9 +7,8 @@ namespace Assets.Scripts.Events {
         public CommandParser CommandParser;
         public Command Command;
 
-        private void Start() {
-            ClassFactory classFactory = ClassFactory.GetInstance();
-            CommandParser = classFactory.GetCommandParser();
+        private void Awake() {
+            CommandParser = GameObject.FindObjectOfType<CommandParser>();
             Command = GetComponent<Command>();
         }
 

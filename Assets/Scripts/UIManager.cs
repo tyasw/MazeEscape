@@ -2,69 +2,28 @@
 using UnityEngine;
 using Assets.Scripts.Events;
 
-public class UIManager : MonoBehaviour, Observer {
+public class UIManager : MonoBehaviour {
     public Canvas HUDOverlay;
     public Animator HUDAnimator;
     public GameTimer GameTimer;
-    public ClassFactory ClassFactory { get; set; }
-    public List<Subject> Events;
+
+    public CustomEventSystem EventSystem;
 
     void Awake() {
-        ClassFactory = ClassFactory.GetInstance();
-        Events = InitializeEvents();
-        AttachToEvents();
+        EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
+        InitializeEvents();
         HUDOverlay.gameObject.SetActive(true);
         GameTimer.gameObject.SetActive(false);
         HUDAnimator = GameObject.Find("HUD").GetComponent<Animator>();
     }
 
-    private List<Subject> InitializeEvents() {
-        List<Subject> watchingEvents = new List<Subject>();
-        MazeStartedEvent mazeStartedEvent = ClassFactory.GetMazeStartedEvent();
-        StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
-        StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
-        PauseGameEvent pauseGameEvent = ClassFactory.GetPauseGameEvent();
-        ResumeGameEvent resumeGameEvent = ClassFactory.GetResumeGameEvent();
-        WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
-        watchingEvents.Add(mazeStartedEvent);
-        watchingEvents.Add(startGameEvent);
-        watchingEvents.Add(stopGameEvent);
-        watchingEvents.Add(pauseGameEvent);
-        watchingEvents.Add(resumeGameEvent);
-        watchingEvents.Add(wonGameEvent);
-        return watchingEvents;
-    }
-
-    private void AttachToEvents() {
-        foreach (Subject subject in Events) {
-            subject.Attach(this);
-        }
-    }
-
-    public void UpdateObserver(Subject subject) {
-        switch (subject.ToString()) {
-            case "MazeStartedEvent":
-                StartTimer();
-                break;
-            case "StartGameEvent":
-                StartNewGame();
-                break;
-            case "StopGameEvent":
-                StopGame();
-                break;
-            case "PauseGameEvent":
-                PauseGame();
-                break;
-            case "ResumeGameEvent":
-                ResumeGame();
-                break;
-            case "WonGameEvent":
-                GameWon();
-                break;
-            default:
-                Debug.LogError("Should not get here!");
-                break;
-        }
+    private void InitializeEvents() {
+        EventSystem.RegisterListener(typeof(MazeStartedEvent), StartTimer);
+        EventSystem.RegisterListener(typeof(StartGameEvent), StartNewGame);
+        EventSystem.RegisterListener(typeof(StopGameEvent), StopGame);
+        EventSystem.RegisterListener(typeof(PauseGameEvent), PauseGame);
+        EventSystem.RegisterListener(typeof(ResumeGameEvent), ResumeGame);
+        EventSystem.RegisterListener(typeof(WonGameEvent), GameWon);
     }
 
     private void StartTimer() {

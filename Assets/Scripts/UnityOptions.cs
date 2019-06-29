@@ -1,56 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Events;
 
-public class UnityOptions : MonoBehaviour, GameOptions, Observer {
+public class UnityOptions : MonoBehaviour, GameOptions {
     private float SavedTimeScale { get; set; }
-    public ClassFactory ClassFactory { get; set; }
-    public List<Subject> Events { get; set; }
+
+    public CustomEventSystem EventSystem;
 
     void Awake() {
-        ClassFactory = ClassFactory.GetInstance();
-        Events = InitializeEvents();
-        AttachToEvents();
+        EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
+        InitializeEvents();
     }
 
-    private List<Subject> InitializeEvents() {
-        List<Subject> watchingEvents = new List<Subject>();
-        PauseGameEvent pauseGameEvent = ClassFactory.GetPauseGameEvent();
-        ResumeGameEvent resumeGameEvent = ClassFactory.GetResumeGameEvent();
-        ShowGameOptionsEvent showGameOptionsEvent = ClassFactory.GetShowGameOptionsEvent();
-        RestartGameEvent restartGameEvent = ClassFactory.GetRestartGameEvent();
-        watchingEvents.Add(pauseGameEvent);
-        watchingEvents.Add(resumeGameEvent);
-        watchingEvents.Add(showGameOptionsEvent);
-        watchingEvents.Add(restartGameEvent);
-        return watchingEvents;
-    }
-
-    private void AttachToEvents() {
-        foreach (Subject subject in Events) {
-            subject.Attach(this);
-        }
-    }
-
-    public void UpdateObserver(Subject subject) {
-        switch (subject.ToString()) {
-            case "PauseGameEvent":
-                PauseGame();
-                break;
-            case "ResumeGameEvent":
-                ResumeGame();
-                break;
-            case "ShowGameOptionsEvent":
-                ShowGameOptions();
-                break;
-            case "RestartGameEvent":
-                RestartGame();
-                break;
-            default:
-                Debug.LogError("Should not get here!");
-                break;
-        }
+    private void InitializeEvents() {
+        EventSystem.RegisterListener(typeof(PauseGameEvent), PauseGame);
+        EventSystem.RegisterListener(typeof(ResumeGameEvent), ResumeGame);
+        EventSystem.RegisterListener(typeof(ShowGameOptionsEvent), ShowGameOptions);
+        EventSystem.RegisterListener(typeof(RestartGameEvent), RestartGame);
     }
 
     public void PauseGame() {

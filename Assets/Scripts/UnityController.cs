@@ -11,63 +11,29 @@ using Assets.Scripts.Events;
  * WonGameEvent. When you need to control the order in which different observers
  * respond to a change, do it here.
  */
-public class UnityController : MonoBehaviour, GameController, Observer {
-    public ClassFactory ClassFactory { get; set; }
+public class UnityController : MonoBehaviour, GameController {
     public GameModel GameModel;
-    public GameView GameView;
+    public UnityView GameView;
     public GameOptions GameOptions;
-    public List<Subject> Events;
+
+    public CustomEventSystem EventSystem;
 
     void Awake() {
-        ClassFactory = ClassFactory.GetInstance();
-        GameModel = ClassFactory.GetGameModel();
+        EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
+        GameModel = GetComponent<GameModel>();
         GameView = GetComponent<UnityView>();
         GameOptions = GetComponent<UnityOptions>();
-        Events = InitializeEvents();
-        AttachToEvents();
+        InitializeEvents();
     }
 
     private void Start() {
         StartNewGame();
     }
 
-    private List<Subject> InitializeEvents() {
-        List<Subject> watchingEvents = new List<Subject>();
-        StopGameEvent stopGameEvent = ClassFactory.GetStopGameEvent();
-        RestartGameEvent restartGameEvent = ClassFactory.GetRestartGameEvent();
-        //StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
-        WonGameEvent wonGameEvent = ClassFactory.GetWonGameEvent();
-        watchingEvents.Add(stopGameEvent);
-        watchingEvents.Add(restartGameEvent);
-        //watchingEvents.Add(startGameEvent);
-        watchingEvents.Add(wonGameEvent);
-        return watchingEvents;
-    }
-
-    private void AttachToEvents() {
-        foreach (Subject subject in Events) {
-            subject.Attach(this);
-        }
-    }
-
-    public void UpdateObserver(Subject subject) {
-        switch (subject.ToString()) {
-            case "StopGameEvent":
-                StopGame();
-                break;
-            case "RestartGameEvent":
-                RestartGame();
-                break;
-            //case "StartGameEvent":
-            //    StartNewGame();
-            //    break;
-            case "WonGameEvent":
-                WinGame();
-                break;
-            default:
-                Debug.LogError("Should not get here!");
-                break;
-        }
+    private void InitializeEvents() {
+        EventSystem.RegisterListener(typeof(StopGameEvent), StopGame);
+        EventSystem.RegisterListener(typeof(RestartGameEvent), RestartGame);
+        EventSystem.RegisterListener(typeof(WonGameEvent), WinGame);
     }
 
     public void StartNewGame() {
@@ -76,6 +42,7 @@ public class UnityController : MonoBehaviour, GameController, Observer {
     }
 
     public void RestartGame() {
+        Debug.Log("Load game again");
         SceneManager.LoadScene("Game");
     }
 

@@ -1,14 +1,13 @@
-﻿using Assets.Scripts.Maze;
+﻿using UnityEngine;
+using Assets.Scripts.Maze;
 
-public class GameModel {
-    public ClassFactory ClassFactory { get; set; }
+public class GameModel : MonoBehaviour {
     public GameData GameData { get; set; }
     public MazeModel MazeModel { get; set; }
 
-    public GameModel(GameData gameData, MazeModel mazeModel) {
-        ClassFactory = ClassFactory.GetInstance();
-        GameData = gameData;
-        MazeModel = mazeModel;
+    private void Awake() {
+        GameData = new GameData();
+        MazeModel = new MazeModel(new MazeData());
     }
 
     public void BeginGameWithOptionsApplied() {
@@ -19,11 +18,10 @@ public class GameModel {
 
     // TODO: get the options from an options file
     private void GetGameOptions() {
-        ClassFactory classFactory = ClassFactory.GetInstance();
-        MazeData mazeData = classFactory.GetMazeData();
+        MazeData mazeData = MazeModel.MazeData;
         mazeData.CellSize = 10.0f;
-        mazeData.Width = 2;
-        mazeData.Height = 2;
+        mazeData.Width = 5;
+        mazeData.Height = 5;
         mazeData.CellWallThickness = 0.1f;
     }
 }

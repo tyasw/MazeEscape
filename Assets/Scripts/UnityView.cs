@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Maze;
 
-public class UnityView : MonoBehaviour, GameView {
-    public ClassFactory ClassFactory { get; set; }
+public class UnityView : MonoBehaviour {
     public MazeData MazeData { get; set; }
-    public GameModel GameModel { get; set; }
+    public GameModel GameModel;
 
     void Awake() {
-        ClassFactory = ClassFactory.GetInstance();
-        GameModel = ClassFactory.GetGameModel();
-        MazeData = ClassFactory.GetMazeData();
+        GameModel = GetComponent<GameModel>();
+    }
+
+    private void Start() {
+        MazeData = GameModel.MazeModel.MazeData;
     }
 
     public void DrawWorld() {

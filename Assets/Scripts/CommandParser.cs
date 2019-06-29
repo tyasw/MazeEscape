@@ -1,13 +1,15 @@
 ﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using Assets.Scripts.Commands;
 
-public class CommandParser {
+public class CommandParser : MonoBehaviour {
     private Queue<Command> Commands { get; set; }
 
-    public CommandParser() {
+    private void Start() {
         Commands = new Queue<Command>();
     }
+
 
     public void AddCommand(Command command) {
         if (command == null) {

@@ -3,38 +3,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Events;
 
-public class MainMenuController : MonoBehaviour, Observer {
-    public ClassFactory ClassFactory { get; set; }
+public class MainMenuController : MonoBehaviour {
     public List<Subject> Events;
 
+    public CustomEventSystem EventSystem;
+
     void Awake() {
-        ClassFactory = ClassFactory.GetInstance();
-        Events = InitializeEvents();
-        AttachToEvents();
+        EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
+        InitializeEvents();
     }
 
-    private List<Subject> InitializeEvents() {
-        List<Subject> watchingEvents = new List<Subject>();
-        StartGameEvent startGameEvent = ClassFactory.GetStartGameEvent();
-        watchingEvents.Add(startGameEvent);
-        return watchingEvents;
-    }
-
-    private void AttachToEvents() {
-        foreach (Subject subject in Events) {
-            subject.Attach(this);
-        }
-    }
-
-    public void UpdateObserver(Subject subject) {
-        switch (subject.ToString()) {
-            case "StartGameEvent":
-                StartNewGame();
-                break;
-            default:
-                Debug.LogError("Should not get here!");
-                break;
-        }
+    private void InitializeEvents() {
+        EventSystem.RegisterListener(typeof(StartGameEvent), StartNewGame);
     }
 
     public void StartNewGame() {

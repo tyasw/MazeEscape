@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Events;
+using UnityEngine;
 
 namespace Assets.Scripts.Commands {
     public class BeginTimerCommand : Command {
+        private CustomEventSystem eventSystem;
+
         private void Awake() {
-            ClassFactory classFactory = ClassFactory.GetInstance();
-            Subjects = new List<Subject>();
-            Subject Event = classFactory.GetMazeStartedEvent();
-            Subjects.Add(Event);
+            eventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
         }
 
         public override void Run() {
-            base.Run();
+            eventSystem.FireEvent(typeof(MazeStartedEvent));
         }
 
         public override string ToString() {

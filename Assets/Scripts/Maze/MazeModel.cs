@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Maze {
     public class MazeModel {
-        private MazeData MazeData;
+        public MazeData MazeData;
         private List<TwoTuple<Cell>> CellPairs { get; set; }
 
         public MazeModel(MazeData mazeData) {
