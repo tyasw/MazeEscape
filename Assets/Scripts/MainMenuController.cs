@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Events;
 
 public class MainMenuController : MonoBehaviour {
-    public List<Subject> Events;
-
     public CustomEventSystem EventSystem;
 
     void Awake() {
