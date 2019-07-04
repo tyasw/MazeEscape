@@ -41,7 +41,7 @@ namespace Assets.Scripts.Maze {
 
         private void CreateCells() {
             for (int i = 0; i < (MazeData.Width * MazeData.Height); i++) {
-                MazeData.Cells.Add(new Cell(i, MazeData.CellSize));
+                MazeData.Cells.Add(new Cell(i, MazeData.CellSideLength));
             }
         }
 
@@ -119,29 +119,29 @@ namespace Assets.Scripts.Maze {
             Cell secondCell = cellPair.Y;
 
             if (CellsOnTopOfEachOther(cellPair)) {
-                firstCell.BottomWall = true;
-                secondCell.TopWall = true;
+                firstCell.HasBottomWall = true;
+                secondCell.HasTopWall = true;
             } else {
-                firstCell.RightWall = true;
-                secondCell.LeftWall = true;
+                firstCell.HasRightWall = true;
+                secondCell.HasLeftWall = true;
             }
         }
 
         private void AddOutsideWallsAndDoorsToCell(Cell cell, int row, int col) {
             if (PartOfLeftEdge(row, col)) {
-                cell.LeftWall = true;
+                cell.HasLeftWall = true;
             }
 
             if (PartOfTopEdge(row)) {
-                cell.TopWall = true;
+                cell.HasTopWall = true;
             }
 
             if (PartOfRightEdge(col)) {
-                cell.RightWall = true;
+                cell.HasRightWall = true;
             }
 
             if (PartOfBottomEdge(row, col)) {
-                cell.BottomWall = true;
+                cell.HasBottomWall = true;
             }
         }
 

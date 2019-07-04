@@ -620,7 +620,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 677063338}
-  CommandParser: {fileID: 0}
   Command: {fileID: 677063341}
 --- !u!114 &677063338
 MonoBehaviour:
@@ -729,7 +728,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeyCode: 27
-  CommandParser: {fileID: 0}
   Command: {fileID: 677063341}
 --- !u!1 &750463211
 GameObject:
@@ -776,7 +774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeyCode: 27
-  CommandParser: {fileID: 0}
   Command: {fileID: 750463214}
 --- !u!114 &750463214
 MonoBehaviour:
@@ -1082,7 +1079,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 1120789623}
-  CommandParser: {fileID: 0}
   Command: {fileID: 1120789622}
 --- !u!114 &1120789622
 MonoBehaviour:
@@ -1178,49 +1174,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120789619}
   m_CullTransparentMesh: 0
---- !u!1 &1123829405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1123829406}
-  - component: {fileID: 1123829407}
-  m_Layer: 0
-  m_Name: CommandParser
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1123829406
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123829405}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0.79999995, z: -8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1123829407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123829405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8bb8b8d2c086b408fc6c1f4eaf0fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1141779051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 1319714425}
-  CommandParser: {fileID: 0}
   Command: {fileID: 1319714424}
 --- !u!114 &1319714424
 MonoBehaviour:
@@ -2203,7 +2155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 2032083396}
-  CommandParser: {fileID: 0}
   Command: {fileID: 2032083399}
 --- !u!114 &2032083396
 MonoBehaviour:

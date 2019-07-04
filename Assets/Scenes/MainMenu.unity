@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 103303065}
   - component: {fileID: 103303064}
   - component: {fileID: 103303063}
-  - component: {fileID: 103303066}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -221,18 +220,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &103303066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103303061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8bb8b8d2c086b408fc6c1f4eaf0fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &283955538
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +853,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 1873162380}
-  CommandParser: {fileID: 0}
   Command: {fileID: 1873162379}
 --- !u!114 &1873162379
 MonoBehaviour:

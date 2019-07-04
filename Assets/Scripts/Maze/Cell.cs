@@ -5,20 +5,20 @@
  */
 public class Cell {
     public int Id { get; set; }
-    public float Size { get; set; }           // length of one side of the cell
+    public float SideLength { get; set; }           // length of one side of the cell
     public Tree<Cell> TreeNodePointer { get; set; }
-    public bool TopWall { get; set; }
-    public bool BottomWall { get; set; }
-    public bool LeftWall { get; set; }
-    public bool RightWall { get; set; }
+    public bool HasTopWall { get; set; }
+    public bool HasBottomWall { get; set; }
+    public bool HasLeftWall { get; set; }
+    public bool HasRightWall { get; set; }
 
-    public Cell(int id,float size) {
+    public Cell(int id,float sideLength) {
         Id = id;
-        Size = size;
+        SideLength = sideLength;
         TreeNodePointer = null;
-        TopWall = false;
-        BottomWall = false;
-        LeftWall = false;
-        RightWall = false;
+        HasTopWall = false;
+        HasBottomWall = false;
+        HasLeftWall = false;
+        HasRightWall = false;
     }
 }

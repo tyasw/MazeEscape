@@ -3,7 +3,7 @@ using Assets.Scripts.Events;
 
 namespace Assets.Scripts.Commands {
     /*
-     * The player has completed the maze.
+     * Should be run when the player has completed the maze.
      */
     public class FinishGameCommand : Command {
         private CustomEventSystem eventSystem;

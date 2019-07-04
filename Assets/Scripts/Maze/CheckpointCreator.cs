@@ -13,7 +13,7 @@ namespace Assets.Scripts.Maze {
         private int MazeWidth { get; set; }
 
         public CheckpointCreator(MazeData mazeData) {
-            this.WallWidth = mazeData.CellSize;
+            this.WallWidth = mazeData.CellSideLength;
             this.WallThickness = mazeData.CellWallThickness;
             this.MazeHeight = mazeData.Height;
             this.MazeWidth = mazeData.Width;

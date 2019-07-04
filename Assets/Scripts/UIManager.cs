@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour {
     public Canvas HUDOverlay;
     public Animator HUDAnimator;
     public GameTimer GameTimer;
-
     public CustomEventSystem EventSystem;
 
     void Awake() {

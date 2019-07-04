@@ -8,11 +8,9 @@ namespace Assets.Scripts.Events {
      */
     public class ButtonClick : MonoBehaviour {
         public Button Button;
-        public CommandParser CommandParser;
         public Command Command;
 
         private void Awake() {
-            CommandParser = GameObject.FindObjectOfType<CommandParser>();
             Command = GetComponent<Command>();
         }
 
@@ -21,8 +19,7 @@ namespace Assets.Scripts.Events {
         }
 
         private void OnClick() {
-            CommandParser.AddCommand(Command);
-            CommandParser.RunNextCommand();
+            Command.Run();
         }
     }
 }

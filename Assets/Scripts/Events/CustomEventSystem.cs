@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Events {
     /*
      * The central authority for event handling. Clients register a listener.
-     * Another client will fire the event, which will trigger all listeners
+     * Another client will fire the event, which will cause all listeners
      * who are listening to that event to be notified.
      */
     public class CustomEventSystem : MonoBehaviour {

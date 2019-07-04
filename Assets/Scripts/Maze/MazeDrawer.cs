@@ -15,7 +15,7 @@ namespace Assets.Scripts.Maze {
             MazeWidth = mazeData.Width;
             MazeHeight = mazeData.Height;
             Maze = mazeData.Maze;
-            WallWidth = mazeData.CellSize;
+            WallWidth = mazeData.CellSideLength;
             WallThickness = mazeData.CellWallThickness;
         }
 
@@ -162,11 +162,11 @@ namespace Assets.Scripts.Maze {
         }
 
         private bool ShouldDrawRightWall(int row, int col) {
-            return Maze[row, col].RightWall;
+            return Maze[row, col].HasRightWall;
         }
 
         private bool ShouldDrawBottomWall(int row, int col) {
-            return Maze[row, col].BottomWall;
+            return Maze[row, col].HasBottomWall;
         }
     }
 }

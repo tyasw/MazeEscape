@@ -23,7 +23,7 @@ public class GameModel : MonoBehaviour {
     // TODO: get the options from an options file
     private void GetGameOptions() {
         MazeData mazeData = MazeModel.MazeData;
-        mazeData.CellSize = 10.0f;
+        mazeData.CellSideLength = 10.0f;
         mazeData.Width = 5;
         mazeData.Height = 5;
         mazeData.CellWallThickness = 0.1f;

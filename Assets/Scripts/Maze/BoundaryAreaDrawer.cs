@@ -8,7 +8,7 @@ namespace Assets.Scripts.Maze {
         private float BoundaryWallThickness { get; set; }
 
         public BoundaryAreaDrawer(MazeData mazeData) {
-            this.WallWidth = mazeData.CellSize;
+            this.WallWidth = mazeData.CellSideLength;
             this.WallThickness = mazeData.CellWallThickness;
             this.DistanceFromEntrance = 15.0f;
             this.BoundaryWallThickness = 2.0f;
