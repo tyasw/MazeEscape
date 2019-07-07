@@ -9,16 +9,16 @@ namespace Assets.Scripts.UI {
      */
     public class UIManager : MonoBehaviour {
         public Canvas HUDOverlay;
-        public Animator HUDAnimator;
         public GameTimer GameTimer;
         public CustomEventSystem EventSystem;
+        public AnimatorHandler AnimatorHandler;
 
         void Awake() {
             EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
             InitializeEvents();
             HUDOverlay.gameObject.SetActive(true);
             GameTimer.gameObject.SetActive(false);
-            HUDAnimator = GameObject.Find("HUD").GetComponent<Animator>();
+            AnimatorHandler = GetComponent<AnimatorHandler>();
         }
 
         private void InitializeEvents() {
@@ -30,23 +30,23 @@ namespace Assets.Scripts.UI {
         }
 
         private void StartTimer() {
-            HUDAnimator.SetBool("InsideMaze", true);
+            AnimatorHandler.StartTimer();
         }
 
         private void GameWon() {
-            HUDAnimator.SetTrigger("WinGame");
+            AnimatorHandler.GameWon();
         }
 
         private void StartNewGame() {
-            HUDAnimator.SetTrigger("MainMenuDisappear");
+            AnimatorHandler.StartNewGame();
         }
 
         private void PauseGame() {
-            HUDAnimator.SetBool("Paused", true);
+            AnimatorHandler.PauseGame();
         }
 
         private void ResumeGame() {
-            HUDAnimator.SetBool("Paused", false);
+            AnimatorHandler.ResumeGame();
         }
     }
 }
