@@ -11,42 +11,37 @@ namespace Assets.Scripts.UI {
         public Canvas HUDOverlay;
         public GameTimer GameTimer;
         public CustomEventSystem EventSystem;
-        public AnimatorHandler AnimatorHandler;
+        public HUDAnimatorHandler HUDAnimatorHandler;
 
         void Awake() {
             EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
             InitializeEvents();
             HUDOverlay.gameObject.SetActive(true);
             GameTimer.gameObject.SetActive(false);
-            AnimatorHandler = GetComponent<AnimatorHandler>();
+            HUDAnimatorHandler = GetComponent<HUDAnimatorHandler>();
         }
 
         private void InitializeEvents() {
             EventSystem.RegisterListener(typeof(MazeStartedEvent), StartTimer);
-            EventSystem.RegisterListener(typeof(StartGameEvent), StartNewGame);
             EventSystem.RegisterListener(typeof(PauseGameEvent), PauseGame);
             EventSystem.RegisterListener(typeof(ResumeGameEvent), ResumeGame);
             EventSystem.RegisterListener(typeof(WonGameEvent), GameWon);
         }
 
         private void StartTimer() {
-            AnimatorHandler.StartTimer();
+            HUDAnimatorHandler.StartTimer();
         }
 
         private void GameWon() {
-            AnimatorHandler.GameWon();
-        }
-
-        private void StartNewGame() {
-            AnimatorHandler.StartNewGame();
+            HUDAnimatorHandler.GameWon();
         }
 
         private void PauseGame() {
-            AnimatorHandler.PauseGame();
+            HUDAnimatorHandler.PauseGame();
         }
 
         private void ResumeGame() {
-            AnimatorHandler.ResumeGame();
+            HUDAnimatorHandler.ResumeGame();
         }
     }
 }

@@ -9,9 +9,11 @@ namespace Assets.Scripts.UI {
      */
     public class MainMenuController : MonoBehaviour {
         public CustomEventSystem EventSystem;
+        public MainMenuAnimatorHandler MainMenuAnimatorHandler;
 
         void Awake() {
             EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
+            MainMenuAnimatorHandler = GetComponent<MainMenuAnimatorHandler>();
             InitializeEvents();
         }
 
@@ -21,6 +23,7 @@ namespace Assets.Scripts.UI {
 
         public void StartNewGame() {
             SceneManager.LoadScene("Game");
+            MainMenuAnimatorHandler.StartNewGame();
         }
     }
 }

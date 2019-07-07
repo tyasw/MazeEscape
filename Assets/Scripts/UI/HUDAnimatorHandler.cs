@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Assets.Scripts.UI {
-    public class AnimatorHandler : MonoBehaviour {
+    public class HUDAnimatorHandler : MonoBehaviour {
         public Animator HUDAnimator;
 
         void Awake() {
@@ -14,10 +14,6 @@ namespace Assets.Scripts.UI {
 
         public void GameWon() {
             HUDAnimator.SetTrigger("WinGame");
-        }
-
-        public void StartNewGame() {
-            HUDAnimator.SetTrigger("MainMenuDisappear");
         }
 
         public void PauseGame() {
