@@ -11,5 +11,13 @@ namespace Assets.Scripts.UI {
         public void StartNewGame() {
             MainMenuAnimator.SetTrigger("MainMenuDisappear");
         }
+
+        public void LoadNewGameScreen() {
+            MainMenuAnimator.SetTrigger("LoadNewGameScreen");
+        }
+
+        public void NavigateBack() {
+            MainMenuAnimator.SetTrigger("NavigateBack");
+        }
     }
 }

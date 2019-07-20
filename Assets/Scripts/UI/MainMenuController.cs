@@ -19,11 +19,21 @@ namespace Assets.Scripts.UI {
 
         private void InitializeEvents() {
             EventSystem.RegisterListener(typeof(StartGameEvent), StartNewGame);
+            EventSystem.RegisterListener(typeof(NavigateBackEvent), NavigateBack);
+            EventSystem.RegisterListener(typeof(LoadNewGameScreenEvent), LoadNewGameScreen);
         }
 
         public void StartNewGame() {
             SceneManager.LoadScene("Game");
             MainMenuAnimatorHandler.StartNewGame();
+        }
+
+        public void LoadNewGameScreen() {
+            MainMenuAnimatorHandler.LoadNewGameScreen();
+        }
+
+        public void NavigateBack() {
+            MainMenuAnimatorHandler.NavigateBack();
         }
     }
 }
