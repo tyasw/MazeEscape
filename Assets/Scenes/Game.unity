@@ -545,11 +545,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 540078362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a708dd7462ba648a5cb0acd3f878b2, type: 3}
+  m_Script: {fileID: 11500000, guid: faaa92b4fe4c30049a52d38ee1e3da3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUDOverlay: {fileID: 1576292517}
-  GameTimer: {fileID: 1288902640}
   EventSystem: {fileID: 0}
   HUDAnimatorHandler: {fileID: 0}
 --- !u!4 &540078364
@@ -579,6 +577,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUDAnimator: {fileID: 0}
+  HUDOverlay: {fileID: 1576292517}
+  GameTimer: {fileID: 1288902640}
 --- !u!1 &677063335
 GameObject:
   m_ObjectHideFlags: 0

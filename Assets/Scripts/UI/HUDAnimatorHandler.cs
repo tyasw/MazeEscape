@@ -3,8 +3,12 @@
 namespace Assets.Scripts.UI {
     public class HUDAnimatorHandler : MonoBehaviour {
         public Animator HUDAnimator;
+        public Canvas HUDOverlay;
+        public GameTimer GameTimer;
 
         void Awake() {
+            HUDOverlay.gameObject.SetActive(true);
+            GameTimer.gameObject.SetActive(false);
             HUDAnimator = GameObject.Find("HUD").GetComponent<Animator>();
         }
 
