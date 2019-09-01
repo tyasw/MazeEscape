@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour {
         EventSystem.RegisterListener(typeof(StopGameEvent), StopGame);
         EventSystem.RegisterListener(typeof(RestartGameEvent), RestartGame);
         EventSystem.RegisterListener(typeof(WonGameEvent), WinGame);
+        EventSystem.RegisterListener(typeof(GoToMainMenuEvent), GoToMainMenu);
     }
 
     public void StartNewGame() {
@@ -45,5 +46,9 @@ public class GameController : MonoBehaviour {
 
     public void WinGame() {
         GameModel.GameData.GameWon = true;
+    }
+
+    public void GoToMainMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 }
