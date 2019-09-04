@@ -22,10 +22,21 @@ public class GameModel : MonoBehaviour {
 
     // TODO: get the options from an options file
     private void GetGameOptions() {
-        MazeData mazeData = MazeModel.MazeData;
+        GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
+        MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
+        MazeData mazeData = mazeDataManager.MazeData;
+
+        //MazeData mazeData = MazeModel.MazeData;
         mazeData.CellSideLength = 10.0f;
         mazeData.Width = 5;
         mazeData.Height = 5;
         mazeData.CellWallThickness = 0.1f;
+
+        Debug.Log(mazeData.CellSideLength);
+        Debug.Log(mazeData.Width);
+        Debug.Log(mazeData.Height);
+        Debug.Log(mazeData.CellWallThickness);
+
+        MazeModel.MazeData = mazeData;
     }
 }

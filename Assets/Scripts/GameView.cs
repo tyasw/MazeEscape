@@ -30,17 +30,17 @@ public class GameView : MonoBehaviour {
     }
 
     private void DrawMazeWalls() {
-        MazeDrawer mazeDrawer = new MazeDrawer(MazeData);
+        MazeDrawer mazeDrawer = new MazeDrawer(GameModel.MazeModel.MazeData);
         mazeDrawer.DrawMaze();
     }
 
     private void DrawEntryBoundaryArea() {
-        BoundaryAreaDrawer boundaryAreaDrawer = new BoundaryAreaDrawer(MazeData);
+        BoundaryAreaDrawer boundaryAreaDrawer = new BoundaryAreaDrawer(GameModel.MazeModel.MazeData);
         boundaryAreaDrawer.CreateBoundaryAreas();
     }
 
     private void CreateStartAndEndTriggers() {
-        CheckpointCreator checkpointCreator = new CheckpointCreator(MazeData);
+        CheckpointCreator checkpointCreator = new CheckpointCreator(GameModel.MazeModel.MazeData);
         checkpointCreator.CreateCheckpoints();
     }
 }
