@@ -20,17 +20,10 @@ public class GameModel : MonoBehaviour {
         mazeController.CreateMaze();
     }
 
-    // TODO: get the options from an options file
     private void GetGameOptions() {
         GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
         MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
         MazeData mazeData = mazeDataManager.MazeData;
-
-        //MazeData mazeData = MazeModel.MazeData;
-        mazeData.CellSideLength = 10.0f;
-        mazeData.Width = 5;
-        mazeData.Height = 5;
-        mazeData.CellWallThickness = 0.1f;
 
         Debug.Log(mazeData.CellSideLength);
         Debug.Log(mazeData.Width);

@@ -24,6 +24,9 @@ namespace Assets.Scripts.UI {
         }
 
         public void StartNewGame() {
+            GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
+            MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
+            mazeDataManager.GetMazeOptions();       // TODO: What happens if error in user input? Don't load new scene 
             SceneManager.LoadScene("Game");
             MainMenuAnimatorHandler.StartNewGame();
         }
