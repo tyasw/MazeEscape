@@ -11,6 +11,12 @@ public class MazeDataManager : MonoBehaviour {
         MazeData = new MazeData();
     }
 
+    public void OnEndEdit(string value) {
+        if (value == "") {
+            Debug.Log("You must enter a valid whole number.");
+        }
+    }
+
     public MazeData GetMazeOptions() {
         int width = int.Parse(Width.text);
         int height = int.Parse(Height.text);
