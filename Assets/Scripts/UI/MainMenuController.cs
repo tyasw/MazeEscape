@@ -11,10 +11,12 @@ namespace Assets.Scripts.UI {
     public class MainMenuController : MonoBehaviour {
         public CustomEventSystem EventSystem;
         public MainMenuAnimatorHandler MainMenuAnimatorHandler;
+        public NewGameController NewGameController;
 
         void Awake() {
             EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
             MainMenuAnimatorHandler = GetComponent<MainMenuAnimatorHandler>();
+            NewGameController = GameObject.FindObjectOfType<NewGameController>();
             InitializeEvents();
         }
 
@@ -26,11 +28,14 @@ namespace Assets.Scripts.UI {
 
         public void StartNewGame() {
             try {
-                GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
-                MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
-                mazeDataManager.GetMazeOptions();
-                SceneManager.LoadScene("Game");
-                MainMenuAnimatorHandler.StartNewGame();
+                bool canStart = NewGameController.CanStartNewGame();
+                if (canStart) {
+                    GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
+                    MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
+                    mazeDataManager.GetMazeOptions();
+                    SceneManager.LoadScene("Game");
+                    MainMenuAnimatorHandler.StartNewGame();
+                }
             } catch (FormatException ex) {
                 Debug.Log(ex.Message);
             }

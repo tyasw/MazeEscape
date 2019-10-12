@@ -867,6 +867,7 @@ GameObject:
   - component: {fileID: 404764552}
   - component: {fileID: 404764551}
   - component: {fileID: 404764550}
+  - component: {fileID: 404764553}
   m_Layer: 5
   m_Name: NewGameScreen
   m_TagString: Untagged
@@ -955,6 +956,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &404764553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404764548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e2c407f71380c459a92bea6242d19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ValidationMessages: []
+  Width: {fileID: 177180782}
+  Height: {fileID: 884263948}
+  ErrorView: {fileID: 967023461}
 --- !u!1 &434415805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,18 +1213,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 331809073}
-        m_MethodName: OnEndEdit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -1674,7 +1680,7 @@ GameObject:
   - component: {fileID: 967023462}
   m_Layer: 5
   m_Name: Errors
-  m_TagString: Untagged
+  m_TagString: MainMenuErrors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1710,6 +1716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502b10b686c04e6468877ce27b9ea5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Errors: []
 --- !u!114 &967023462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,7 +1726,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 967023459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -1731,8 +1738,8 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
 --- !u!1 &1243745050
@@ -1827,18 +1834,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 331809073}
-        m_MethodName: OnEndEdit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -2200,6 +2196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventSystem: {fileID: 0}
   MainMenuAnimatorHandler: {fileID: 0}
+  ErrorView: {fileID: 967023461}
+  NewGameController: {fileID: 0}
 --- !u!4 &1508317651
 Transform:
   m_ObjectHideFlags: 0

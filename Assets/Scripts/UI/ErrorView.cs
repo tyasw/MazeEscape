@@ -4,17 +4,31 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI {
     public class ErrorView : MonoBehaviour {
-        private List<string> errors = new List<string>();
+        public List<string> Errors = new List<string>();
 
-        private void Start() {
+        public void SetErrors(List<string> errors) {
+            ClearErrors();
             foreach (string error in errors) {
-                GameObject errorObject = new GameObject("Error");
-                errorObject.AddComponent<Text>();
-                Text text = errorObject.GetComponent<Text>();
-                text.text = error;
-                text.font = Font.CreateDynamicFontFromOSFont("Arial", 14);
-                errorObject.transform.SetParent(this.gameObject.transform);
+                addErrorObject(error);
             }
+        }
+
+        private void ClearErrors() {
+            int numChildren = transform.childCount;
+            Text[] childrenText = gameObject.GetComponentsInChildren<Text>();
+            foreach (Text childText in childrenText) {
+                Destroy(childText.gameObject);
+            }
+            Errors.Clear();
+        }
+
+        private void addErrorObject(string error) {
+            GameObject errorObject = new GameObject("Error");
+            errorObject.AddComponent<Text>();
+            Text text = errorObject.GetComponent<Text>();
+            text.text = error;
+            text.font = Font.CreateDynamicFontFromOSFont("Arial", 14);
+            errorObject.transform.SetParent(this.gameObject.transform);
         }
     }
 }
