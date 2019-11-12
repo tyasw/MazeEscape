@@ -6,30 +6,27 @@ using Assets.Scripts.Maze;
  * be attached to the GameObject that has a UnityController attached to it.
  */
 public class GameModel : MonoBehaviour {
-    public GameData GameData { get; set; }
-    public MazeModel MazeModel { get; set; }
+    public GameState GameState { get; set; }
 
     private void Awake() {
-        GameData = new GameData();
-        MazeModel = new MazeModel(new MazeData());
+        GameState = new GameState();
     }
 
     public void BeginGameWithOptionsApplied() {
-        GetGameOptions();
-        MazeController mazeController = new MazeController(MazeModel);
+        MazeData mazeData = GetGameOptions();
+        GameState.MazeModel.MazeData = mazeData;
+        MazeController mazeController = new MazeController(GameState.MazeModel);
         mazeController.CreateMaze();
     }
 
-    private void GetGameOptions() {
+    private MazeData GetGameOptions() {
         GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
-        MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
-        MazeData mazeData = mazeDataManager.MazeData;
-
-        Debug.Log(mazeData.CellSideLength);
-        Debug.Log(mazeData.Width);
-        Debug.Log(mazeData.Height);
-        Debug.Log(mazeData.CellWallThickness);
-
-        MazeModel.MazeData = mazeData;
+        GameModel gameModel = gameDataGameObject.gameObject.GetComponent<GameModel>();
+        return gameModel.GameState.MazeModel.MazeData;
     }
+}
+
+public class GameState {
+    public GameData GameData { get; set; } = new GameData();
+    public MazeModel MazeModel { get; set; } = new MazeModel(new MazeData());
 }

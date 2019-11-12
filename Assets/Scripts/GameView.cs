@@ -11,11 +11,12 @@ public class GameView : MonoBehaviour {
     public GameModel GameModel;
 
     void Awake() {
-        GameModel = GetComponent<GameModel>();
+        GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
+        GameModel = gameDataGameObject.gameObject.GetComponent<GameModel>();
     }
 
     private void Start() {
-        MazeData = GameModel.MazeModel.MazeData;
+        MazeData = GameModel.GameState.MazeModel.MazeData;
     }
 
     public void DrawWorld() {
@@ -30,17 +31,17 @@ public class GameView : MonoBehaviour {
     }
 
     private void DrawMazeWalls() {
-        MazeDrawer mazeDrawer = new MazeDrawer(GameModel.MazeModel.MazeData);
+        MazeDrawer mazeDrawer = new MazeDrawer(GameModel.GameState.MazeModel.MazeData);
         mazeDrawer.DrawMaze();
     }
 
     private void DrawEntryBoundaryArea() {
-        BoundaryAreaDrawer boundaryAreaDrawer = new BoundaryAreaDrawer(GameModel.MazeModel.MazeData);
+        BoundaryAreaDrawer boundaryAreaDrawer = new BoundaryAreaDrawer(GameModel.GameState.MazeModel.MazeData);
         boundaryAreaDrawer.CreateBoundaryAreas();
     }
 
     private void CreateStartAndEndTriggers() {
-        CheckpointCreator checkpointCreator = new CheckpointCreator(GameModel.MazeModel.MazeData);
+        CheckpointCreator checkpointCreator = new CheckpointCreator(GameModel.GameState.MazeModel.MazeData);
         checkpointCreator.CreateCheckpoints();
     }
 }

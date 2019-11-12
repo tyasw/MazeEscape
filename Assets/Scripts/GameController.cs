@@ -15,7 +15,8 @@ public class GameController : MonoBehaviour {
 
     void Awake() {
         EventSystem = GameObject.FindObjectOfType<CustomEventSystem>();
-        GameModel = GetComponent<GameModel>();
+        GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
+        GameModel = gameDataGameObject.gameObject.GetComponent<GameModel>();
         GameView = GetComponent<GameView>();
         InitializeEvents();
     }
@@ -45,7 +46,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void WinGame() {
-        GameModel.GameData.GameWon = true;
+        GameModel.GameState.GameData.GameWon = true;
     }
 
     public void GoToMainMenu() {

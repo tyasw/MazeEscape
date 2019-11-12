@@ -531,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 331809072}
   - component: {fileID: 331809071}
-  - component: {fileID: 331809073}
+  - component: {fileID: 331809074}
   m_Layer: 0
   m_Name: GameData
   m_TagString: GameData
@@ -565,7 +565,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &331809073
+--- !u!114 &331809074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,11 +574,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 331809070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 848a54f6f28c09e4089469fa9f56ecff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c3a345968a4f1a4b88273fea6867473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: {fileID: 575633072}
-  Height: {fileID: 1243745052}
 --- !u!1 &342128072
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e2c407f71380c459a92bea6242d19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ValidationMessages: []
   Width: {fileID: 177180782}
   Height: {fileID: 884263948}
   ErrorView: {fileID: 967023461}
@@ -2196,7 +2193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventSystem: {fileID: 0}
   MainMenuAnimatorHandler: {fileID: 0}
-  ErrorView: {fileID: 967023461}
   NewGameController: {fileID: 0}
 --- !u!4 &1508317651
 Transform:

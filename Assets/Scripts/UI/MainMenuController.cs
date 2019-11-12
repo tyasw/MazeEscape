@@ -30,9 +30,7 @@ namespace Assets.Scripts.UI {
             try {
                 bool canStart = NewGameController.CanStartNewGame();
                 if (canStart) {
-                    GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
-                    MazeDataManager mazeDataManager = gameDataGameObject.gameObject.GetComponent<MazeDataManager>();
-                    mazeDataManager.GetMazeOptions();
+                    NewGameController.setUpGame();
                     SceneManager.LoadScene("Game");
                     MainMenuAnimatorHandler.StartNewGame();
                 }
