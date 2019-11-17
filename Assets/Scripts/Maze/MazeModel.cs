@@ -40,6 +40,7 @@ namespace Assets.Scripts.Maze {
         }
 
         private void CreateCells() {
+            MazeData.Cells = new List<Cell>();
             for (int i = 0; i < (MazeData.Width * MazeData.Height); i++) {
                 MazeData.Cells.Add(new Cell(i, MazeData.CellSideLength));
             }
@@ -47,6 +48,7 @@ namespace Assets.Scripts.Maze {
 
         // Assumes that cells have already been created
         private void CreateCellPairs() {
+            CellPairs = new List<TwoTuple<Cell>>();
             for (int i = 0; i < (MazeData.Width * MazeData.Height); i++) {
                 if (!AtRightEdge(i)) {
                     CellPairs.Add(new TwoTuple<Cell>(MazeData.Cells[i], MazeData.Cells[i + 1]));
