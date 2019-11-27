@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Events;
+using Assets.Scripts.Maze;
 
 /*
  * The top-level class in Maze Escape. It should be attached to a GameObject
@@ -33,8 +34,17 @@ public class GameController : MonoBehaviour {
     }
 
     public void StartNewGame() {
-        GameModel.BeginGameWithOptionsApplied();
+        MazeData mazeData = GetGameOptions();
+        MazeGenerator mazeGenerator = new MazeGenerator(mazeData);
+        mazeData = mazeGenerator.CreateMaze();
+        GameModel.MazeData = mazeData;
         GameView.DrawWorld();
+    }
+
+    private MazeData GetGameOptions() {
+        GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
+        GameModel gameModel = gameDataGameObject.gameObject.GetComponent<GameModel>();
+        return gameModel.MazeData;
     }
 
     public void RestartGame() {
@@ -46,7 +56,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void WinGame() {
-        GameModel.GameState.GameData.GameWon = true;
+        GameModel.GameData.GameWon = true;
     }
 
     public void GoToMainMenu() {

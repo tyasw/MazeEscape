@@ -31,7 +31,7 @@ namespace Assets.Scripts.UI {
 
             GameObject gameDataGameObject = GameObject.FindGameObjectWithTag("GameData");
             GameModel gameModel = gameDataGameObject.gameObject.GetComponent<GameModel>();
-            gameModel.GameState.MazeModel.MazeData = mazeData;
+            gameModel.MazeData = mazeData;
         }
 
         private List<string> GetErrors() {
