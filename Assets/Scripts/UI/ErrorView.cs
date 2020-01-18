@@ -9,6 +9,7 @@ namespace Assets.Scripts.UI {
         public void SetErrors(List<string> errors) {
             ClearErrors();
             foreach (string error in errors) {
+                Errors.Add(error);
                 addErrorObject(error);
             }
         }

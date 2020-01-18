@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI {
     public class NewGameController : MonoBehaviour {
-        public Text Width;
-        public Text Height;
+        public InputField Width;
+        public InputField Height;
         public ErrorView ErrorView;
 
+        void Awake() {
+            Width.onValueChanged.AddListener(delegate {
+                List<string> validationMessages = GetErrors();
+                ErrorView.SetErrors(validationMessages);
+            });
+            Height.onValueChanged.AddListener(delegate {
+                List<string> validationMessages = GetErrors();
+                ErrorView.SetErrors(validationMessages);
+            });
+        }
+
         public bool CanStartNewGame() {
-            List<string> validationMessages = GetErrors();
-            ErrorView.SetErrors(validationMessages);
-            return validationMessages.Count == 0;
+            return ErrorView.Errors.Count == 0;
         }
 
         public void setUpGame() {
